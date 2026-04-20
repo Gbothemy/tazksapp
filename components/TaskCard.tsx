@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 
 export interface Task {
   id: number;
@@ -9,25 +8,19 @@ export interface Task {
   duration: string;
   icon: string;
   color: string;
+  instructions?: string;
+  steps?: string[];
+  proof_type?: string;
+  proof_label?: string;
   completed?: boolean;
 }
 
 interface TaskCardProps {
   task: Task;
-  onComplete?: (id: number) => void;
+  onStart: (task: Task) => void;
 }
 
-export default function TaskCard({ task, onComplete }: TaskCardProps) {
-  const [loading, setLoading] = useState(false);
-
-  const handleStart = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      onComplete?.(task.id);
-    }, 1500);
-  };
-
+export default function TaskCard({ task, onStart }: TaskCardProps) {
   return (
     <div style={{
       background: "#ffffff",
@@ -41,7 +34,6 @@ export default function TaskCard({ task, onComplete }: TaskCardProps) {
       opacity: task.completed ? 0.55 : 1,
       transition: "opacity 0.3s",
     }}>
-      {/* Icon */}
       <div style={{
         width: 52, height: 52, borderRadius: 16,
         background: task.color,
@@ -52,7 +44,6 @@ export default function TaskCard({ task, onComplete }: TaskCardProps) {
         {task.icon}
       </div>
 
-      {/* Info */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{ fontWeight: 600, fontSize: 14, color: "#1a2e1c", marginBottom: 4, lineHeight: 1.3 }}>
           {task.title}
@@ -61,7 +52,6 @@ export default function TaskCard({ task, onComplete }: TaskCardProps) {
           <span style={{
             fontSize: 10, fontWeight: 600, color: "#4b7f52",
             background: "#edf7ee", borderRadius: 6, padding: "2px 8px",
-            letterSpacing: 0.3,
           }}>
             {task.category}
           </span>
@@ -69,15 +59,8 @@ export default function TaskCard({ task, onComplete }: TaskCardProps) {
         </div>
       </div>
 
-      {/* Reward + action */}
       <div style={{ textAlign: "right", flexShrink: 0 }}>
-        <p style={{
-          fontWeight: 800, fontSize: 16,
-          background: "linear-gradient(135deg, #4b7f52, #d4af37)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          marginBottom: 6,
-        }}>
+        <p style={{ fontWeight: 800, fontSize: 16, color: "#4b7f52", marginBottom: 6 }}>
           +₦{task.reward}
         </p>
         {task.completed ? (
@@ -90,25 +73,17 @@ export default function TaskCard({ task, onComplete }: TaskCardProps) {
           </div>
         ) : (
           <button
-            onClick={handleStart}
-            disabled={loading}
+            onClick={() => onStart(task)}
             style={{
-              background: loading
-                ? "#f2f2f2"
-                : "linear-gradient(135deg, #4b7f52, #5e9e67)",
-              color: loading ? "#a0b0a2" : "#fff",
-              border: "none",
-              borderRadius: 10,
-              padding: "7px 16px",
-              fontSize: 12,
-              fontWeight: 700,
-              cursor: loading ? "not-allowed" : "pointer",
-              boxShadow: loading ? "none" : "0 4px 12px rgba(75,127,82,0.3)",
-              transition: "all 0.2s",
+              background: "linear-gradient(135deg, #4b7f52, #5e9e67)",
+              color: "#fff", border: "none", borderRadius: 10,
+              padding: "7px 16px", fontSize: 12, fontWeight: 700,
+              cursor: "pointer",
+              boxShadow: "0 4px 12px rgba(75,127,82,0.3)",
               letterSpacing: 0.3,
             }}
           >
-            {loading ? "⏳" : "Start"}
+            Start
           </button>
         )}
       </div>

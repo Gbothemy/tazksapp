@@ -12,13 +12,12 @@ const nav = [
 export default function BottomNav() {
   const path = usePathname();
   return (
-    <nav style={{
+    <nav className="bottom-nav" style={{
       position: "fixed",
       bottom: 0,
-      left: "50%",
-      transform: "translateX(-50%)",
+      left: 0,
+      right: 0,
       width: "100%",
-      maxWidth: 480,
       background: "#ffffff",
       borderTop: "1px solid #e8ede9",
       display: "flex",
