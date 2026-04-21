@@ -243,12 +243,17 @@ function SupportModal({ onClose }: { onClose: () => void }) {
   return (
     <Modal title="Contact Support" onClose={onClose}>
       <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
-        {[{ icon: "💬", label: "Live Chat", sub: "Avg. 5 min" }, { icon: "📧", label: "Email", sub: "24h reply" }, { icon: "📞", label: "Call", sub: "9am–6pm" }].map((c) => (
-          <div key={c.label} style={{ flex: 1, background: "#f9fbf9", border: "1px solid #e0e8e1", borderRadius: 14, padding: "12px 8px", textAlign: "center", cursor: "pointer" }}>
+        {[
+          { icon: "📧", label: "Email", sub: "qeixova@gmail.com", href: "mailto:qeixova@gmail.com" },
+          { icon: "📘", label: "Facebook", sub: "Message us", href: "https://www.facebook.com/profile.php?id=61568026449468" },
+          { icon: "🐦", label: "Twitter/X", sub: "@QeixovaTech", href: "https://x.com/QeixovaTech" },
+        ].map((c) => (
+          <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
+            style={{ flex: 1, background: "#f9fbf9", border: "1px solid #e0e8e1", borderRadius: 14, padding: "12px 8px", textAlign: "center", cursor: "pointer", textDecoration: "none" }}>
             <p style={{ fontSize: 22 }}>{c.icon}</p>
             <p style={{ fontSize: 12, fontWeight: 700, color: "#1a2e1c", marginTop: 4 }}>{c.label}</p>
             <p style={{ fontSize: 10, color: "#a0b0a2" }}>{c.sub}</p>
-          </div>
+          </a>
         ))}
       </div>
       <Field label="Subject" value={subject} onChange={setSubject} placeholder="What do you need help with?" />

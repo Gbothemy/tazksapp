@@ -110,7 +110,7 @@ export async function GET() {
         'Boost engagement on a Facebook post by liking and sharing it to your timeline. Your account must be at least 30 days old.',
         ARRAY[
           'Open Facebook and log into your account',
-          'Visit the post link: facebook.com/qeixova/posts/latest',
+          'Visit the post link: facebook.com/profile.php?id=61568026449468',
           'Click the Like button on the post',
           'Click Share and share to your own timeline',
           'Take a screenshot showing the post liked and shared'
@@ -124,8 +124,8 @@ export async function GET() {
         'Increase reach of posts on X (formerly Twitter) by retweeting two specified posts from your account.',
         ARRAY[
           'Log into your X (Twitter) account',
-          'Find and retweet the first post: x.com/qeixova/status/1',
-          'Find and retweet the second post: x.com/qeixova/status/2',
+          'Find and retweet the first post: x.com/QeixovaTech',
+          'Find and retweet the second post: x.com/QeixovaTech',
           'Take a screenshot of your profile showing both retweets'
         ],
         'screenshot',

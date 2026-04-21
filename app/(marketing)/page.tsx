@@ -268,16 +268,33 @@ export default function LandingPage() {
             </div>
             <div>
               <p style={{ color: "#fff", fontWeight: 700, fontSize: 13, marginBottom: 14, letterSpacing: 0.5 }}>Support</p>
-              {["Help center", "Contact us", "Privacy policy", "Terms of service"].map((l) => (
-                <p key={l} style={{ fontSize: 13, marginBottom: 10, cursor: "pointer" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#d4af37")} onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}>{l}</p>
+              {[
+                { label: "Help center", href: "#" },
+                { label: "Contact us", href: "mailto:qeixova@gmail.com" },
+                { label: "Privacy policy", href: "#" },
+                { label: "Terms of service", href: "#" },
+              ].map((l) => (
+                <a key={l.label} href={l.href} style={{ display: "block", fontSize: 13, marginBottom: 10, cursor: "pointer", color: "rgba(255,255,255,0.6)", textDecoration: "none" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#d4af37")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
+                >{l.label}</a>
               ))}
             </div>
             <div>
               <p style={{ color: "#fff", fontWeight: 700, fontSize: 13, marginBottom: 14, letterSpacing: 0.5 }}>Follow us</p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                {["📘 Facebook", "📸 Instagram", "🐦 Twitter", "▶️ YouTube"].map((s) => (
-                  <span key={s} style={{ fontSize: 12, background: "rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)" }}>{s}</span>
-                ))}
+                <a href="https://www.facebook.com/profile.php?id=61568026449468" target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: 12, background: "rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", textDecoration: "none" }}>
+                  📘 Facebook
+                </a>
+                <a href="https://x.com/QeixovaTech" target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: 12, background: "rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", textDecoration: "none" }}>
+                  🐦 @QeixovaTech
+                </a>
+                <a href="mailto:qeixova@gmail.com"
+                  style={{ fontSize: 12, background: "rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", textDecoration: "none" }}>
+                  📧 Email us
+                </a>
               </div>
             </div>
           </div>
