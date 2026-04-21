@@ -7,7 +7,13 @@ import { useAuth } from "@/lib/useAuth";
 
 interface WalletData {
   balance: number;
-  stats: { tasks_completed: number; today_earned: number };
+  stats: {
+    tasks_today: number;
+    today_earned: number;
+    tasks_total: number;
+    total_accumulated: number;
+    total_withdrawn: number;
+  };
   transactions: { type: string; label: string; amount: number; created_at: string }[];
 }
 
@@ -90,7 +96,10 @@ export default function Home() {
         <BalanceCard
           balance={wallet?.balance ?? user?.balance ?? 0}
           todayEarned={wallet?.stats?.today_earned ?? 0}
-          tasksCompleted={wallet?.stats?.tasks_completed ?? 0}
+          tasksToday={wallet?.stats?.tasks_today ?? 0}
+          totalAccumulated={wallet?.stats?.total_accumulated ?? 0}
+          totalWithdrawn={wallet?.stats?.total_withdrawn ?? 0}
+          tasksTotal={wallet?.stats?.tasks_total ?? 0}
         />
       </div>
 

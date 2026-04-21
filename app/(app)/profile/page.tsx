@@ -8,7 +8,8 @@ interface Profile {
   full_name: string; email: string; phone: string;
   balance: number; streak: number; level: number;
   referral_code: string; tasks_completed: number;
-  total_earned: number; referral_count: number;
+  tasks_today: number; total_earned: number;
+  total_withdrawn: number; referral_count: number;
   created_at: string;
 }
 
@@ -330,9 +331,12 @@ export default function ProfilePage() {
   };
 
   const stats = profile ? [
-    { label: "Tasks Done",   value: String(profile.tasks_completed), icon: "✅" },
-    { label: "Points Earned", value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QTL` : `${profile.total_earned} QTL`, icon: "⭐" },
-    { label: "Referrals",    value: String(profile.referral_count),  icon: "👥" },
+    { label: "Tasks Today",      value: String(profile.tasks_today),       icon: "📅" },
+    { label: "Total Tasks",      value: String(profile.tasks_completed),   icon: "✅" },
+    { label: "Total Earned",     value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QTL` : `${profile.total_earned} QTL`, icon: "⭐" },
+    { label: "Total Withdrawn",  value: profile.total_withdrawn >= 1000 ? `${(profile.total_withdrawn / 1000).toFixed(0)}k QTL` : `${profile.total_withdrawn} QTL`, icon: "💸" },
+    { label: "Balance",          value: `${profile.balance.toLocaleString()} QTL`, icon: "💳" },
+    { label: "Referrals",        value: String(profile.referral_count),    icon: "👥" },
   ] : [];
 
   const menuItems = [
@@ -405,12 +409,20 @@ export default function ProfilePage() {
 
       {/* Stats */}
       <div style={{ padding: "0 16px", marginTop: -24 }}>
-        <div style={{ background: "#fff", borderRadius: 20, padding: "20px", display: "flex", justifyContent: "space-around", boxShadow: "0 8px 30px rgba(75,127,82,0.12)", border: "1px solid #edf2ee" }}>
+        <div style={{
+          background: "#fff", borderRadius: 20, padding: "20px",
+          boxShadow: "0 8px 30px rgba(75,127,82,0.12)", border: "1px solid #edf2ee",
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0,
+        }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ textAlign: "center", flex: 1, borderRight: i < stats.length - 1 ? "1px solid #edf2ee" : "none" }}>
-              <p style={{ fontSize: 20, marginBottom: 4 }}>{s.icon}</p>
-              <p style={{ fontWeight: 800, fontSize: 18, color: "#4b7f52" }}>{s.value}</p>
-              <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 2 }}>{s.label}</p>
+            <div key={i} style={{
+              textAlign: "center", padding: "12px 8px",
+              borderRight: i % 2 === 0 ? "1px solid #edf2ee" : "none",
+              borderBottom: i < stats.length - 2 ? "1px solid #edf2ee" : "none",
+            }}>
+              <p style={{ fontSize: 18, marginBottom: 4 }}>{s.icon}</p>
+              <p style={{ fontWeight: 800, fontSize: 15, color: "#4b7f52" }}>{s.value}</p>
+              <p style={{ fontSize: 10, color: "#a0b0a2", marginTop: 2 }}>{s.label}</p>
             </div>
           ))}
         </div>
