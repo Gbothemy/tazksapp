@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { sql } from "@/lib/db";
+import { verifyProof } from "@/lib/verifyProof";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,10 +16,17 @@ export async function POST(req: NextRequest) {
     if (taskRows.length === 0) return NextResponse.json({ error: "Task not found" }, { status: 404 });
 
     const task = taskRows[0];
-
     const proofType = task.proof_type ?? "none";
+
+    // Require proof for non-none tasks
     if (proofType !== "none" && !proofValue) {
       return NextResponse.json({ error: "Proof of completion is required" }, { status: 400 });
+    }
+
+    // ── Auto-verify proof ──
+    const verification = await verifyProof(proofType, proofValue ?? "", task.title);
+    if (!verification.valid) {
+      return NextResponse.json({ error: verification.reason }, { status: 422 });
     }
 
     // Permanent check — once done, never again
