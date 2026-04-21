@@ -17,6 +17,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    // Referral code is mandatory
+    if (!referralCode || !referralCode.trim()) {
+      return NextResponse.json({ error: "A referral code is required to register" }, { status: 400 });
+    }
+
+    // Validate referral code exists
+    const refRows = await sql`SELECT id FROM users WHERE referral_code = ${referralCode.trim().toUpperCase()}`;
+    if (refRows.length === 0) {
+      return NextResponse.json({ error: "Invalid referral code. Please check and try again." }, { status: 400 });
+    }
+    const referrerId: number = refRows[0].id;
+
     // Check existing user
     const existing = await sql`SELECT id FROM users WHERE email = ${email}`;
     if (existing.length > 0) {
@@ -26,16 +38,9 @@ export async function POST(req: NextRequest) {
     const hashed = await bcrypt.hash(password, 10);
     const myCode = makeReferralCode(fullName);
 
-    // Resolve referrer
-    let referrerId: number | null = null;
-    if (referralCode) {
-      const ref = await sql`SELECT id FROM users WHERE referral_code = ${referralCode}`;
-      if (ref.length > 0) referrerId = ref[0].id;
-    }
-
     const result = await sql`
       INSERT INTO users (email, phone, full_name, password, referral_code, referred_by, balance)
-      VALUES (${email}, ${phone || null}, ${fullName}, ${hashed}, ${myCode}, ${referrerId}, ${referrerId ? 200 : 0})
+      VALUES (${email}, ${phone || null}, ${fullName}, ${hashed}, ${myCode}, ${referrerId}, 200)
       RETURNING id, email, full_name
     `;
 

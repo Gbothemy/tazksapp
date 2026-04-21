@@ -34,6 +34,7 @@ export default function RegisterPage() {
     }
     if (step === 1) {
       if (!form.fullName) e.fullName = "Full name is required";
+      if (!form.referralCode.trim()) e.referralCode = "A referral code is required to register";
     }
     if (step === 2) {
       if (!form.password) e.password = "Password is required";
@@ -229,23 +230,34 @@ export default function RegisterPage() {
               {/* Referral code */}
               <div>
                 <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>
-                  REFERRAL CODE <span style={{ color: "#a0b0a2", fontWeight: 400 }}>(optional)</span>
+                  REFERRAL CODE <span style={{ color: "#e53e3e" }}>*</span>
                 </label>
                 <div style={{ position: "relative", marginTop: 8 }}>
                   <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>🎁</span>
                   <input
                     type="text" placeholder="e.g. TAZK-J4D9"
                     value={form.referralCode} onChange={(e) => set("referralCode", e.target.value.toUpperCase())}
-                    style={{ ...inputStyle("referralCode"), border: "1.5px solid #e0e8e1" }}
+                    style={{
+                      ...inputStyle("referralCode"),
+                      border: `1.5px solid ${errors.referralCode ? "#e53e3e" : "#e0e8e1"}`,
+                      letterSpacing: 1,
+                    }}
                     onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+                    onBlur={(e) => (e.target.style.borderColor = errors.referralCode ? "#e53e3e" : "#e0e8e1")}
                   />
+                  {form.referralCode.length >= 8 && !errors.referralCode && (
+                    <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>✅</span>
+                  )}
                 </div>
-                {form.referralCode && (
+                {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.referralCode}</p>}
+                {form.referralCode.length >= 8 && !errors.referralCode && (
                   <p style={{ fontSize: 11, color: "#4b7f52", marginTop: 4, fontWeight: 600 }}>
-                    🎉 Referral code applied — you&apos;ll get a ₦200 bonus!
+                    🎉 Code entered — you&apos;ll get a ₦200 welcome bonus!
                   </p>
                 )}
+                <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 4 }}>
+                  You must have a referral code to register. Ask a friend who uses TazKsApp.
+                </p>
               </div>
 
               {/* Earning potential card */}
