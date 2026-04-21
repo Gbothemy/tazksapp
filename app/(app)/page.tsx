@@ -12,10 +12,10 @@ interface WalletData {
 }
 
 const categories = [
-  { icon: "📱", label: "Social Media", color: "#e8f5e9", earn: "₦100–₦300" },
-  { icon: "📋", label: "Surveys",      color: "#fdf8e1", earn: "₦300–₦700" },
-  { icon: "🧪", label: "App Testing",  color: "#e8f5e9", earn: "₦800–₦2k"  },
-  { icon: "🎬", label: "Content",      color: "#fdf8e1", earn: "₦150–₦500" },
+  { icon: "📱", label: "Social Media", color: "#e8f5e9", earn: "100–300 pts" },
+  { icon: "📋", label: "Surveys",      color: "#fdf8e1", earn: "300–700 pts" },
+  { icon: "🧪", label: "App Testing",  color: "#e8f5e9", earn: "800–2k pts"  },
+  { icon: "🎬", label: "Content",      color: "#fdf8e1", earn: "150–500 pts" },
 ];
 
 function timeAgo(dateStr: string) {
@@ -153,8 +153,8 @@ export default function Home() {
                   </div>
                 </div>
                 <div style={{ background: tx.type === "credit" ? "#edf7ee" : "#fff5f5", borderRadius: 10, padding: "5px 12px" }}>
-                  <p style={{ fontWeight: 800, color: tx.type === "credit" ? "#4b7f52" : "#e53e3e", fontSize: 14 }}>
-                    {tx.type === "credit" ? "+" : "-"}₦{tx.amount.toLocaleString()}
+                  <p style={{ fontWeight: 800, color: tx.type === "credit" ? "#4b7f52" : "#e53e3e", fontSize: 13 }}>
+                    {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} TKP
                   </p>
                 </div>
               </div>

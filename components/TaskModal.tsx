@@ -114,10 +114,11 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
               borderRadius: 16, padding: "20px",
               marginBottom: 28,
             }}>
-              <p style={{ fontSize: 13, color: "#4b7f52", marginBottom: 4 }}>Reward earned</p>
+              <p style={{ fontSize: 13, color: "#4b7f52", marginBottom: 4 }}>Points earned</p>
               <p style={{ fontSize: 36, fontWeight: 900, color: "#4b7f52", letterSpacing: -1 }}>
-                +₦{task.reward.toLocaleString()}
+                +{task.reward.toLocaleString()} TKP
               </p>
+              <p style={{ fontSize: 12, color: "#6b7c6d", marginTop: 4 }}>≈ ₦{(task.reward / 100).toFixed(2)} cash value</p>
             </div>
             <button onClick={onClose} style={{
               width: "100%", background: "linear-gradient(135deg, #4b7f52, #3a6340)",
@@ -170,9 +171,10 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
               <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, borderRadius: "50%", background: "rgba(212,175,55,0.12)" }} />
               <div>
                 <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 2 }}>You will earn</p>
-                <p style={{ color: "#e8c84a", fontWeight: 900, fontSize: 24, letterSpacing: -0.5 }}>
-                  ₦{task.reward.toLocaleString()}
+                <p style={{ color: "#e8c84a", fontWeight: 900, fontSize: 22, letterSpacing: -0.5 }}>
+                  ⭐ {task.reward.toLocaleString()} pts
                 </p>
+                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 11, marginTop: 2 }}>≈ ₦{(task.reward / 100).toFixed(2)}</p>
               </div>
               <div style={{ textAlign: "right" }}>
                 <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 2 }}>Duration</p>
@@ -378,7 +380,7 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
                 boxShadow: submitting ? "none" : "0 6px 20px rgba(75,127,82,0.3)",
               }}
             >
-              {submitting ? "Submitting..." : "Submit & Claim ₦" + task.reward.toLocaleString()}
+              {submitting ? "Submitting..." : `Submit & Claim ${task.reward.toLocaleString()} pts`}
             </button>
 
             <p style={{ fontSize: 11, color: "#a0b0a2", textAlign: "center", marginTop: 12, lineHeight: 1.5 }}>

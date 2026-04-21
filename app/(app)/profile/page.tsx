@@ -325,7 +325,7 @@ export default function ProfilePage() {
 
   const stats = profile ? [
     { label: "Tasks Done",   value: String(profile.tasks_completed), icon: "✅" },
-    { label: "Total Earned", value: `₦${(profile.total_earned / 1000).toFixed(1)}k`, icon: "💰" },
+    { label: "Points Earned", value: `${(profile.total_earned / 1000).toFixed(0)}k TKP`, icon: "⭐" },
     { label: "Referrals",    value: String(profile.referral_count),  icon: "👥" },
   ] : [];
 

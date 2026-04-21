@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
   const { amount, bank } = await req.json();
   const amt = Number(amount);
 
-  if (!amt || amt < 1000) {
-    return NextResponse.json({ error: "Minimum withdrawal is ₦1,000" }, { status: 400 });
+  if (!amt || amt < 100000) {
+    return NextResponse.json({ error: "Minimum withdrawal is 100,000 points (₦1,000)" }, { status: 400 });
   }
   if (!bank) {
     return NextResponse.json({ error: "Bank account required" }, { status: 400 });
