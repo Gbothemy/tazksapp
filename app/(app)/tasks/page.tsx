@@ -39,9 +39,10 @@ export default function TasksPage() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        // Mark task as completed in local state
         setTasks((prev) => prev.map((t) => t.id === id ? { ...t, completed: true } : t));
-        return { ok: true };
+        // Notify dashboard/wallet to refresh balance
+        window.dispatchEvent(new CustomEvent("balanceUpdated", { detail: { newBalance: data.newBalance } }));
+        return { ok: true, reward: data.reward };
       }
       return { ok: false, error: data.error || "Submission failed" };
     } catch {

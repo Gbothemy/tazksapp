@@ -50,6 +50,10 @@ export default function WalletPage() {
       .then((r) => r.ok ? r.json() : null)
       .then((d) => { if (d?.accounts) setBankAccounts(d.accounts); })
       .catch(() => {});
+
+    const onBalanceUpdate = () => fetchWallet();
+    window.addEventListener("balanceUpdated", onBalanceUpdate);
+    return () => window.removeEventListener("balanceUpdated", onBalanceUpdate);
   }, []);
 
   const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {

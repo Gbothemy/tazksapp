@@ -95,6 +95,32 @@ export async function GET() {
       )
     `;
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS notification_prefs (
+        user_id INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+        prefs   JSONB NOT NULL DEFAULT '{}'
+      )
+    `;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS password_resets (
+        user_id    INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+        token      TEXT NOT NULL,
+        expires_at TIMESTAMPTZ NOT NULL
+      )
+    `;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS notifications (
+        user_id INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+        task_alerts BOOLEAN NOT NULL DEFAULT TRUE,
+        reward_updates BOOLEAN NOT NULL DEFAULT TRUE,
+        referral_alerts BOOLEAN NOT NULL DEFAULT TRUE,
+        weekly_summary BOOLEAN NOT NULL DEFAULT FALSE,
+        updated_at TIMESTAMPTZ DEFAULT NOW()
+      )
+    `;
+
     /* ── Seed / re-seed tasks ── */
     await sql`DELETE FROM tasks`;
 

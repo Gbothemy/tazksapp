@@ -178,7 +178,28 @@ function ChangePasswordModal({ onClose }: { onClose: () => void }) {
 // ── Notifications Modal ───────────────────────────────────────────────────
 function NotificationsModal({ onClose }: { onClose: () => void }) {
   const [prefs, setPrefs] = useState({ task_alerts: true, reward_updates: true, referral_alerts: true, weekly_summary: false });
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
   const toggle = (k: keyof typeof prefs) => setPrefs((p) => ({ ...p, [k]: !p[k] }));
+
+  useEffect(() => {
+    fetch("/api/notifications")
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => { if (d?.prefs) setPrefs(d.prefs); })
+      .catch(() => {});
+  }, []);
+
+  const save = async () => {
+    setSaving(true);
+    await fetch("/api/notifications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prefs }),
+    });
+    setSaving(false);
+    setSaved(true);
+    setTimeout(() => { setSaved(false); onClose(); }, 1000);
+  };
 
   const items = [
     { key: "task_alerts" as const, label: "New Task Alerts", sub: "Get notified when new tasks are available" },
@@ -209,12 +230,14 @@ function NotificationsModal({ onClose }: { onClose: () => void }) {
           </div>
         ))}
       </div>
-      <button onClick={onClose} style={{
-        width: "100%", background: "linear-gradient(135deg, #4b7f52, #3a6340)",
+      <button onClick={save} disabled={saving} style={{
+        width: "100%", background: saved ? "#4b7f52" : saving ? "#a0b0a2" : "linear-gradient(135deg, #4b7f52, #3a6340)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
-        fontWeight: 800, fontSize: 15, cursor: "pointer",
+        fontWeight: 800, fontSize: 15, cursor: saving ? "not-allowed" : "pointer",
         boxShadow: "0 6px 20px rgba(75,127,82,0.3)", marginTop: 20,
-      }}>Save Preferences</button>
+      }}>
+        {saved ? "✓ Saved!" : saving ? "Saving..." : "Save Preferences"}
+      </button>
     </Modal>
   );
 }
@@ -227,6 +250,9 @@ function SupportModal({ onClose }: { onClose: () => void }) {
 
   const send = () => {
     if (!subject.trim() || !message.trim()) return;
+    // Open email client with pre-filled content
+    const body = encodeURIComponent(`Subject: ${subject}\n\n${message}`);
+    window.open(`mailto:qeixova@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`, "_blank");
     setSent(true);
   };
 
@@ -278,16 +304,95 @@ function SupportModal({ onClose }: { onClose: () => void }) {
 
 // ── Terms Modal ───────────────────────────────────────────────────────────
 function TermsModal({ onClose }: { onClose: () => void }) {
+  const [view, setView] = useState<"menu" | "terms" | "privacy" | "refund">("menu");
+
+  const content: Record<string, { title: string; body: string }> = {
+    terms: {
+      title: "Terms of Service",
+      body: `Welcome to Qeixova. By using our platform you agree to these terms.
+
+1. ELIGIBILITY
+You must be at least 18 years old and a resident of Nigeria to use Qeixova.
+
+2. EARNING & REWARDS
+QTL (Qeixova Token Loyalty) points are earned by completing tasks. 100 QTL = ₦1. Points have no cash value until converted via a withdrawal request.
+
+3. TASK COMPLETION
+You must complete tasks honestly and submit genuine proof. Fraudulent submissions will result in account suspension and forfeiture of all points.
+
+4. WITHDRAWALS
+Minimum withdrawal is 100,000 QTL (₦1,000). Withdrawals are processed within 24 hours to your registered bank account.
+
+5. REFERRALS
+You earn 50,000 QTL for each person who registers using your referral code. Referral abuse will result in account termination.
+
+6. ACCOUNT TERMINATION
+Qeixova reserves the right to suspend or terminate accounts that violate these terms without prior notice.
+
+7. CHANGES
+We may update these terms at any time. Continued use of the platform constitutes acceptance of the updated terms.`,
+    },
+    privacy: {
+      title: "Privacy Policy",
+      body: `Qeixova is committed to protecting your personal information.
+
+1. DATA WE COLLECT
+We collect your name, email, phone number, and task completion data to operate the platform.
+
+2. HOW WE USE YOUR DATA
+Your data is used to manage your account, process withdrawals, and improve our services. We do not sell your data to third parties.
+
+3. DATA SECURITY
+All data is encrypted in transit and at rest. Passwords are hashed using bcrypt.
+
+4. COOKIES
+We use session cookies to keep you logged in. No tracking cookies are used.
+
+5. YOUR RIGHTS
+You may request deletion of your account and all associated data by contacting qeixova@gmail.com.
+
+6. CONTACT
+For privacy concerns: qeixova@gmail.com`,
+    },
+    refund: {
+      title: "Refund Policy",
+      body: `Qeixova does not charge users any fees. All earnings are from task completion.
+
+1. NO DEPOSITS
+Qeixova does not require any deposits or payments from users.
+
+2. WITHDRAWAL DISPUTES
+If a withdrawal is not received within 48 hours of approval, contact support at qeixova@gmail.com with your transaction reference.
+
+3. POINT DISPUTES
+If you believe points were incorrectly deducted, contact support within 7 days of the transaction.`,
+    },
+  };
+
+  if (view !== "menu") {
+    const c = content[view];
+    return (
+      <Modal title={c.title} onClose={onClose}>
+        <button onClick={() => setView("menu")} style={{ background: "#f2f2f2", border: "none", borderRadius: 10, padding: "8px 14px", fontSize: 13, cursor: "pointer", marginBottom: 16, color: "#6b7c6d", fontWeight: 600 }}>
+          ← Back
+        </button>
+        <div style={{ fontSize: 13, color: "#3a4a3c", lineHeight: 1.8, whiteSpace: "pre-line" }}>
+          {c.body}
+        </div>
+      </Modal>
+    );
+  }
+
   return (
     <Modal title="Terms & Privacy" onClose={onClose}>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {[
-          { icon: "📄", title: "Terms of Service", sub: "Rules and guidelines for using Tazks" },
-          { icon: "🔐", title: "Privacy Policy", sub: "How we collect and use your data" },
-          { icon: "🍪", title: "Cookie Policy", sub: "Information about cookies we use" },
-          { icon: "⚖️", title: "Refund Policy", sub: "Our policy on refunds and disputes" },
+          { key: "terms",   icon: "📄", title: "Terms of Service",  sub: "Rules and guidelines for using Qeixova" },
+          { key: "privacy", icon: "🔐", title: "Privacy Policy",    sub: "How we collect and use your data" },
+          { key: "refund",  icon: "⚖️", title: "Refund Policy",     sub: "Our policy on disputes and withdrawals" },
         ].map((item) => (
-          <div key={item.title} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 16px", background: "#f9fbf9", borderRadius: 14, border: "1px solid #e0e8e1", cursor: "pointer" }}>
+          <div key={item.key} onClick={() => setView(item.key as "terms" | "privacy" | "refund")}
+            style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 16px", background: "#f9fbf9", borderRadius: 14, border: "1px solid #e0e8e1", cursor: "pointer" }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: "#edf7ee", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{item.icon}</div>
             <div style={{ flex: 1 }}>
               <p style={{ fontSize: 14, fontWeight: 600, color: "#1a2e1c" }}>{item.title}</p>
@@ -298,7 +403,7 @@ function TermsModal({ onClose }: { onClose: () => void }) {
         ))}
       </div>
       <p style={{ textAlign: "center", color: "#a0b0a2", fontSize: 12, marginTop: 20 }}>
-        Last updated: January 2025 · Tazks v1.0
+        Last updated: April 2025 · Qeixova v1.0
       </p>
     </Modal>
   );

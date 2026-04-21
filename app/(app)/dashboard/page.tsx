@@ -44,6 +44,15 @@ export default function Home() {
       .then((r) => r.ok ? r.json() : null)
       .then((d) => { if (d) setWallet(d); })
       .catch(() => {});
+
+    const refresh = () => {
+      fetch("/api/wallet")
+        .then((r) => r.ok ? r.json() : null)
+        .then((d) => { if (d) setWallet(d); })
+        .catch(() => {});
+    };
+    window.addEventListener("balanceUpdated", refresh);
+    return () => window.removeEventListener("balanceUpdated", refresh);
   }, [user]);
 
   if (loading) return <LoadingScreen />;

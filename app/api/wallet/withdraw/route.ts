@@ -6,8 +6,7 @@ export async function POST(req: NextRequest) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { amount, bank } = await req.json();
-  const amt = Number(amount);
+  const { amount, bank } = await req.json();  const amt = Number(amount);
 
   if (!amt || amt < 100000) {
     return NextResponse.json({ error: "Minimum withdrawal is 100,000 QTL (₦1,000)" }, { status: 400 });
@@ -29,4 +28,21 @@ export async function POST(req: NextRequest) {
 
   const updated = await sql`SELECT balance FROM users WHERE id = ${session.userId}`;
   return NextResponse.json({ ok: true, newBalance: updated[0].balance });
+}
+
+export async function PATCH(req: NextRequest) {
+  const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { transactionId, status } = await req.json();
+  if (!["completed", "failed"].includes(status)) return NextResponse.json({ error: "Invalid status" }, { status: 400 });
+  // Only allow updating own transactions
+  await sql`UPDATE transactions SET status = ${status} WHERE id = ${transactionId} AND user_id = ${session.userId}`;
+  // If failed, refund the balance
+  if (status === "failed") {
+    const tx = await sql`SELECT amount FROM transactions WHERE id = ${transactionId}`;
+    if (tx.length > 0) {
+      await sql`UPDATE users SET balance = balance + ${tx[0].amount} WHERE id = ${session.userId}`;
+    }
+  }
+  return NextResponse.json({ ok: true });
 }
