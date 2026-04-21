@@ -11,8 +11,11 @@ export async function GET() {
     const [userRows, taskRows, earnRows, withdrawRows, referralRows] = await Promise.all([
       sql`SELECT id, email, full_name, phone, balance, streak, level, referral_code, created_at FROM users WHERE id = ${session.userId}`,
 
-      // Total tasks completed
-      sql`SELECT COUNT(*)::int AS total, COUNT(CASE WHEN DATE(completed_at) = CURRENT_DATE THEN 1 END)::int AS today FROM completions WHERE user_id = ${session.userId}`,
+      // Total tasks completed — split into all-time and today
+      sql`SELECT
+        COUNT(*)::int AS total,
+        COUNT(CASE WHEN DATE(completed_at) = CURRENT_DATE THEN 1 END)::int AS today
+        FROM completions WHERE user_id = ${session.userId}`,
 
       // Total QTL accumulated (all credits)
       sql`SELECT COALESCE(SUM(amount), 0)::int AS total FROM transactions WHERE user_id = ${session.userId} AND type = 'credit'`,

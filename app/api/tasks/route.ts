@@ -7,6 +7,7 @@ export async function GET() {
     const session = await getSession();
     if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+    // completed = done ever (permanent — no reset)
     const tasks = await sql`
       SELECT
         t.id, t.title, t.category, t.reward, t.duration,
@@ -17,9 +18,10 @@ export async function GET() {
         COALESCE(t.proof_label, 'Upload screenshot as proof') AS proof_label,
         CASE WHEN c.id IS NOT NULL THEN true ELSE false END AS completed
       FROM tasks t
-      LEFT JOIN completions c ON c.task_id = t.id AND c.user_id = ${session.userId}
+      LEFT JOIN completions c
+        ON c.task_id = t.id AND c.user_id = ${session.userId}
       WHERE t.is_active = true
-      ORDER BY t.category, t.reward DESC
+      ORDER BY completed ASC, t.reward DESC
     `;
 
     return NextResponse.json({ tasks });

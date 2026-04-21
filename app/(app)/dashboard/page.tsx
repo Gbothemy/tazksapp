@@ -29,7 +29,9 @@ function timeAgo(dateStr: string) {
   const h = Math.floor(diff / 3600000);
   if (h < 1) return "Just now";
   if (h < 24) return `${h}h ago`;
-  return "Yesterday";
+  if (h < 48) return "Yesterday";
+  const d = Math.floor(diff / 86400000);
+  return `${d} days ago`;
 }
 
 export default function Home() {

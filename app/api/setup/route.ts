@@ -45,9 +45,20 @@ export async function GET() {
         user_id      INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
         task_id      INT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE,
         proof_value  TEXT,
-        completed_at TIMESTAMPTZ DEFAULT NOW(),
-        UNIQUE(user_id, task_id)
+        completed_at TIMESTAMPTZ DEFAULT NOW()
       )
+    `;
+    /* Ensure permanent unique constraint — one completion per task per user ever */
+    await sql`DROP INDEX IF EXISTS completions_user_task_day_idx`;
+    await sql`
+      DO $$ BEGIN
+        IF NOT EXISTS (
+          SELECT 1 FROM pg_constraint
+          WHERE conname = 'completions_user_id_task_id_key'
+        ) THEN
+          ALTER TABLE completions ADD CONSTRAINT completions_user_id_task_id_key UNIQUE (user_id, task_id);
+        END IF;
+      END $$
     `;
 
     await sql`

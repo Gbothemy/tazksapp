@@ -69,7 +69,7 @@ export default function TaskCard({ task, onStart }: TaskCardProps) {
             background: "#edf7ee", borderRadius: 8, padding: "5px 10px",
           }}>
             <span style={{ fontSize: 12 }}>✓</span>
-            <span style={{ fontSize: 11, color: "#4b7f52", fontWeight: 700 }}>Done</span>
+            <span style={{ fontSize: 11, color: "#4b7f52", fontWeight: 700 }}>Completed</span>
           </div>
         ) : (
           <button

@@ -19,9 +19,9 @@ export function useAuth(redirectIfUnauth = true) {
 
   useEffect(() => {
     fetch("/api/auth/me")
-      .then((r) => r.json())
+      .then((r) => r.ok ? r.json() : null)
       .then((data) => {
-        if (data.user) {
+        if (data?.user) {
           setUser({
             id: data.user.id,
             email: data.user.email,
@@ -35,7 +35,8 @@ export function useAuth(redirectIfUnauth = true) {
           router.push("/login");
         }
       })
-      .catch(() => { if (redirectIfUnauth) router.push("/login"); })      .finally(() => setLoading(false));
+      .catch(() => { if (redirectIfUnauth) router.push("/login"); })
+      .finally(() => setLoading(false));
   }, [router, redirectIfUnauth]);
 
   const logout = async () => {

@@ -16,21 +16,20 @@ export async function POST(req: NextRequest) {
 
     const task = taskRows[0];
 
-    // Require proof for non-none tasks
     const proofType = task.proof_type ?? "none";
     if (proofType !== "none" && !proofValue) {
       return NextResponse.json({ error: "Proof of completion is required" }, { status: 400 });
     }
 
-    // Check already completed
+    // Permanent check — once done, never again
     const already = await sql`
-      SELECT id FROM completions WHERE user_id = ${session.userId} AND task_id = ${taskId}
+      SELECT id FROM completions
+      WHERE user_id = ${session.userId} AND task_id = ${taskId}
     `;
     if (already.length > 0) {
-      return NextResponse.json({ error: "You have already completed this task" }, { status: 409 });
+      return NextResponse.json({ error: "You have already completed this task." }, { status: 409 });
     }
 
-    // Store proof — truncate base64 images to avoid DB size issues (store filename only)
     const storedProof = proofValue?.startsWith("data:image")
       ? "[screenshot uploaded]"
       : (proofValue ?? null);

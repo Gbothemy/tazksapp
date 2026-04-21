@@ -39,6 +39,7 @@ export default function TasksPage() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
+        // Mark task as completed in local state
         setTasks((prev) => prev.map((t) => t.id === id ? { ...t, completed: true } : t));
         return { ok: true };
       }
@@ -62,8 +63,8 @@ export default function TasksPage() {
   );
 
   const filtered = tasks.filter((t) => active === "All" || t.category === active);
-  const completed = tasks.filter((t) => t.completed).length;
-  const totalReward = filtered.filter((t) => !t.completed).reduce((s, t) => s + t.reward, 0);
+  const completedCount = tasks.filter((t) => t.completed).length;
+  const remainingReward = tasks.filter((t) => !t.completed).reduce((s, t) => s + t.reward, 0);
 
   return (
     <div className="page-body" style={{ background: "#f2f2f2", minHeight: "100vh" }}>
@@ -83,7 +84,7 @@ export default function TasksPage() {
         }}>
           <span style={{ fontSize: 14 }}>💰</span>
           <span style={{ color: "#e8c84a", fontSize: 13, fontWeight: 700 }}>
-            Earn up to {totalReward.toLocaleString()} QTL today
+            Earn up to {remainingReward.toLocaleString()} QTL today
           </span>
         </div>
       </div>
@@ -105,16 +106,16 @@ export default function TasksPage() {
       </div>
 
       {/* Progress bar */}
-      {completed > 0 && (
+      {completedCount > 0 && (
         <div style={{ padding: "14px 16px 0" }}>
           <div style={{ background: "#fff", borderRadius: 14, padding: "14px 16px", boxShadow: "0 2px 8px rgba(75,127,82,0.06)", border: "1px solid #edf2ee" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-              <p style={{ fontSize: 13, fontWeight: 600, color: "#1a2e1c" }}>{completed} of {tasks.length} tasks completed</p>
-              <p style={{ fontSize: 13, fontWeight: 700, color: "#4b7f52" }}>{Math.round((completed / tasks.length) * 100)}%</p>
+              <p style={{ fontSize: 13, fontWeight: 600, color: "#1a2e1c" }}>{completedCount} of {tasks.length} tasks completed</p>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "#4b7f52" }}>{Math.round((completedCount / tasks.length) * 100)}%</p>
             </div>
             <div style={{ height: 6, background: "#f2f2f2", borderRadius: 10, overflow: "hidden" }}>
               <div style={{
-                height: "100%", width: `${(completed / tasks.length) * 100}%`,
+                height: "100%", width: `${(completedCount / tasks.length) * 100}%`,
                 background: "linear-gradient(90deg, #4b7f52, #d4af37)",
                 borderRadius: 10, transition: "width 0.4s ease",
               }} />
