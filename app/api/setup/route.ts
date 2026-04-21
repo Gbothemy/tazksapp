@@ -70,6 +70,19 @@ export async function GET() {
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS proof_label TEXT NOT NULL DEFAULT 'Upload screenshot as proof'`;
     await sql`ALTER TABLE completions ADD COLUMN IF NOT EXISTS proof_value TEXT`;
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS bank_accounts (
+        id             SERIAL PRIMARY KEY,
+        user_id        INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        bank_name      TEXT NOT NULL,
+        account_number TEXT NOT NULL,
+        account_name   TEXT NOT NULL,
+        is_default     BOOLEAN NOT NULL DEFAULT FALSE,
+        created_at     TIMESTAMPTZ DEFAULT NOW(),
+        UNIQUE(user_id, account_number)
+      )
+    `;
+
     /* ── Seed / re-seed tasks ── */
     await sql`DELETE FROM tasks`;
 

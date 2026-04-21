@@ -32,6 +32,7 @@ export default function WalletPage() {
   const [bank, setBank] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [msg, setMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [bankAccounts, setBankAccounts] = useState<{ id: number; bank_name: string; account_number: string; account_name: string }[]>([]);
 
   const fetchWallet = () =>
     fetch("/api/wallet").then((r) => r.json()).then((d) => {
@@ -39,7 +40,12 @@ export default function WalletPage() {
       if (d.transactions) setTransactions(d.transactions);
     });
 
-  useEffect(() => { fetchWallet(); }, []);
+  useEffect(() => {
+    fetchWallet();
+    fetch("/api/bank-accounts").then((r) => r.json()).then((d) => {
+      if (d.accounts) setBankAccounts(d.accounts);
+    });
+  }, []);
 
   const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -120,9 +126,15 @@ export default function WalletPage() {
                 <select value={bank} onChange={(e) => setBank(e.target.value)}
                   style={{ width: "100%", marginTop: 8, padding: "14px 16px", borderRadius: 12, border: "1.5px solid #e0e8e1", fontSize: 14, outline: "none", color: "#1a2e1c", background: "#f9fbf9", cursor: "pointer" }}>
                   <option value="">Select bank account</option>
-                  <option>GTBank — **** 4521</option>
-                  <option>Opay — **** 8832</option>
-                  <option>Palmpay — **** 1190</option>
+                  {bankAccounts.length > 0 ? (
+                    bankAccounts.map((acc) => (
+                      <option key={acc.id} value={`${acc.bank_name} — ${acc.account_number}`}>
+                        {acc.bank_name} — {acc.account_number.replace(/(\d{3})(\d{4})(\d{3})/, "$1 $2 $3")} ({acc.account_name})
+                      </option>
+                    ))
+                  ) : (
+                    <option disabled>No accounts saved — add one in Profile</option>
+                  )}
                 </select>
               </div>
               <button type="submit" disabled={submitting} style={{

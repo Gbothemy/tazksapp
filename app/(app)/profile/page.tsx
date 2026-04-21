@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import BottomNav from "@/components/BottomNav";
+import BankAccountsModal from "@/components/BankAccountsModal";
 import { useAuth } from "@/lib/useAuth";
 
 interface Profile {
@@ -302,6 +303,7 @@ export default function ProfilePage() {
   const { logout } = useAuth();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [copied, setCopied] = useState(false);
+  const [showBankModal, setShowBankModal] = useState(false);
   const [modal, setModal] = useState<ModalType>(null);
 
   useEffect(() => {
@@ -328,11 +330,12 @@ export default function ProfilePage() {
   ] : [];
 
   const menuItems = [
-    { icon: "✏️", label: "Edit Profile",     sub: "Update your name & phone",       color: "#edf7ee", action: () => setModal("edit") },
-    { icon: "🔒", label: "Change Password",  sub: "Update your account password",   color: "#fdf8e1", action: () => setModal("password") },
-    { icon: "🔔", label: "Notifications",    sub: "Task alerts & updates",          color: "#edf7ee", action: () => setModal("notifications") },
-    { icon: "📞", label: "Support",          sub: "Get help anytime",               color: "#fdf8e1", action: () => setModal("support") },
-    { icon: "📄", label: "Terms & Privacy",  sub: "Legal information",              color: "#edf7ee", action: () => setModal("terms") },
+    { icon: "🏦", label: "Bank Accounts",   sub: "Add & manage withdrawal accounts", color: "#edf7ee", action: () => setShowBankModal(true) },
+    { icon: "✏️", label: "Edit Profile",    sub: "Update your name & phone",         color: "#fdf8e1", action: () => setModal("edit") },
+    { icon: "🔒", label: "Change Password", sub: "Update your account password",     color: "#edf7ee", action: () => setModal("password") },
+    { icon: "🔔", label: "Notifications",   sub: "Task alerts & updates",            color: "#fdf8e1", action: () => setModal("notifications") },
+    { icon: "📞", label: "Support",         sub: "Get help anytime",                 color: "#edf7ee", action: () => setModal("support") },
+    { icon: "📄", label: "Terms & Privacy", sub: "Legal information",                color: "#fdf8e1", action: () => setModal("terms") },
   ];
 
   return (
@@ -475,6 +478,7 @@ export default function ProfilePage() {
       <BottomNav />
 
       {/* Modals */}
+      {showBankModal                && <BankAccountsModal onClose={() => setShowBankModal(false)} />}
       {modal === "edit"          && profile && <EditProfileModal profile={profile} onClose={() => setModal(null)} onSaved={patchProfile} />}
       {modal === "password"      && <ChangePasswordModal onClose={() => setModal(null)} />}
       {modal === "notifications" && <NotificationsModal onClose={() => setModal(null)} />}
