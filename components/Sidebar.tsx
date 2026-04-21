@@ -3,10 +3,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 const nav = [
-  { href: "/", label: "Home", icon: "🏠", desc: "Dashboard" },
-  { href: "/tasks", label: "Tasks", icon: "✅", desc: "Browse & earn" },
-  { href: "/wallet", label: "Wallet", icon: "💰", desc: "Balance & withdraw" },
-  { href: "/profile", label: "Profile", icon: "👤", desc: "Account settings" },
+  { href: "/dashboard", label: "Home", icon: "🏠", desc: "Dashboard" },
+  { href: "/tasks",     label: "Tasks", icon: "✅", desc: "Browse & earn" },
+  { href: "/wallet",    label: "Wallet", icon: "💰", desc: "Balance & withdraw" },
+  { href: "/profile",   label: "Profile", icon: "👤", desc: "Account settings" },
 ];
 
 export default function Sidebar() {
@@ -28,7 +28,7 @@ export default function Sidebar() {
             boxShadow: "0 4px 12px rgba(75,127,82,0.3)",
           }}>⚡</div>
           <div>
-            <p style={{ fontWeight: 800, fontSize: 16, color: "#1a2e1c", letterSpacing: -0.5 }}>TazKsApp</p>
+            <p style={{ fontWeight: 800, fontSize: 16, color: "#1a2e1c", letterSpacing: -0.5 }}>Qeixova</p>
             <p style={{ fontSize: 11, color: "#a0b0a2" }}>Earn by doing</p>
           </div>
         </div>

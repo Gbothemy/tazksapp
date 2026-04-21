@@ -116,7 +116,7 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
             }}>
               <p style={{ fontSize: 13, color: "#4b7f52", marginBottom: 4 }}>Points earned</p>
               <p style={{ fontSize: 36, fontWeight: 900, color: "#4b7f52", letterSpacing: -1 }}>
-                +{task.reward.toLocaleString()} TKP
+                +{task.reward.toLocaleString()} QTL
               </p>
               <p style={{ fontSize: 12, color: "#6b7c6d", marginTop: 4 }}>≈ ₦{(task.reward / 100).toFixed(2)} cash value</p>
             </div>
@@ -380,7 +380,7 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
                 boxShadow: submitting ? "none" : "0 6px 20px rgba(75,127,82,0.3)",
               }}
             >
-              {submitting ? "Submitting..." : `Submit & Claim ${task.reward.toLocaleString()} pts`}
+              {submitting ? "Submitting..." : `Submit & Claim ${task.reward.toLocaleString()} QTL`}
             </button>
 
             <p style={{ fontSize: 11, color: "#a0b0a2", textAlign: "center", marginTop: 12, lineHeight: 1.5 }}>

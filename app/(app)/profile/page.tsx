@@ -325,7 +325,7 @@ export default function ProfilePage() {
 
   const stats = profile ? [
     { label: "Tasks Done",   value: String(profile.tasks_completed), icon: "✅" },
-    { label: "Points Earned", value: `${(profile.total_earned / 1000).toFixed(0)}k TKP`, icon: "⭐" },
+    { label: "Points Earned", value: `${(profile.total_earned / 1000).toFixed(0)}k QTL`, icon: "⭐" },
     { label: "Referrals",    value: String(profile.referral_count),  icon: "👥" },
   ] : [];
 
@@ -422,7 +422,7 @@ export default function ProfilePage() {
           }}>
             <div style={{ position: "absolute", top: -30, right: -30, width: 100, height: 100, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
             <div>
-              <p style={{ color: "#fff", fontWeight: 800, fontSize: 16 }}>Refer & Earn ₦500</p>
+              <p style={{ color: "#fff", fontWeight: 800, fontSize: 16 }}>Refer & Earn 50,000 QTL</p>
               <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 12, marginTop: 3 }}>
                 Your code: <span style={{ fontWeight: 800, letterSpacing: 1 }}>{profile.referral_code}</span>
               </p>

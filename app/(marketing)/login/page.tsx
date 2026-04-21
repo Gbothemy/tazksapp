@@ -25,7 +25,7 @@ export default function LoginPage() {
     });
     const data = await res.json();
     if (res.ok) {
-      router.push("/");
+      router.push("/dashboard");
     } else {
       setError(data.error || "Login failed. Please try again.");
     }
@@ -62,7 +62,7 @@ export default function LoginPage() {
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 26, boxShadow: "0 8px 24px rgba(212,175,55,0.4)",
             }}>⚡</div>
-            <span style={{ fontWeight: 900, fontSize: 22, color: "#fff", letterSpacing: -0.5 }}>TazKsApp</span>
+            <span style={{ fontWeight: 900, fontSize: 22, color: "#fff", letterSpacing: -0.5 }}>Qeixova</span>
           </Link>
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14, marginTop: 6 }}>
             Welcome back — let&apos;s get you earning

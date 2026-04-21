@@ -102,8 +102,7 @@ export default function Home() {
             textDecoration: "none", boxShadow: "0 2px 10px rgba(75,127,82,0.08)",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           }}>💸 Withdraw</Link>
-          <Link href="/tasks" style={{
-            flex: 1, background: "linear-gradient(135deg, #d4af37, #b8961e)", color: "#fff",
+          <Link href="/tasks" style={{            flex: 1, background: "linear-gradient(135deg, #d4af37, #b8961e)", color: "#fff",
             borderRadius: 14, padding: "14px 0", textAlign: "center", fontWeight: 700, fontSize: 14,
             textDecoration: "none", boxShadow: "0 4px 16px rgba(212,175,55,0.35)",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,

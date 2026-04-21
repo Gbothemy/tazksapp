@@ -83,13 +83,13 @@ export default function WalletPage() {
           <p style={{ color: "#fff", fontSize: 38, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>
             {balance.toLocaleString()}
           </p>
-          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>TKP</span>
+          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>QTL</span>
         </div>
         <p style={{ color: "#e8c84a", fontSize: 14, fontWeight: 600, marginTop: 6 }}>
           ≈ ₦{(balance / 100).toLocaleString()} cash value
         </p>
         <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
-          {[{ label: "Min. Withdrawal", value: "100,000 pts" }, { label: "Rate", value: "100 pts = ₦1" }, { label: "Fee", value: "Free" }].map((item) => (
+          {[{ label: "Min. Withdrawal", value: "100,000 QTL" }, { label: "Rate", value: "100 QTL = ₦1" }, { label: "Fee", value: "Free" }].map((item) => (
             <div key={item.label} style={{ flex: 1, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, padding: "10px 8px", textAlign: "center" }}>
               <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 10, marginBottom: 3 }}>{item.label}</p>
               <p style={{ color: "#e8c84a", fontWeight: 700, fontSize: 13 }}>{item.value}</p>
@@ -121,9 +121,9 @@ export default function WalletPage() {
 
             <form onSubmit={handleWithdraw} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div>
-                <label style={{ fontSize: 12, color: "#6b7c6d", fontWeight: 700, letterSpacing: 0.5 }}>POINTS TO CONVERT</label>
+                <label style={{ fontSize: 12, color: "#6b7c6d", fontWeight: 700, letterSpacing: 0.5 }}>QTL POINTS TO CONVERT</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Min. 100,000 pts"
+                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Min. 100,000 QTL"
                     style={{ width: "100%", padding: "14px 16px", borderRadius: 12, border: "1.5px solid #e0e8e1", fontSize: 16, outline: "none", color: "#1a2e1c", background: "#f9fbf9" }}
                     onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
                     onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
@@ -132,7 +132,7 @@ export default function WalletPage() {
                 {Number(amount) > 0 && (
                   <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 6, background: "#edf7ee", borderRadius: 8, padding: "7px 12px" }}>
                     <span style={{ fontSize: 14 }}>⭐</span>
-                    <span style={{ fontSize: 13, color: "#4b7f52", fontWeight: 600 }}>{Number(amount).toLocaleString()} pts</span>
+                    <span style={{ fontSize: 13, color: "#4b7f52", fontWeight: 600 }}>{Number(amount).toLocaleString()} QTL</span>
                     <span style={{ color: "#a0b0a2" }}>→</span>
                     <span style={{ fontSize: 13, color: "#4b7f52", fontWeight: 700 }}>₦{(Number(amount) / 100).toLocaleString()}</span>
                   </div>
@@ -194,7 +194,7 @@ export default function WalletPage() {
                   </div>
                   <div style={{ background: tx.type === "credit" ? "#edf7ee" : "#fff5f5", borderRadius: 10, padding: "5px 12px" }}>
                     <p style={{ fontWeight: 800, fontSize: 13, color: tx.type === "credit" ? "#4b7f52" : "#e53e3e" }}>
-                      {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} TKP
+                      {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} QTL
                     </p>
                   </div>
                 </div>

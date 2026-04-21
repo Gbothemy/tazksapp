@@ -61,7 +61,7 @@ export default function TaskCard({ task, onStart }: TaskCardProps) {
 
       <div style={{ textAlign: "right", flexShrink: 0 }}>
         <p style={{ fontWeight: 800, fontSize: 15, color: "#4b7f52", marginBottom: 6 }}>
-          +{task.reward} pts
+          +{task.reward} QTL
         </p>
         {task.completed ? (
           <div style={{

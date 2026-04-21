@@ -96,9 +96,9 @@ export async function GET() {
         'Help grow Instagram communities by following three specified accounts. Make sure you are logged into your Instagram account before starting.',
         ARRAY[
           'Open Instagram and log into your account',
-          'Search for and follow: @tazksapp_official',
-          'Search for and follow: @earnwithtazks',
-          'Search for and follow: @tazks_nigeria',
+          'Search for and follow: @qeixova_official',
+          'Search for and follow: @earnwithqeixova',
+          'Search for and follow: @qeixova_nigeria',
           'Take a screenshot showing all 3 accounts followed'
         ],
         'screenshot',
@@ -110,7 +110,7 @@ export async function GET() {
         'Boost engagement on a Facebook post by liking and sharing it to your timeline. Your account must be at least 30 days old.',
         ARRAY[
           'Open Facebook and log into your account',
-          'Visit the post link: facebook.com/tazksapp/posts/latest',
+          'Visit the post link: facebook.com/qeixova/posts/latest',
           'Click the Like button on the post',
           'Click Share and share to your own timeline',
           'Take a screenshot showing the post liked and shared'
@@ -124,8 +124,8 @@ export async function GET() {
         'Increase reach of posts on X (formerly Twitter) by retweeting two specified posts from your account.',
         ARRAY[
           'Log into your X (Twitter) account',
-          'Find and retweet the first post: x.com/tazksapp/status/1',
-          'Find and retweet the second post: x.com/tazksapp/status/2',
+          'Find and retweet the first post: x.com/qeixova/status/1',
+          'Find and retweet the second post: x.com/qeixova/status/2',
           'Take a screenshot of your profile showing both retweets'
         ],
         'screenshot',
@@ -136,7 +136,7 @@ export async function GET() {
         'Content', 200, '1 min', '▶️', '#fdf8e1',
         'Watch a YouTube video for at least 60 seconds to boost its watch time. Do not skip or fast-forward.',
         ARRAY[
-          'Click this link to open the video: youtube.com/watch?v=tazks_demo',
+          'Click this link to open the video: youtube.com/watch?v=qeixova_demo',
           'Watch the video for at least 60 seconds without skipping',
           'Like the video after watching',
           'Paste the video URL below as proof'
@@ -150,7 +150,7 @@ export async function GET() {
         'Leave a meaningful comment (at least 10 words) on a TikTok video. Generic or spam comments will be rejected.',
         ARRAY[
           'Open TikTok and log into your account',
-          'Find the video: tiktok.com/@tazksapp/video/latest',
+          'Find the video: tiktok.com/@qeixova/video/latest',
           'Write a genuine comment of at least 10 words about the video content',
           'Post the comment',
           'Take a screenshot showing your comment posted'

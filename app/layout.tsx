@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TazKsApp — Earn by Doing",
+  title: "Qeixova — Earn by Doing",
   description: "Complete tasks, earn real money. Social media, surveys, app testing and more.",
 };
 

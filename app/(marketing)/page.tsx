@@ -19,20 +19,20 @@ const steps = [
 
 const stats = [
   { value: "50,000+", label: "Active Earners" },
-  { value: "5B+",     label: "Points Awarded" },
+  { value: "5B+",     label: "QTL Awarded" },
   { value: "200+",    label: "Daily Tasks" },
   { value: "4.8★",    label: "User Rating" },
 ];
 
 const testimonials = [
-  { name: "Amaka O.", role: "Student, Lagos",          avatar: "👩🏾", text: "I earn thousands of points weekly just doing tasks in my free time. Converting to cash is instant. TazKsApp is genuinely legit." },
-  { name: "Chidi N.", role: "Freelancer, Abuja",       avatar: "👨🏾", text: "The app testing tasks give the most points. I've withdrawn over ₦80,000 worth in three months. Highly recommend." },
-  { name: "Fatima B.", role: "Stay-at-home mum, Kano", avatar: "👩🏽", text: "Simple tasks, fast point credits, easy cash out. I love doing this from my phone while the kids are asleep." },
+  { name: "Amaka O.", role: "Student, Lagos",          avatar: "👩🏾", text: "I earn thousands of QTL weekly just doing tasks in my free time. Converting to cash is instant. Qeixova is genuinely legit." },
+  { name: "Chidi N.", role: "Freelancer, Abuja",       avatar: "👨🏾", text: "The app testing tasks give the most QTL. I've withdrawn over ₦80,000 worth in three months. Highly recommend." },
+  { name: "Fatima B.", role: "Stay-at-home mum, Kano", avatar: "👩🏽", text: "Simple tasks, fast QTL credits, easy cash out. I love doing this from my phone while the kids are asleep." },
 ];
 
 const faqs = [
-  { q: "What are TazKs Points?",           a: "TazKs Points (TKP) are the reward currency on TazKsApp. Every task you complete earns you points. 100 points = ₦1. You can convert and withdraw anytime." },
-  { q: "Is TazKsApp free to join?",        a: "Yes, completely free. You need a referral code from an existing member to register. No registration fee, no hidden charges." },
+  { q: "What are QTL Points?",           a: "QTL (Qeixova Token Loyalty) points are the reward currency on Qeixova. Every task you complete earns you QTL. 100 QTL = ₦1. You can convert and withdraw anytime." },
+  { q: "Is Qeixova free to join?",        a: "Yes, completely free. You need a referral code from an existing member to register. No registration fee, no hidden charges." },
   { q: "How do I convert points to cash?", a: "Go to your Wallet, enter the amount of points you want to convert, select your bank account and tap Withdraw. Minimum is 100,000 points (₦1,000)." },
   { q: "How quickly are withdrawals processed?", a: "Withdrawals are processed instantly to your bank account or mobile wallet (Opay, Palmpay, GTBank, etc.)." },
   { q: "How many tasks can I do per day?", a: "There's no daily limit. New tasks are added every 24 hours so there's always something to earn from." },
@@ -53,7 +53,7 @@ export default function LandingPage() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg, #4b7f52, #3a6340)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, boxShadow: "0 4px 12px rgba(75,127,82,0.3)" }}>⚡</div>
-          <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: -0.5, color: "#1a2e1c" }}>TazKsApp</span>
+          <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: -0.5, color: "#1a2e1c" }}>Qeixova</span>
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <Link href="/login" style={{ fontSize: 14, fontWeight: 600, color: "#4b7f52", textDecoration: "none", padding: "8px 16px" }}>Log in</Link>
@@ -79,13 +79,13 @@ export default function LandingPage() {
         </h1>
 
         <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "clamp(15px, 2vw, 19px)", maxWidth: 560, margin: "0 auto 16px", lineHeight: 1.6 }}>
-          TazKsApp rewards you with <strong style={{ color: "#e8c84a" }}>TazKs Points (TKP)</strong> for completing simple online tasks. Accumulate points and convert them to Naira whenever you want.
+          Qeixova rewards you with <strong style={{ color: "#e8c84a" }}>QTL Points (Qeixova Token Loyalty)</strong> for completing simple online tasks. Accumulate QTL and convert to Naira whenever you want.
         </p>
 
         {/* Points conversion pill */}
         <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 14, padding: "10px 20px", marginBottom: 36 }}>
           <span style={{ fontSize: 20 }}>⭐</span>
-          <span style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>100 TKP</span>
+          <span style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>100 QTL</span>
           <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 18 }}>→</span>
           <span style={{ color: "#e8c84a", fontSize: 14, fontWeight: 700 }}>₦1</span>
           <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>· Instant conversion</span>
@@ -110,12 +110,12 @@ export default function LandingPage() {
       {/* ── POINTS EXPLAINER BAND ── */}
       <section style={{ background: "#1a2e1c", padding: "36px 5vw" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>How points work:</span>
+          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>How QTL works:</span>
           {[
-            { pts: "100 pts", naira: "₦1" },
-            { pts: "10,000 pts", naira: "₦100" },
-            { pts: "100,000 pts", naira: "₦1,000" },
-            { pts: "1,000,000 pts", naira: "₦10,000" },
+            { pts: "100 QTL", naira: "₦1" },
+            { pts: "10,000 QTL", naira: "₦100" },
+            { pts: "100,000 QTL", naira: "₦1,000" },
+            { pts: "1,000,000 QTL", naira: "₦10,000" },
           ].map((r) => (
             <div key={r.pts} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 14px" }}>
               <span style={{ color: "#e8c84a", fontWeight: 700, fontSize: 13 }}>⭐ {r.pts}</span>
@@ -238,7 +238,7 @@ export default function LandingPage() {
         <div style={{ position: "absolute", top: -60, right: -60, width: 280, height: 280, borderRadius: "50%", background: "rgba(212,175,55,0.1)" }} />
         <h2 style={{ color: "#fff", fontSize: "clamp(26px, 5vw, 48px)", fontWeight: 900, letterSpacing: -1.5, marginBottom: 16, position: "relative" }}>Ready to start earning points?</h2>
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, maxWidth: 440, margin: "0 auto 36px", lineHeight: 1.6, position: "relative" }}>
-          Join thousands of Nigerians earning TazKs Points daily and converting them to real cash.
+          Join thousands of Nigerians earning QTL daily and converting them to real cash.
         </p>
         <Link href="/register" style={{ background: "linear-gradient(135deg, #d4af37, #b8961e)", color: "#fff", textDecoration: "none", padding: "18px 44px", borderRadius: 14, fontWeight: 800, fontSize: 17, boxShadow: "0 8px 28px rgba(212,175,55,0.4)", display: "inline-block", position: "relative" }}>
           Create Free Account →
@@ -253,12 +253,12 @@ export default function LandingPage() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
                 <div style={{ width: 32, height: 32, borderRadius: 8, background: "linear-gradient(135deg, #4b7f52, #3a6340)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>⚡</div>
-                <span style={{ fontWeight: 800, fontSize: 16, color: "#fff" }}>TazKsApp</span>
+                <span style={{ fontWeight: 800, fontSize: 16, color: "#fff" }}>Qeixova</span>
               </div>
-              <p style={{ fontSize: 13, lineHeight: 1.7 }}>Nigeria&apos;s most trusted micro-task platform. Earn TazKs Points doing simple online tasks and convert to real cash.</p>
+              <p style={{ fontSize: 13, lineHeight: 1.7 }}>Nigeria&apos;s most trusted micro-task platform. Earn QTL doing simple online tasks and convert to real cash.</p>
               <div style={{ marginTop: 14, display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(212,175,55,0.15)", border: "1px solid rgba(212,175,55,0.25)", borderRadius: 8, padding: "6px 12px" }}>
                 <span style={{ fontSize: 14 }}>⭐</span>
-                <span style={{ fontSize: 12, color: "#e8c84a", fontWeight: 700 }}>100 TKP = ₦1</span>
+                <span style={{ fontSize: 12, color: "#e8c84a", fontWeight: 700 }}>100 QTL = ₦1</span>
               </div>
             </div>
             <div>

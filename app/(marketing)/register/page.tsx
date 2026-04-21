@@ -64,7 +64,7 @@ export default function RegisterPage() {
     });
     const data = await res.json();
     if (res.ok) {
-      router.push("/");
+      router.push("/dashboard");
     } else {
       setErrors({ submit: data.error || "Registration failed" });
     }
@@ -111,7 +111,7 @@ export default function RegisterPage() {
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 24, boxShadow: "0 8px 24px rgba(212,175,55,0.4)",
             }}>⚡</div>
-            <span style={{ fontWeight: 900, fontSize: 20, color: "#fff", letterSpacing: -0.5 }}>TazKsApp</span>
+            <span style={{ fontWeight: 900, fontSize: 20, color: "#fff", letterSpacing: -0.5 }}>Qeixova</span>
           </Link>
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginTop: 4 }}>
             Create your free account and start earning
@@ -252,7 +252,7 @@ export default function RegisterPage() {
                 {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.referralCode}</p>}
                 {form.referralCode.length >= 8 && !errors.referralCode && (
                   <p style={{ fontSize: 11, color: "#4b7f52", marginTop: 4, fontWeight: 600 }}>
-                    🎉 Code entered — you&apos;ll get a ₦200 welcome bonus!
+                    🎉 Code entered — you&apos;ll get a 20,000 QTL welcome bonus!
                   </p>
                 )}
                 <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 4 }}>

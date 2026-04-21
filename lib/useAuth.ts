@@ -35,8 +35,7 @@ export function useAuth(redirectIfUnauth = true) {
           router.push("/login");
         }
       })
-      .catch(() => { if (redirectIfUnauth) router.push("/login"); })
-      .finally(() => setLoading(false));
+      .catch(() => { if (redirectIfUnauth) router.push("/login"); })      .finally(() => setLoading(false));
   }, [router, redirectIfUnauth]);
 
   const logout = async () => {

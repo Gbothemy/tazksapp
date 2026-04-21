@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     const result = await sql`
       INSERT INTO users (email, phone, full_name, password, referral_code, referred_by, balance)
-      VALUES (${email}, ${phone || null}, ${fullName}, ${hashed}, ${myCode}, ${referrerId}, 200)
+      VALUES (${email}, ${phone || null}, ${fullName}, ${hashed}, ${myCode}, ${referrerId}, 20000)
       RETURNING id, email, full_name
     `;
 
@@ -48,10 +48,10 @@ export async function POST(req: NextRequest) {
 
     // Credit referrer bonus
     if (referrerId) {
-      await sql`UPDATE users SET balance = balance + 500 WHERE id = ${referrerId}`;
+      await sql`UPDATE users SET balance = balance + 50000 WHERE id = ${referrerId}`;
       await sql`
         INSERT INTO transactions (user_id, type, amount, label)
-        VALUES (${referrerId}, 'credit', 500, 'Referral Bonus')
+        VALUES (${referrerId}, 'credit', 50000, 'Referral Bonus')
       `;
     }
 
