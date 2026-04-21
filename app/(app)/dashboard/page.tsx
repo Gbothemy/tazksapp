@@ -33,8 +33,9 @@ export default function Home() {
   useEffect(() => {
     if (!user) return;
     fetch("/api/wallet")
-      .then((r) => r.json())
-      .then((d) => setWallet(d));
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => { if (d) setWallet(d); })
+      .catch(() => {});
   }, [user]);
 
   if (loading) return <LoadingScreen />;

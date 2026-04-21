@@ -34,17 +34,22 @@ export default function WalletPage() {
   const [msg, setMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [bankAccounts, setBankAccounts] = useState<{ id: number; bank_name: string; account_number: string; account_name: string }[]>([]);
 
-  const fetchWallet = () =>
-    fetch("/api/wallet").then((r) => r.json()).then((d) => {
+  const fetchWallet = async () => {
+    try {
+      const r = await fetch("/api/wallet");
+      if (!r.ok) return;
+      const d = await r.json();
       if (d.balance !== undefined) setBalance(d.balance);
       if (d.transactions) setTransactions(d.transactions);
-    });
+    } catch { /* network error — silently ignore */ }
+  };
 
   useEffect(() => {
     fetchWallet();
-    fetch("/api/bank-accounts").then((r) => r.json()).then((d) => {
-      if (d.accounts) setBankAccounts(d.accounts);
-    });
+    fetch("/api/bank-accounts")
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => { if (d?.accounts) setBankAccounts(d.accounts); })
+      .catch(() => {});
   }, []);
 
   const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {

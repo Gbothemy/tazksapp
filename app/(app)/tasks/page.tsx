@@ -17,8 +17,9 @@ export default function TasksPage() {
   useEffect(() => {
     if (!user) return;
     fetch("/api/tasks")
-      .then((r) => r.json())
-      .then((d) => { if (d.tasks) setTasks(d.tasks); })
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => { if (d?.tasks) setTasks(d.tasks); })
+      .catch(() => {})
       .finally(() => setFetching(false));
   }, [user]);
 

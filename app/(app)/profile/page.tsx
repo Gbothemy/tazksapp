@@ -308,8 +308,9 @@ export default function ProfilePage() {
 
   useEffect(() => {
     fetch("/api/profile")
-      .then((r) => r.json())
-      .then((d) => { if (d.profile) setProfile(d.profile); });
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => { if (d?.profile) setProfile(d.profile); })
+      .catch(() => {});
   }, []);
 
   const copyCode = () => {
