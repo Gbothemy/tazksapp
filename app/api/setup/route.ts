@@ -80,6 +80,7 @@ export async function GET() {
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS proof_type TEXT NOT NULL DEFAULT 'screenshot'`;
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS proof_label TEXT NOT NULL DEFAULT 'Upload screenshot as proof'`;
     await sql`ALTER TABLE completions ADD COLUMN IF NOT EXISTS proof_value TEXT`;
+    await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS max_screenshots INT NOT NULL DEFAULT 1`;
 
     await sql`
       CREATE TABLE IF NOT EXISTS bank_accounts (
@@ -99,7 +100,7 @@ export async function GET() {
 
     await sql`
       INSERT INTO tasks
-        (title, category, reward, duration, icon, color, instructions, steps, proof_type, proof_label)
+        (title, category, reward, duration, icon, color, instructions, steps, proof_type, proof_label, max_screenshots)
       VALUES
       (
         'Follow 3 Instagram accounts',
@@ -113,7 +114,8 @@ export async function GET() {
           'Take a screenshot showing all 3 accounts followed'
         ],
         'screenshot',
-        'Upload a screenshot showing the 3 followed accounts'
+        'Upload screenshots showing all 3 accounts followed',
+        3
       ),
       (
         'Like & share a Facebook post',
@@ -127,7 +129,8 @@ export async function GET() {
           'Take a screenshot showing the post liked and shared'
         ],
         'screenshot',
-        'Upload a screenshot showing the liked and shared post'
+        'Upload a screenshot showing the liked and shared post',
+        1
       ),
       (
         'Retweet 2 posts on X',
@@ -137,10 +140,11 @@ export async function GET() {
           'Log into your X (Twitter) account',
           'Find and retweet the first post: x.com/QeixovaTech',
           'Find and retweet the second post: x.com/QeixovaTech',
-          'Take a screenshot of your profile showing both retweets'
+          'Take a screenshot of each retweet'
         ],
         'screenshot',
-        'Upload a screenshot of your X profile showing the retweets'
+        'Upload 2 screenshots showing each retweet',
+        2
       ),
       (
         'Watch a YouTube video (60s)',
@@ -153,7 +157,8 @@ export async function GET() {
           'Paste the video URL below as proof'
         ],
         'url',
-        'Paste the YouTube video URL you watched'
+        'Paste the YouTube video URL you watched',
+        1
       ),
       (
         'Comment on a TikTok video',
@@ -167,7 +172,8 @@ export async function GET() {
           'Take a screenshot showing your comment posted'
         ],
         'screenshot',
-        'Upload a screenshot showing your comment on the TikTok video'
+        'Upload a screenshot showing your comment on the TikTok video',
+        1
       ),
       (
         'Complete product survey',
@@ -181,7 +187,8 @@ export async function GET() {
           'Paste the confirmation code below'
         ],
         'text',
-        'Paste your survey confirmation code here'
+        'Paste your survey confirmation code here',
+        1
       ),
       (
         'Fill lifestyle questionnaire',
@@ -195,7 +202,8 @@ export async function GET() {
           'Enter the submission ID below'
         ],
         'text',
-        'Enter your questionnaire submission ID'
+        'Enter your questionnaire submission ID',
+        1
       ),
       (
         'Test FoodApp & rate it',
@@ -207,10 +215,11 @@ export async function GET() {
           'Browse at least 3 restaurant menus',
           'Add items to cart and go through the checkout flow (no payment needed)',
           'Rate the app 4-5 stars on the store and write a short review',
-          'Take a screenshot of your published review'
+          'Take a screenshot of your published review and the app home screen'
         ],
         'screenshot',
-        'Upload a screenshot of your published app store review'
+        'Upload 2 screenshots: app home screen + your published review',
+        2
       ),
       (
         'Review a mobile game',
@@ -225,10 +234,10 @@ export async function GET() {
           'Take a screenshot of your published review'
         ],
         'screenshot',
-        'Upload a screenshot of your published game review'
+        'Upload a screenshot of your published game review',
+        1
       )
     `;
-
     return NextResponse.json({ ok: true, message: "Database setup complete — tasks seeded with instructions" });
   } catch (err) {
     console.error(err);

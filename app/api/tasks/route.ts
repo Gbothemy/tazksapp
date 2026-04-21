@@ -16,6 +16,7 @@ export async function GET() {
         COALESCE(t.steps, '{}') AS steps,
         COALESCE(t.proof_type, 'screenshot') AS proof_type,
         COALESCE(t.proof_label, 'Upload screenshot as proof') AS proof_label,
+        COALESCE(t.max_screenshots, 1) AS max_screenshots,
         CASE WHEN c.id IS NOT NULL THEN true ELSE false END AS completed
       FROM tasks t
       LEFT JOIN completions c

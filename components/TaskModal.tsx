@@ -13,6 +13,7 @@ export interface FullTask {
   steps: string[];
   proof_type: "screenshot" | "url" | "text" | "none";
   proof_label: string;
+  max_screenshots: number;
   completed: boolean;
 }
 
@@ -25,29 +26,54 @@ interface Props {
 export default function TaskModal({ task, onClose, onComplete }: Props) {
   const [phase, setPhase] = useState<"details" | "proof" | "success">("details");
   const [proofValue, setProofValue] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [screenshots, setScreenshots] = useState<{ dataUrl: string; name: string }[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
+  const maxShots = task.max_screenshots ?? 1;
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setFileName(file.name);
-    // Convert to base64 data URL as proof value
-    const reader = new FileReader();
-    reader.onload = () => setProofValue(reader.result as string);
-    reader.readAsDataURL(file);
+    const files = Array.from(e.target.files ?? []);
+    if (!files.length) return;
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setScreenshots((prev) => {
+          if (prev.length >= maxShots) return prev;
+          return [...prev, { dataUrl: reader.result as string, name: file.name }];
+        });
+      };
+      reader.readAsDataURL(file);
+    });
+    // Reset input so same file can be re-selected
+    e.target.value = "";
+  };
+
+  const removeScreenshot = (idx: number) => {
+    setScreenshots((prev) => prev.filter((_, i) => i !== idx));
   };
 
   const handleSubmit = async () => {
-    if (task.proof_type !== "none" && !proofValue.trim()) {
+    let finalProof = proofValue;
+
+    if (task.proof_type === "screenshot") {
+      if (screenshots.length < maxShots) {
+        setError(`Please upload ${maxShots} screenshot${maxShots > 1 ? "s" : ""} before submitting.`);
+        return;
+      }
+      // Store count marker — actual images not stored in DB
+      finalProof = screenshots.length === 1
+        ? "[screenshot uploaded]"
+        : `[${screenshots.length} screenshots uploaded]`;
+    } else if (task.proof_type !== "none" && !proofValue.trim()) {
       setError("Please provide proof of completion before submitting.");
       return;
     }
+
     setError("");
     setSubmitting(true);
-    const result = await onComplete(task.id, proofValue);
+    const result = await onComplete(task.id, finalProof);
     setSubmitting(false);
     if (result.ok) {
       setPhase("success");
@@ -223,7 +249,11 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
                   {task.proof_type === "screenshot" ? "📸" : task.proof_type === "url" ? "🔗" : "✏️"}
                 </span>
                 <div>
-                  <p style={{ fontSize: 12, fontWeight: 700, color: "#b8961e", marginBottom: 2 }}>Proof required</p>
+                  <p style={{ fontSize: 12, fontWeight: 700, color: "#b8961e", marginBottom: 2 }}>
+                    {task.proof_type === "screenshot" && maxShots > 1
+                      ? `${maxShots} screenshots required`
+                      : "Proof required"}
+                  </p>
                   <p style={{ fontSize: 12, color: "#6b5a1e" }}>{task.proof_label}</p>
                 </div>
               </div>
@@ -284,40 +314,82 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
                     ref={fileRef}
                     type="file"
                     accept="image/*"
+                    multiple={maxShots > 1}
                     onChange={handleFileChange}
                     style={{ display: "none" }}
                   />
-                  <div
-                    onClick={() => fileRef.current?.click()}
-                    style={{
-                      border: `2px dashed ${proofValue ? "#4b7f52" : "#e0e8e1"}`,
-                      borderRadius: 14, padding: "28px 20px",
-                      textAlign: "center", cursor: "pointer",
-                      background: proofValue ? "#edf7ee" : "#f9fbf9",
-                      transition: "all 0.2s",
-                    }}
-                  >
-                    {proofValue ? (
-                      <>
-                        {/* Preview */}
+
+                  {/* Screenshot slots grid */}
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: maxShots === 1 ? "1fr" : "1fr 1fr",
+                    gap: 10,
+                  }}>
+                    {/* Uploaded previews */}
+                    {screenshots.map((s, idx) => (
+                      <div key={idx} style={{ position: "relative" }}>
                         <img
-                          src={proofValue}
-                          alt="proof"
-                          style={{ maxWidth: "100%", maxHeight: 200, borderRadius: 10, marginBottom: 10, objectFit: "contain" }}
+                          src={s.dataUrl}
+                          alt={`proof ${idx + 1}`}
+                          style={{ width: "100%", height: 120, objectFit: "cover", borderRadius: 12, border: "2px solid #4b7f52" }}
                         />
-                        <p style={{ fontSize: 13, color: "#4b7f52", fontWeight: 600 }}>✓ {fileName}</p>
-                        <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 4 }}>Tap to change</p>
-                      </>
-                    ) : (
-                      <>
-                        <div style={{ fontSize: 36, marginBottom: 10 }}>📸</div>
-                        <p style={{ fontWeight: 600, fontSize: 14, color: "#1a2e1c", marginBottom: 4 }}>
-                          Tap to upload screenshot
+                        <button
+                          onClick={() => removeScreenshot(idx)}
+                          style={{
+                            position: "absolute", top: 6, right: 6,
+                            width: 24, height: 24, borderRadius: "50%",
+                            background: "rgba(0,0,0,0.6)", border: "none",
+                            color: "#fff", fontSize: 14, cursor: "pointer",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                          }}
+                        >✕</button>
+                        <p style={{ fontSize: 10, color: "#4b7f52", textAlign: "center", marginTop: 4, fontWeight: 600 }}>
+                          ✓ Screenshot {idx + 1}
                         </p>
-                        <p style={{ fontSize: 12, color: "#a0b0a2" }}>PNG, JPG or WEBP · Max 5MB</p>
-                      </>
-                    )}
+                      </div>
+                    ))}
+
+                    {/* Empty slots */}
+                    {Array.from({ length: maxShots - screenshots.length }).map((_, idx) => (
+                      <div
+                        key={`empty-${idx}`}
+                        onClick={() => fileRef.current?.click()}
+                        style={{
+                          border: "2px dashed #e0e8e1",
+                          borderRadius: 12, height: 120,
+                          display: "flex", flexDirection: "column",
+                          alignItems: "center", justifyContent: "center",
+                          cursor: "pointer", background: "#f9fbf9",
+                          gap: 6,
+                        }}
+                      >
+                        <span style={{ fontSize: 28 }}>📸</span>
+                        <p style={{ fontSize: 11, color: "#a0b0a2", textAlign: "center" }}>
+                          {screenshots.length === 0 && idx === 0
+                            ? maxShots > 1 ? `Upload ${maxShots} screenshots` : "Tap to upload"
+                            : `Screenshot ${screenshots.length + idx + 1}`}
+                        </p>
+                      </div>
+                    ))}
                   </div>
+
+                  {/* Progress indicator */}
+                  <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ flex: 1, height: 4, background: "#f2f2f2", borderRadius: 4, overflow: "hidden" }}>
+                      <div style={{
+                        height: "100%",
+                        width: `${(screenshots.length / maxShots) * 100}%`,
+                        background: screenshots.length === maxShots ? "#4b7f52" : "#d4af37",
+                        borderRadius: 4, transition: "width 0.3s",
+                      }} />
+                    </div>
+                    <p style={{ fontSize: 11, color: "#6b7c6d", flexShrink: 0 }}>
+                      {screenshots.length}/{maxShots} uploaded
+                    </p>
+                  </div>
+                  <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 6 }}>
+                    PNG, JPG or WEBP · Max 5MB each
+                  </p>
                 </div>
               )}
 
