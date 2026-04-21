@@ -11,33 +11,55 @@ export default function TasksPage() {
   const { user, loading } = useAuth();
   const [tasks, setTasks] = useState<FullTask[]>([]);
   const [fetching, setFetching] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [active, setActive] = useState("All");
   const [selectedTask, setSelectedTask] = useState<FullTask | null>(null);
 
+  const loadTasks = () => {
+    setFetching(true);
+    setFetchError(false);
+    fetch("/api/tasks")
+      .then((r) => r.ok ? r.json() : Promise.reject(r.status))
+      .then((d) => { if (d?.tasks) setTasks(d.tasks); })
+      .catch(() => setFetchError(true))
+      .finally(() => setFetching(false));
+  };
+
   useEffect(() => {
     if (!user) return;
-    fetch("/api/tasks")
-      .then((r) => r.ok ? r.json() : null)
-      .then((d) => { if (d?.tasks) setTasks(d.tasks); })
-      .catch(() => {})
-      .finally(() => setFetching(false));
+    loadTasks();
   }, [user]);
 
   const handleComplete = async (id: number, proofValue: string) => {
-    const res = await fetch("/api/tasks/complete", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ taskId: id, proofValue }),
-    });
-    const data = await res.json();
-    if (res.ok) {
-      setTasks((prev) => prev.map((t) => t.id === id ? { ...t, completed: true } : t));
-      return { ok: true };
+    try {
+      const res = await fetch("/api/tasks/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ taskId: id, proofValue }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setTasks((prev) => prev.map((t) => t.id === id ? { ...t, completed: true } : t));
+        return { ok: true };
+      }
+      return { ok: false, error: data.error || "Submission failed" };
+    } catch {
+      return { ok: false, error: "Network error. Please try again." };
     }
-    return { ok: false, error: data.error };
   };
 
   if (loading || fetching) return <LoadingScreen />;
+
+  if (fetchError) return (
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#f2f2f2", flexDirection: "column", gap: 16, padding: 24 }}>
+      <p style={{ fontSize: 40 }}>⚠️</p>
+      <p style={{ fontWeight: 700, color: "#1a2e1c", fontSize: 16 }}>Couldn&apos;t load tasks</p>
+      <p style={{ color: "#a0b0a2", fontSize: 13, textAlign: "center" }}>Check your connection and try again.</p>
+      <button onClick={loadTasks} style={{ background: "linear-gradient(135deg, #4b7f52, #3a6340)", color: "#fff", border: "none", borderRadius: 12, padding: "12px 28px", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
+        Retry
+      </button>
+    </div>
+  );
 
   const filtered = tasks.filter((t) => active === "All" || t.category === active);
   const completed = tasks.filter((t) => t.completed).length;
@@ -103,18 +125,25 @@ export default function TasksPage() {
 
       {/* Task list */}
       <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 12 }} className="task-grid">
-        {filtered.map((task) => (
-          <TaskCard
-            key={task.id}
-            task={task as Task}
-            onStart={(t) => setSelectedTask(t as FullTask)}
-          />
-        ))}
-        {filtered.length === 0 && (
+        {tasks.length === 0 ? (
+          <div style={{ textAlign: "center", padding: "48px 24px", background: "#fff", borderRadius: 16, border: "1px solid #edf2ee" }}>
+            <p style={{ fontSize: 40, marginBottom: 12 }}>📋</p>
+            <p style={{ fontWeight: 700, fontSize: 16, color: "#1a2e1c", marginBottom: 8 }}>No tasks available</p>
+            <p style={{ color: "#a0b0a2", fontSize: 13 }}>Tasks are being loaded. Please check back shortly.</p>
+          </div>
+        ) : filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 0" }}>
             <p style={{ fontSize: 32 }}>🎉</p>
             <p style={{ color: "#a0b0a2", marginTop: 8 }}>All tasks in this category done!</p>
           </div>
+        ) : (
+          filtered.map((task) => (
+            <TaskCard
+              key={task.id}
+              task={task as Task}
+              onStart={(t) => setSelectedTask(t as FullTask)}
+            />
+          ))
         )}
       </div>
 
