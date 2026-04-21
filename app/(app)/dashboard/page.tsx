@@ -12,10 +12,10 @@ interface WalletData {
 }
 
 const categories = [
-  { icon: "📱", label: "Social Media", color: "#e8f5e9", earn: "100–300 pts" },
-  { icon: "📋", label: "Surveys",      color: "#fdf8e1", earn: "300–700 pts" },
-  { icon: "🧪", label: "App Testing",  color: "#e8f5e9", earn: "800–2k pts"  },
-  { icon: "🎬", label: "Content",      color: "#fdf8e1", earn: "150–500 pts" },
+  { icon: "📱", label: "Social Media", color: "#e8f5e9", earn: "10k–15k QTL" },
+  { icon: "📋", label: "Surveys",      color: "#fdf8e1", earn: "35k–50k QTL" },
+  { icon: "🧪", label: "App Testing",  color: "#e8f5e9", earn: "80k–120k QTL" },
+  { icon: "🎬", label: "Content",      color: "#fdf8e1", earn: "18k–20k QTL" },
 ];
 
 function timeAgo(dateStr: string) {
@@ -153,7 +153,7 @@ export default function Home() {
                 </div>
                 <div style={{ background: tx.type === "credit" ? "#edf7ee" : "#fff5f5", borderRadius: 10, padding: "5px 12px" }}>
                   <p style={{ fontWeight: 800, color: tx.type === "credit" ? "#4b7f52" : "#e53e3e", fontSize: 13 }}>
-                    {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} TKP
+                    {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} QTL
                   </p>
                 </div>
               </div>

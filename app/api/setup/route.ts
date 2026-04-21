@@ -92,7 +92,7 @@ export async function GET() {
       VALUES
       (
         'Follow 3 Instagram accounts',
-        'Social Media', 150, '2 min', '📸', '#e8f5e9',
+        'Social Media', 15000, '2 min', '📸', '#e8f5e9',
         'Help grow Instagram communities by following three specified accounts. Make sure you are logged into your Instagram account before starting.',
         ARRAY[
           'Open Instagram and log into your account',
@@ -106,7 +106,7 @@ export async function GET() {
       ),
       (
         'Like & share a Facebook post',
-        'Social Media', 100, '1 min', '👍', '#e8f5e9',
+        'Social Media', 10000, '1 min', '👍', '#e8f5e9',
         'Boost engagement on a Facebook post by liking and sharing it to your timeline. Your account must be at least 30 days old.',
         ARRAY[
           'Open Facebook and log into your account',
@@ -120,7 +120,7 @@ export async function GET() {
       ),
       (
         'Retweet 2 posts on X',
-        'Social Media', 120, '1 min', '🐦', '#e8f5e9',
+        'Social Media', 12000, '1 min', '🐦', '#e8f5e9',
         'Increase reach of posts on X (formerly Twitter) by retweeting two specified posts from your account.',
         ARRAY[
           'Log into your X (Twitter) account',
@@ -133,7 +133,7 @@ export async function GET() {
       ),
       (
         'Watch a YouTube video (60s)',
-        'Content', 200, '1 min', '▶️', '#fdf8e1',
+        'Content', 20000, '1 min', '▶️', '#fdf8e1',
         'Watch a YouTube video for at least 60 seconds to boost its watch time. Do not skip or fast-forward.',
         ARRAY[
           'Click this link to open the video: youtube.com/watch?v=qeixova_demo',
@@ -146,7 +146,7 @@ export async function GET() {
       ),
       (
         'Comment on a TikTok video',
-        'Content', 180, '2 min', '🎬', '#fdf8e1',
+        'Content', 18000, '2 min', '🎬', '#fdf8e1',
         'Leave a meaningful comment (at least 10 words) on a TikTok video. Generic or spam comments will be rejected.',
         ARRAY[
           'Open TikTok and log into your account',
@@ -160,10 +160,10 @@ export async function GET() {
       ),
       (
         'Complete product survey',
-        'Survey', 500, '5 min', '📋', '#fdf8e1',
+        'Survey', 50000, '5 min', '📋', '#fdf8e1',
         'Share your honest opinion about a product in this short survey. All questions are required. Your responses help brands improve their products.',
         ARRAY[
-          'Click the survey link: forms.tazksapp.com/survey/product-001',
+          'Click the survey link: forms.qeixova.com/survey/product-001',
           'Answer all questions honestly — takes about 5 minutes',
           'Submit the survey form',
           'Copy the confirmation code shown after submission',
@@ -174,10 +174,10 @@ export async function GET() {
       ),
       (
         'Fill lifestyle questionnaire',
-        'Survey', 350, '4 min', '📝', '#fdf8e1',
+        'Survey', 35000, '4 min', '📝', '#fdf8e1',
         'Complete a lifestyle questionnaire about your daily habits, preferences and interests. Your data is anonymised and used for market research.',
         ARRAY[
-          'Open the questionnaire: forms.tazksapp.com/survey/lifestyle-002',
+          'Open the questionnaire: forms.qeixova.com/survey/lifestyle-002',
           'Fill in all sections — takes about 4 minutes',
           'Submit the form',
           'Note the submission ID shown on the confirmation page',
@@ -188,7 +188,7 @@ export async function GET() {
       ),
       (
         'Test FoodApp & rate it',
-        'App Testing', 1200, '10 min', '🧪', '#e8f5e9',
+        'App Testing', 120000, '10 min', '🧪', '#e8f5e9',
         'Download and test FoodApp, a new food delivery app. Explore the main features, place a test order (no payment required), and leave an honest rating on the app store.',
         ARRAY[
           'Download FoodApp from the Play Store or App Store',
@@ -203,7 +203,7 @@ export async function GET() {
       ),
       (
         'Review a mobile game',
-        'App Testing', 800, '8 min', '🎮', '#e8f5e9',
+        'App Testing', 80000, '8 min', '🎮', '#e8f5e9',
         'Play a mobile game for at least 5 minutes and leave a detailed review on the app store. Your review must be at least 30 words to qualify.',
         ARRAY[
           'Download PuzzleKing from the Play Store or App Store',

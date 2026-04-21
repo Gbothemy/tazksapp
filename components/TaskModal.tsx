@@ -172,7 +172,7 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
               <div>
                 <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 2 }}>You will earn</p>
                 <p style={{ color: "#e8c84a", fontWeight: 900, fontSize: 22, letterSpacing: -0.5 }}>
-                  ⭐ {task.reward.toLocaleString()} pts
+                  ⭐ {task.reward.toLocaleString()} QTL
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 11, marginTop: 2 }}>≈ ₦{(task.reward / 100).toFixed(2)}</p>
               </div>

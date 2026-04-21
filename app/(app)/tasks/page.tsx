@@ -60,7 +60,7 @@ export default function TasksPage() {
         }}>
           <span style={{ fontSize: 14 }}>💰</span>
           <span style={{ color: "#e8c84a", fontSize: 13, fontWeight: 700 }}>
-            Earn up to ₦{totalReward.toLocaleString()} today
+            Earn up to {totalReward.toLocaleString()} QTL today
           </span>
         </div>
       </div>

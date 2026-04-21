@@ -4,10 +4,10 @@ import { useState } from "react";
 
 // 100 points = ₦1
 const features = [
-  { icon: "📱", title: "Social Media Tasks", desc: "Follow, like, share and engage with content across Instagram, TikTok, X and more.", earn: "100 – 300 pts", color: "#e8f5e9" },
-  { icon: "📋", title: "Surveys & Polls",    desc: "Share your opinion on products, services and lifestyle topics that matter.",        earn: "300 – 700 pts", color: "#fdf8e1" },
-  { icon: "🧪", title: "App Testing",        desc: "Test new mobile apps and websites before they launch. Your feedback shapes products.", earn: "800 – 2,000 pts", color: "#e8f5e9" },
-  { icon: "🎬", title: "Content Interactions", desc: "Watch videos, read articles and interact with digital content to earn rewards.",   earn: "150 – 500 pts", color: "#fdf8e1" },
+  { icon: "📱", title: "Social Media Tasks",    desc: "Follow, like, share and engage with content across Instagram, TikTok, X and more.", earn: "10,000 – 15,000 QTL", color: "#e8f5e9" },
+  { icon: "📋", title: "Surveys & Polls",       desc: "Share your opinion on products, services and lifestyle topics that matter.",        earn: "35,000 – 50,000 QTL", color: "#fdf8e1" },
+  { icon: "🧪", title: "App Testing",           desc: "Test new mobile apps and websites before they launch. Your feedback shapes products.", earn: "80,000 – 120,000 QTL", color: "#e8f5e9" },
+  { icon: "🎬", title: "Content Interactions",  desc: "Watch videos, read articles and interact with digital content to earn rewards.",   earn: "18,000 – 20,000 QTL", color: "#fdf8e1" },
 ];
 
 const steps = [
@@ -33,8 +33,7 @@ const testimonials = [
 const faqs = [
   { q: "What are QTL Points?",           a: "QTL (Qeixova Token Loyalty) points are the reward currency on Qeixova. Every task you complete earns you QTL. 100 QTL = ₦1. You can convert and withdraw anytime." },
   { q: "Is Qeixova free to join?",        a: "Yes, completely free. You need a referral code from an existing member to register. No registration fee, no hidden charges." },
-  { q: "How do I convert points to cash?", a: "Go to your Wallet, enter the amount of points you want to convert, select your bank account and tap Withdraw. Minimum is 100,000 points (₦1,000)." },
-  { q: "How quickly are withdrawals processed?", a: "Withdrawals are processed instantly to your bank account or mobile wallet (Opay, Palmpay, GTBank, etc.)." },
+  { q: "How do I convert points to cash?", a: "Go to your Wallet, enter the amount of QTL you want to convert, select your bank account and tap Withdraw. Minimum is 100,000 QTL (₦1,000)." },  { q: "How quickly are withdrawals processed?", a: "Withdrawals are processed instantly to your bank account or mobile wallet (Opay, Palmpay, GTBank, etc.)." },
   { q: "How many tasks can I do per day?", a: "There's no daily limit. New tasks are added every 24 hours so there's always something to earn from." },
 ];
 
@@ -112,10 +111,10 @@ export default function LandingPage() {
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
           <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>How QTL works:</span>
           {[
-            { pts: "100 QTL", naira: "₦1" },
-            { pts: "10,000 QTL", naira: "₦100" },
-            { pts: "100,000 QTL", naira: "₦1,000" },
-            { pts: "1,000,000 QTL", naira: "₦10,000" },
+            { pts: "100 QTL",       naira: "₦1"     },
+            { pts: "10,000 QTL",    naira: "₦100"   },
+            { pts: "100,000 QTL",   naira: "₦1,000" },
+            { pts: "1,000,000 QTL", naira: "₦10,000"},
           ].map((r) => (
             <div key={r.pts} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 14px" }}>
               <span style={{ color: "#e8c84a", fontWeight: 700, fontSize: 13 }}>⭐ {r.pts}</span>

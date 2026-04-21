@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
   const amt = Number(amount);
 
   if (!amt || amt < 100000) {
-    return NextResponse.json({ error: "Minimum withdrawal is 100,000 points (₦1,000)" }, { status: 400 });
+    return NextResponse.json({ error: "Minimum withdrawal is 100,000 QTL (₦1,000)" }, { status: 400 });
   }
   if (!bank) {
     return NextResponse.json({ error: "Bank account required" }, { status: 400 });
