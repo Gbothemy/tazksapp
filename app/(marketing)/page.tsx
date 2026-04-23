@@ -31,7 +31,7 @@ const testimonials = [
 ];
 
 const faqs = [
-  { q: "What are QTL Points?",           a: "QTL (Qeixova Token Loyalty) points are the reward currency on Qeixova. Every task you complete earns you QTL. 100 QTL = ₦1. You can convert and withdraw anytime." },
+  { q: "What are QTL Points?", a: "QTL (Qeixova Token Loyalty) points are the reward currency on Qeixova. Every task you complete earns you QTL. 100 QTL = ₦1. You can convert and withdraw anytime." },
   { q: "Is Qeixova free to join?",        a: "Yes, completely free. You need a referral code from an existing member to register. No registration fee, no hidden charges." },
   { q: "How do I convert points to cash?", a: "Go to your Wallet, enter the amount of QTL you want to convert, select your bank account and tap Withdraw. Minimum is 100,000 QTL (₦1,000)." },  { q: "How quickly are withdrawals processed?", a: "Withdrawals are processed instantly to your bank account or mobile wallet (Opay, Palmpay, GTBank, etc.)." },
   { q: "How many tasks can I do per day?", a: "There's no daily limit. New tasks are added every 24 hours so there's always something to earn from." },
