@@ -1,6 +1,7 @@
 import { getAdminSession } from "@/lib/adminAuth";
 import { redirect } from "next/navigation";
 import { sql } from "@/lib/db";
+import DataManagement from "../DataManagement";
 
 async function getStats() {
   const [users, earned, withdrawn, pending, completions, activeTasks] = await Promise.all([
@@ -74,6 +75,8 @@ export default async function AdminDashboard() {
         <StatCard label="Total Completions" value={stats.totalCompletions.toLocaleString()} icon="✅" color="#4b7f52" />
         <StatCard label="Active Tasks" value={stats.activeTasks.toLocaleString()} icon="📋" color="#d4af37" />
       </div>
+
+      <DataManagement />
     </div>
   );
 }
