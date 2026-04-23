@@ -16,6 +16,7 @@ export interface FullTask {
   max_screenshots: number;
   total_budget: number;
   budget_used: number;
+  task_link: string;
   completed: boolean;
 }
 
@@ -283,6 +284,27 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
                   <p style={{ fontSize: 12, color: "#6b5a1e" }}>{task.proof_label}</p>
                 </div>
               </div>
+            )}
+
+            {/* Go to Task button — shown when a direct link is set */}
+            {task.task_link && (
+              <a
+                href={task.task_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  width: "100%", padding: "14px",
+                  background: "linear-gradient(135deg, #1a73e8, #1557b0)",
+                  color: "#fff", textDecoration: "none",
+                  borderRadius: 14, fontWeight: 700, fontSize: 15,
+                  boxShadow: "0 6px 20px rgba(26,115,232,0.3)",
+                  marginBottom: 12,
+                }}
+              >
+                <span style={{ fontSize: 18 }}>🔗</span>
+                Go to Task →
+              </a>
             )}
 
             <button onClick={() => setPhase("proof")} style={{

@@ -19,6 +19,7 @@ export async function GET() {
         COALESCE(t.max_screenshots, 1) AS max_screenshots,
         COALESCE(t.total_budget, 0) AS total_budget,
         COALESCE(t.budget_used, 0) AS budget_used,
+        COALESCE(t.task_link, '') AS task_link,
         CASE WHEN c.id IS NOT NULL THEN true ELSE false END AS completed
       FROM tasks t
       LEFT JOIN completions c

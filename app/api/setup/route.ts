@@ -83,6 +83,7 @@ export async function GET() {
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS max_screenshots INT NOT NULL DEFAULT 1`;
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS total_budget INT NOT NULL DEFAULT 0`;
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS budget_used INT NOT NULL DEFAULT 0`;
+    await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS task_link TEXT NOT NULL DEFAULT ''`;
 
     await sql`
       CREATE TABLE IF NOT EXISTS bank_accounts (

@@ -27,6 +27,7 @@ const EMPTY_FORM = {
   proof_label: "Upload screenshot as proof",
   max_screenshots: "1",
   total_budget: "0",
+  task_link: "",
 };
 
 const TH: React.CSSProperties = {
@@ -94,6 +95,7 @@ export default function TasksPage() {
       proof_label: "Upload screenshot as proof",
       max_screenshots: String(t.max_screenshots),
       total_budget: String(t.total_budget ?? 0),
+      task_link: (t as Task & { task_link?: string }).task_link ?? "",
     });
     setShowModal(true);
   }
@@ -106,6 +108,7 @@ export default function TasksPage() {
         reward: Number(form.reward),
         max_screenshots: Number(form.max_screenshots),
         total_budget: Number(form.total_budget),
+        task_link: form.task_link.trim(),
         steps: form.steps ? form.steps.split("\n").filter(Boolean) : [],
       };
       if (editTask) {
@@ -321,6 +324,15 @@ export default function TasksPage() {
             </h2>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div style={{ gridColumn: "1 / -1" }}>
+                <label style={labelStyle}>Task Link (URL) <span style={{ color: "#aaa", fontWeight: 400 }}>— where users go to perform the task</span></label>
+                <input style={{ ...inputStyle, borderColor: form.task_link ? "#4b7f52" : undefined }} type="url" value={form.task_link} onChange={(e) => setForm({ ...form, task_link: e.target.value })} placeholder="https://facebook.com/... or https://x.com/..." />
+                {form.task_link && (
+                  <a href={form.task_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: "#4b7f52", marginTop: 4, display: "inline-block" }}>
+                    ↗ Preview link
+                  </a>
+                )}
+              </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 <label style={labelStyle}>Title *</label>
                 <input style={inputStyle} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />

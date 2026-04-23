@@ -33,13 +33,13 @@ export async function POST(req: NextRequest) {
   }
 
   const result = await sql`
-    INSERT INTO tasks (title, category, reward, duration, icon, color, instructions, steps, proof_type, proof_label, max_screenshots, total_budget)
+    INSERT INTO tasks (title, category, reward, duration, icon, color, instructions, steps, proof_type, proof_label, max_screenshots, total_budget, task_link)
     VALUES (
       ${title}, ${category}, ${reward},
       ${duration ?? "5 min"}, ${icon ?? "📋"}, ${color ?? "#e8f5e9"},
       ${instructions ?? ""}, ${steps ?? []}, ${proof_type ?? "screenshot"},
       ${proof_label ?? "Upload screenshot as proof"}, ${max_screenshots ?? 1},
-      ${body.total_budget ?? 0}
+      ${body.total_budget ?? 0}, ${body.task_link ?? ""}
     )
     RETURNING id, title, category, reward
   `;
@@ -70,6 +70,7 @@ export async function PATCH(req: NextRequest) {
       else if (key === "proof_label") await sql`UPDATE tasks SET proof_label = ${fields[key]} WHERE id = ${id}`;
       else if (key === "max_screenshots") await sql`UPDATE tasks SET max_screenshots = ${fields[key]} WHERE id = ${id}`;
       else if (key === "total_budget")   await sql`UPDATE tasks SET total_budget = ${fields[key]} WHERE id = ${id}`;
+      else if (key === "task_link")      await sql`UPDATE tasks SET task_link = ${fields[key]} WHERE id = ${id}`;
       else if (key === "is_active")      await sql`UPDATE tasks SET is_active = ${fields[key]} WHERE id = ${id}`;
     }
   }
