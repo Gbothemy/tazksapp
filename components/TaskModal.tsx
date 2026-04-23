@@ -14,6 +14,8 @@ export interface FullTask {
   proof_type: "screenshot" | "url" | "text" | "none";
   proof_label: string;
   max_screenshots: number;
+  total_budget: number;
+  budget_used: number;
   completed: boolean;
 }
 

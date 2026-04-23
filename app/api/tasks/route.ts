@@ -17,11 +17,14 @@ export async function GET() {
         COALESCE(t.proof_type, 'screenshot') AS proof_type,
         COALESCE(t.proof_label, 'Upload screenshot as proof') AS proof_label,
         COALESCE(t.max_screenshots, 1) AS max_screenshots,
+        COALESCE(t.total_budget, 0) AS total_budget,
+        COALESCE(t.budget_used, 0) AS budget_used,
         CASE WHEN c.id IS NOT NULL THEN true ELSE false END AS completed
       FROM tasks t
       LEFT JOIN completions c
         ON c.task_id = t.id AND c.user_id = ${session.userId}
       WHERE t.is_active = true
+        AND (t.total_budget = 0 OR t.budget_used < t.total_budget)
       ORDER BY completed ASC, t.reward DESC
     `;
 

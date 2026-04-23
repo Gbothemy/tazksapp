@@ -10,6 +10,8 @@ interface Task {
   proof_type: string;
   max_screenshots: number;
   is_active: boolean;
+  total_budget: number;
+  budget_used: number;
 }
 
 const EMPTY_FORM = {
@@ -24,6 +26,7 @@ const EMPTY_FORM = {
   proof_type: "screenshot",
   proof_label: "Upload screenshot as proof",
   max_screenshots: "1",
+  total_budget: "0",
 };
 
 const TH: React.CSSProperties = {
@@ -90,6 +93,7 @@ export default function TasksPage() {
       proof_type: t.proof_type,
       proof_label: "Upload screenshot as proof",
       max_screenshots: String(t.max_screenshots),
+      total_budget: String(t.total_budget ?? 0),
     });
     setShowModal(true);
   }
@@ -101,6 +105,7 @@ export default function TasksPage() {
         ...form,
         reward: Number(form.reward),
         max_screenshots: Number(form.max_screenshots),
+        total_budget: Number(form.total_budget),
         steps: form.steps ? form.steps.split("\n").filter(Boolean) : [],
       };
       if (editTask) {
@@ -189,7 +194,8 @@ export default function TasksPage() {
               <th style={TH}>Reward (QTL)</th>
               <th style={TH}>Duration</th>
               <th style={TH}>Proof Type</th>
-              <th style={TH}>Max Screenshots</th>
+              <th style={TH}>Budget (QTL)</th>
+              <th style={TH}>Budget Used</th>
               <th style={TH}>Status</th>
               <th style={TH}>Actions</th>
             </tr>
@@ -212,7 +218,21 @@ export default function TasksPage() {
                   <td style={TD}>{Number(t.reward).toLocaleString()}</td>
                   <td style={TD}>{t.duration}</td>
                   <td style={TD}>{t.proof_type}</td>
-                  <td style={{ ...TD, textAlign: "center" }}>{t.max_screenshots}</td>
+                  <td style={TD}>
+                    {t.total_budget > 0 ? (
+                      <div>
+                        <div style={{ fontSize: 12, fontWeight: 600 }}>{Number(t.total_budget).toLocaleString()}</div>
+                        <div style={{ height: 4, background: "#f0f0f0", borderRadius: 2, marginTop: 4, width: 80 }}>
+                          <div style={{ height: "100%", borderRadius: 2, background: t.budget_used >= t.total_budget ? "#cc0000" : "#4b7f52", width: `${Math.min(100, (t.budget_used / t.total_budget) * 100)}%` }} />
+                        </div>
+                      </div>
+                    ) : <span style={{ color: "#aaa", fontSize: 12 }}>Unlimited</span>}
+                  </td>
+                  <td style={TD}>
+                    {t.total_budget > 0 ? (
+                      <span style={{ fontSize: 12 }}>{Number(t.budget_used).toLocaleString()} / {Number(t.total_budget).toLocaleString()}</span>
+                    ) : <span style={{ color: "#aaa", fontSize: 12 }}>—</span>}
+                  </td>
                   <td style={TD}>
                     <span
                       style={{
@@ -329,6 +349,11 @@ export default function TasksPage() {
               <div>
                 <label style={labelStyle}>Max Screenshots</label>
                 <input style={inputStyle} type="number" min="1" value={form.max_screenshots} onChange={(e) => setForm({ ...form, max_screenshots: e.target.value })} />
+              </div>
+              <div>
+                <label style={labelStyle}>Total Budget (QTL)</label>
+                <input style={inputStyle} type="number" min="0" value={form.total_budget} onChange={(e) => setForm({ ...form, total_budget: e.target.value })} placeholder="0 = unlimited" />
+                <p style={{ fontSize: 11, color: "#aaa", marginTop: 4 }}>Set to 0 for unlimited completions. Once total QTL paid out reaches this amount, the task closes automatically.</p>
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 <label style={labelStyle}>Proof Label</label>

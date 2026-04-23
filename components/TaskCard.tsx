@@ -12,6 +12,8 @@ export interface Task {
   steps?: string[];
   proof_type?: string;
   proof_label?: string;
+  total_budget?: number;
+  budget_used?: number;
   completed?: boolean;
 }
 
@@ -57,6 +59,21 @@ export default function TaskCard({ task, onStart }: TaskCardProps) {
           </span>
           <span style={{ fontSize: 11, color: "#a0b0a2" }}>⏱ {task.duration}</span>
         </div>
+        {task.total_budget && task.total_budget > 0 && (
+          <div style={{ marginTop: 6 }}>
+            <div style={{ height: 3, background: "#f0f0f0", borderRadius: 2, overflow: "hidden" }}>
+              <div style={{
+                height: "100%",
+                width: `${Math.min(100, ((task.budget_used ?? 0) / task.total_budget) * 100)}%`,
+                background: (task.budget_used ?? 0) / task.total_budget > 0.8 ? "#e67e22" : "#4b7f52",
+                borderRadius: 2,
+              }} />
+            </div>
+            <p style={{ fontSize: 10, color: "#a0b0a2", marginTop: 2 }}>
+              {Math.round(((task.budget_used ?? 0) / task.total_budget) * 100)}% of slots filled
+            </p>
+          </div>
+        )}
       </div>
 
       <div style={{ textAlign: "right", flexShrink: 0 }}>

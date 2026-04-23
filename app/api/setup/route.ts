@@ -81,6 +81,8 @@ export async function GET() {
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS proof_label TEXT NOT NULL DEFAULT 'Upload screenshot as proof'`;
     await sql`ALTER TABLE completions ADD COLUMN IF NOT EXISTS proof_value TEXT`;
     await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS max_screenshots INT NOT NULL DEFAULT 1`;
+    await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS total_budget INT NOT NULL DEFAULT 0`;
+    await sql`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS budget_used INT NOT NULL DEFAULT 0`;
 
     await sql`
       CREATE TABLE IF NOT EXISTS bank_accounts (

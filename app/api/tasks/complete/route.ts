@@ -45,6 +45,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "You have already completed this task." }, { status: 409 });
     }
 
+    // Check budget — if total_budget > 0 and budget_used >= total_budget, task is exhausted
+    const budget = Number(task.total_budget ?? 0);
+    const budgetUsed = Number(task.budget_used ?? 0);
+    if (budget > 0 && budgetUsed >= budget) {
+      return NextResponse.json({ error: "This task has reached its completion limit and is no longer available." }, { status: 410 });
+    }
+
     const storedProof = proofValue?.startsWith("data:image")
       ? "[screenshot uploaded]"
       : (proofValue ?? null);
@@ -56,6 +63,15 @@ export async function POST(req: NextRequest) {
 
     // Credit balance
     await sql`UPDATE users SET balance = balance + ${task.reward} WHERE id = ${session.userId}`;
+
+    // Increment budget_used and auto-deactivate if exhausted
+    if (budget > 0) {
+      await sql`UPDATE tasks SET budget_used = budget_used + ${task.reward} WHERE id = ${taskId}`;
+      await sql`
+        UPDATE tasks SET is_active = FALSE
+        WHERE id = ${taskId} AND total_budget > 0 AND budget_used >= total_budget
+      `;
+    }
 
     // Record transaction
     await sql`
