@@ -25,6 +25,28 @@ interface Props {
   onComplete: (id: number, proofValue: string) => Promise<{ ok: boolean; error?: string }>;
 }
 
+// Renders text with any URLs turned into clickable links
+function StepText({ text }: { text: string }) {
+  const URL_RE = /(https?:\/\/[^\s]+|(?:www\.|(?:youtube|facebook|tiktok|instagram|x|twitter)\.com)[^\s]*)/gi;
+  const parts = text.split(URL_RE);
+  return (
+    <span>
+      {parts.map((part, i) => {
+        if (URL_RE.test(part) || /^(www\.|(?:youtube|facebook|tiktok|instagram|x|twitter)\.com)/.test(part)) {
+          const href = part.startsWith("http") ? part : `https://${part}`;
+          return (
+            <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+              style={{ color: "#4b7f52", fontWeight: 600, textDecoration: "underline", wordBreak: "break-all" }}>
+              {part}
+            </a>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </span>
+  );
+}
+
 export default function TaskModal({ task, onClose, onComplete }: Props) {
   const [phase, setPhase] = useState<"details" | "proof" | "success">("details");
   const [proofValue, setProofValue] = useState("");
@@ -233,7 +255,9 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
                       }}>
                         {i + 1}
                       </div>
-                      <p style={{ fontSize: 13, color: "#3a4a3c", lineHeight: 1.6, paddingTop: 3 }}>{step}</p>
+                      <p style={{ fontSize: 13, color: "#3a4a3c", lineHeight: 1.6, paddingTop: 3 }}>
+                        <StepText text={step} />
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -299,7 +323,9 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
               {task.steps?.map((step, i) => (
                 <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 6 }}>
                   <span style={{ fontSize: 12, color: "#4b7f52", flexShrink: 0, marginTop: 1 }}>✓</span>
-                  <p style={{ fontSize: 12, color: "#6b7c6d", lineHeight: 1.5 }}>{step}</p>
+                  <p style={{ fontSize: 12, color: "#6b7c6d", lineHeight: 1.5 }}>
+                    <StepText text={step} />
+                  </p>
                 </div>
               ))}
             </div>
