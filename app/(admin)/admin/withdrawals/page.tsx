@@ -79,7 +79,7 @@ export default function WithdrawalsPage() {
               <th style={TH}>User</th>
               <th style={TH}>QTL</th>
               <th style={TH}>Naira</th>
-              <th style={TH}>Bank Account</th>
+              <th style={TH}>Bank Details</th>
               <th style={TH}>Date</th>
               <th style={TH}>Status</th>
               <th style={TH}>Actions</th>
@@ -98,8 +98,22 @@ export default function WithdrawalsPage() {
                   <td style={{ ...TD, fontWeight: 500 }}>{w.user_name}</td>
                   <td style={TD}>{Number(w.amount).toLocaleString()}</td>
                   <td style={TD}>{qtlToNaira(w.amount)}</td>
-                  <td style={{ ...TD, color: "#666", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {w.label.replace("Withdrawal to ", "")}
+                  <td style={{ ...TD, maxWidth: 260 }}>
+                    {/* Parse the rich label: "Withdrawal to BankName | Acct: 1234567890 | Name: John Doe" */}
+                    {(() => {
+                      const info = w.label.replace("Withdrawal to ", "");
+                      const parts = info.split("|").map((s: string) => s.trim());
+                      if (parts.length >= 3) {
+                        return (
+                          <div>
+                            <div style={{ fontWeight: 600, fontSize: 13, color: "#1a2e1c" }}>{parts[0]}</div>
+                            <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>{parts[1]}</div>
+                            <div style={{ fontSize: 12, color: "#888", marginTop: 1 }}>{parts[2]}</div>
+                          </div>
+                        );
+                      }
+                      return <span style={{ fontSize: 13, color: "#555" }}>{info}</span>;
+                    })()}
                   </td>
                   <td style={{ ...TD, color: "#888" }}>{new Date(w.created_at).toLocaleDateString()}</td>
                   <td style={TD}>
