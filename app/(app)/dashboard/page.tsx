@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import BalanceCard from "@/components/BalanceCard";
@@ -18,10 +18,10 @@ interface WalletData {
 }
 
 const categories = [
-  { icon: "📱", label: "Social Media", color: "#e8f5e9", earn: "10k–15k QTL" },
-  { icon: "📋", label: "Surveys",      color: "#fdf8e1", earn: "35k–50k QTL" },
-  { icon: "🧪", label: "App Testing",  color: "#e8f5e9", earn: "80k–120k QTL" },
-  { icon: "🎬", label: "Content",      color: "#fdf8e1", earn: "18k–20k QTL" },
+  { icon: "📱", label: "Social Media", color: "#e8f5e9", earn: "10k–15k QLT" },
+  { icon: "📋", label: "Surveys",      color: "#fdf8e1", earn: "35k–50k QLT" },
+  { icon: "🧪", label: "App Testing",  color: "#e8f5e9", earn: "80k–120k QLT" },
+  { icon: "🎬", label: "Content",      color: "#fdf8e1", earn: "18k–20k QLT" },
 ];
 
 function timeAgo(dateStr: string) {
@@ -174,7 +174,7 @@ export default function Home() {
                 </div>
                 <div style={{ background: tx.type === "credit" ? "#edf7ee" : "#fff5f5", borderRadius: 10, padding: "5px 12px" }}>
                   <p style={{ fontWeight: 800, color: tx.type === "credit" ? "#4b7f52" : "#e53e3e", fontSize: 13 }}>
-                    {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} QTL
+                    {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} QLT
                   </p>
                 </div>
               </div>

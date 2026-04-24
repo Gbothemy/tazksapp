@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { sql } from "@/lib/db";
 
@@ -37,7 +37,7 @@ export async function GET() {
           AND DATE(completed_at) = CURRENT_DATE
       `,
 
-      // QTL earned TODAY (task credits only)
+      // QLT earned TODAY (task credits only)
       sql`
         SELECT COALESCE(SUM(amount), 0)::int AS total
         FROM transactions
@@ -54,7 +54,7 @@ export async function GET() {
         WHERE user_id = ${session.userId}
       `,
 
-      // Total QTL accumulated ALL TIME (all credits)
+      // Total QLT accumulated ALL TIME (all credits)
       sql`
         SELECT COALESCE(SUM(amount), 0)::int AS total
         FROM transactions
@@ -62,7 +62,7 @@ export async function GET() {
           AND type = 'credit'
       `,
 
-      // Total QTL withdrawn ALL TIME
+      // Total QLT withdrawn ALL TIME
       sql`
         SELECT COALESCE(SUM(amount), 0)::int AS total
         FROM transactions

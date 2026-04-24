@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { sql } from "@/lib/db";
 import bcrypt from "bcryptjs";
@@ -17,10 +17,10 @@ export async function GET() {
         COUNT(CASE WHEN DATE(completed_at) = CURRENT_DATE THEN 1 END)::int AS today
         FROM completions WHERE user_id = ${session.userId}`,
 
-      // Total QTL accumulated (all credits)
+      // Total QLT accumulated (all credits)
       sql`SELECT COALESCE(SUM(amount), 0)::int AS total FROM transactions WHERE user_id = ${session.userId} AND type = 'credit'`,
 
-      // Total QTL withdrawn
+      // Total QLT withdrawn
       sql`SELECT COALESCE(SUM(amount), 0)::int AS total FROM transactions WHERE user_id = ${session.userId} AND type = 'debit'`,
 
       // Referral count

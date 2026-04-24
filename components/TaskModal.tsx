@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useRef } from "react";
 
 export interface FullTask {
@@ -167,7 +167,7 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
             }}>
               <p style={{ fontSize: 13, color: "#4b7f52", marginBottom: 4 }}>Points earned</p>
               <p style={{ fontSize: 36, fontWeight: 900, color: "#4b7f52", letterSpacing: -1 }}>
-                +{task.reward.toLocaleString()} QTL
+                +{task.reward.toLocaleString()} QLT
               </p>
               <p style={{ fontSize: 12, color: "#6b7c6d", marginTop: 4 }}>≈ ₦{(task.reward / 100).toFixed(2)} cash value</p>
             </div>
@@ -223,7 +223,7 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
               <div>
                 <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 2 }}>You will earn</p>
                 <p style={{ color: "#e8c84a", fontWeight: 900, fontSize: 22, letterSpacing: -0.5 }}>
-                  ⭐ {task.reward.toLocaleString()} QTL
+                  ⭐ {task.reward.toLocaleString()} QLT
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 11, marginTop: 2 }}>≈ ₦{(task.reward / 100).toFixed(2)}</p>
               </div>
@@ -502,7 +502,7 @@ export default function TaskModal({ task, onClose, onComplete }: Props) {
                 boxShadow: submitting ? "none" : "0 6px 20px rgba(75,127,82,0.3)",
               }}
             >
-              {submitting ? "Submitting..." : `Submit & Claim ${task.reward.toLocaleString()} QTL`}
+              {submitting ? "Submitting..." : `Submit & Claim ${task.reward.toLocaleString()} QLT`}
             </button>
 
             <p style={{ fontSize: 11, color: "#a0b0a2", textAlign: "center", marginTop: 12, lineHeight: 1.5 }}>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState, useCallback } from "react";
 
 interface User {
@@ -101,7 +101,7 @@ export default function UsersPage() {
               <th style={TH}>ID</th>
               <th style={TH}>Name</th>
               <th style={TH}>Email</th>
-              <th style={TH}>Balance (QTL)</th>
+              <th style={TH}>Balance (QLT)</th>
               <th style={TH}>Tasks Done</th>
               <th style={TH}>Joined</th>
               <th style={TH}>Status</th>

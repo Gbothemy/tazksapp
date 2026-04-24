@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -62,10 +62,10 @@ export default function Sidebar() {
           <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, borderRadius: "50%", background: "rgba(212,175,55,0.12)" }} />
           <p style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginBottom: 4 }}>Available Balance</p>
           <p style={{ fontSize: 20, fontWeight: 800, color: "#fff", letterSpacing: -0.5 }}>
-            ⭐ {stats.balance.toLocaleString()} QTL
+            ⭐ {stats.balance.toLocaleString()} QLT
           </p>
           <p style={{ fontSize: 11, color: "#e8c84a", marginTop: 4, fontWeight: 600 }}>
-            +{stats.today_earned.toLocaleString()} QTL today · {stats.tasks_today} tasks
+            +{stats.today_earned.toLocaleString()} QLT today · {stats.tasks_today} tasks
           </p>
         </div>
       </div>

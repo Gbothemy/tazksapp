@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 
 interface ClearOption {
@@ -20,7 +20,7 @@ const OPTIONS: ClearOption[] = [
   {
     scope: "transactions",
     label: "Clear Transactions & Balances",
-    description: "Deletes all transaction history and resets every user's QTL balance to 0.",
+    description: "Deletes all transaction history and resets every user's QLT balance to 0.",
     danger: "high",
     icon: "💸",
   },

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import BottomNav from "@/components/BottomNav";
 import BankAccountsModal from "@/components/BankAccountsModal";
@@ -315,16 +315,16 @@ function TermsModal({ onClose }: { onClose: () => void }) {
 You must be at least 18 years old and a resident of Nigeria to use Qeixova.
 
 2. EARNING & REWARDS
-QTL (Qeixova Token Loyalty) points are earned by completing tasks. 100 QTL = ₦1. Points have no cash value until converted via a withdrawal request.
+QLT (Qeixova Loyalty Token) points are earned by completing tasks. 100 QLT = ₦1. Points have no cash value until converted via a withdrawal request.
 
 3. TASK COMPLETION
 You must complete tasks honestly and submit genuine proof. Fraudulent submissions will result in account suspension and forfeiture of all points.
 
 4. WITHDRAWALS
-Minimum withdrawal is 100,000 QTL (₦1,000). Withdrawals are processed within 24 hours to your registered bank account.
+Minimum withdrawal is 100,000 QLT (₦1,000). Withdrawals are processed within 24 hours to your registered bank account.
 
 5. REFERRALS
-You earn 50,000 QTL for each person who registers using your referral code. Referral abuse will result in account termination.
+You earn 50,000 QLT for each person who registers using your referral code. Referral abuse will result in account termination.
 
 6. ACCOUNT TERMINATION
 Qeixova reserves the right to suspend or terminate accounts that violate these terms without prior notice.
@@ -438,9 +438,9 @@ export default function ProfilePage() {
   const stats = profile ? [
     { label: "Tasks Today",      value: String(profile.tasks_today),       icon: "📅" },
     { label: "Total Tasks",      value: String(profile.tasks_completed),   icon: "✅" },
-    { label: "Total Earned",     value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QTL` : `${profile.total_earned} QTL`, icon: "⭐" },
-    { label: "Total Withdrawn",  value: profile.total_withdrawn >= 1000 ? `${(profile.total_withdrawn / 1000).toFixed(0)}k QTL` : `${profile.total_withdrawn} QTL`, icon: "💸" },
-    { label: "Balance",          value: `${profile.balance.toLocaleString()} QTL`, icon: "💳" },
+    { label: "Total Earned",     value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QLT` : `${profile.total_earned} QLT`, icon: "⭐" },
+    { label: "Total Withdrawn",  value: profile.total_withdrawn >= 1000 ? `${(profile.total_withdrawn / 1000).toFixed(0)}k QLT` : `${profile.total_withdrawn} QLT`, icon: "💸" },
+    { label: "Balance",          value: `${profile.balance.toLocaleString()} QLT`, icon: "💳" },
     { label: "Referrals",        value: String(profile.referral_count),    icon: "👥" },
   ] : [];
 
@@ -545,7 +545,7 @@ export default function ProfilePage() {
           }}>
             <div style={{ position: "absolute", top: -30, right: -30, width: 100, height: 100, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
             <div>
-              <p style={{ color: "#fff", fontWeight: 800, fontSize: 16 }}>Refer & Earn 5,000 QTL</p>
+              <p style={{ color: "#fff", fontWeight: 800, fontSize: 16 }}>Refer & Earn 5,000 QLT</p>
               <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 12, marginTop: 3 }}>
                 Your code: <span style={{ fontWeight: 800, letterSpacing: 1 }}>{profile.referral_code}</span>
               </p>

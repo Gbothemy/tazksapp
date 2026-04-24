@@ -1,4 +1,4 @@
-import { getAdminSession } from "@/lib/adminAuth";
+﻿import { getAdminSession } from "@/lib/adminAuth";
 import { redirect } from "next/navigation";
 import { sql } from "@/lib/db";
 import DataManagement from "../DataManagement";
@@ -42,8 +42,8 @@ function StatCard({ label, value, icon, color }: { label: string; value: string 
   );
 }
 
-function fmtQTL(n: number | bigint) {
-  return Number(n).toLocaleString() + " QTL";
+function fmtQLT(n: number | bigint) {
+  return Number(n).toLocaleString() + " QLT";
 }
 
 export default async function AdminDashboard() {
@@ -69,8 +69,8 @@ export default async function AdminDashboard() {
         }}
       >
         <StatCard label="Total Users" value={stats.totalUsers.toLocaleString()} icon="👥" color="#4b7f52" />
-        <StatCard label="Total QTL Earned" value={fmtQTL(stats.totalEarned)} icon="💰" color="#d4af37" />
-        <StatCard label="Total QTL Withdrawn" value={fmtQTL(stats.totalWithdrawn)} icon="🏦" color="#4b7f52" />
+        <StatCard label="Total QLT Earned" value={fmtQLT(stats.totalEarned)} icon="💰" color="#d4af37" />
+        <StatCard label="Total QLT Withdrawn" value={fmtQLT(stats.totalWithdrawn)} icon="🏦" color="#4b7f52" />
         <StatCard label="Pending Withdrawals" value={stats.pendingWithdrawals.toLocaleString()} icon="⏳" color="#e67e22" />
         <StatCard label="Total Completions" value={stats.totalCompletions.toLocaleString()} icon="✅" color="#4b7f52" />
         <StatCard label="Active Tasks" value={stats.activeTasks.toLocaleString()} icon="📋" color="#d4af37" />

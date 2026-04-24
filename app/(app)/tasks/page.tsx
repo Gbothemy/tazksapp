@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import BottomNav from "@/components/BottomNav";
 import TaskCard, { Task } from "@/components/TaskCard";
@@ -85,7 +85,7 @@ export default function TasksPage() {
         }}>
           <span style={{ fontSize: 14 }}>💰</span>
           <span style={{ color: "#e8c84a", fontSize: 13, fontWeight: 700 }}>
-            Earn up to {remainingReward.toLocaleString()} QTL today
+            Earn up to {remainingReward.toLocaleString()} QLT today
           </span>
         </div>
       </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState, useCallback } from "react";
 
 interface Withdrawal {
@@ -20,8 +20,8 @@ const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   failed:    { bg: "#ffebeb", color: "#cc0000" },
 };
 
-function qtlToNaira(qtl: number) {
-  return "₦" + (qtl / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 });
+function QLTToNaira(QLT: number) {
+  return "₦" + (QLT / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 });
 }
 
 export default function WithdrawalsPage() {
@@ -77,7 +77,7 @@ export default function WithdrawalsPage() {
             <tr style={{ background: "#fafafa" }}>
               <th style={TH}>ID</th>
               <th style={TH}>User</th>
-              <th style={TH}>QTL</th>
+              <th style={TH}>QLT</th>
               <th style={TH}>Naira</th>
               <th style={TH}>Bank Details</th>
               <th style={TH}>Date</th>
@@ -97,7 +97,7 @@ export default function WithdrawalsPage() {
                   <td style={TD}>{w.id}</td>
                   <td style={{ ...TD, fontWeight: 500 }}>{w.user_name}</td>
                   <td style={TD}>{Number(w.amount).toLocaleString()}</td>
-                  <td style={TD}>{qtlToNaira(w.amount)}</td>
+                  <td style={TD}>{QLTToNaira(w.amount)}</td>
                   <td style={{ ...TD, maxWidth: 260 }}>
                     {/* Parse the rich label: "Withdrawal to BankName | Acct: 1234567890 | Name: John Doe" */}
                     {(() => {

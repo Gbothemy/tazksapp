@@ -1,4 +1,4 @@
-interface BalanceCardProps {
+﻿interface BalanceCardProps {
   balance: number;
   todayEarned: number;
   tasksToday: number;
@@ -48,7 +48,7 @@ export default function BalanceCard({
             <p style={{ fontSize: 32, fontWeight: 900, letterSpacing: -1.5, lineHeight: 1 }}>
               {balance.toLocaleString()}
             </p>
-            <span style={{ fontSize: 12, opacity: 0.6 }}>QTL</span>
+            <span style={{ fontSize: 12, opacity: 0.6 }}>QLT</span>
           </div>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(212,175,55,0.15)", border: "1px solid rgba(212,175,55,0.25)", borderRadius: 8, padding: "4px 10px", marginTop: 6 }}>
             <span style={{ fontSize: 11, opacity: 0.7 }}>≈</span>
@@ -67,7 +67,7 @@ export default function BalanceCard({
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 0" }}>
 
         <div style={{ borderRight: "1px solid rgba(255,255,255,0.12)", paddingRight: 12 }}>
-          <p style={{ fontSize: 10, opacity: 0.6, marginBottom: 3, letterSpacing: 0.4 }}>Today&apos;s QTL</p>
+          <p style={{ fontSize: 10, opacity: 0.6, marginBottom: 3, letterSpacing: 0.4 }}>Today&apos;s QLT</p>
           <p style={{ fontSize: 16, fontWeight: 700, color: "#e8c84a" }}>
             +{todayEarned.toLocaleString()}
           </p>
@@ -83,14 +83,14 @@ export default function BalanceCard({
         <div style={{ borderRight: "1px solid rgba(255,255,255,0.12)", paddingRight: 12, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <p style={{ fontSize: 10, opacity: 0.6, marginBottom: 3, letterSpacing: 0.4 }}>Total Accumulated</p>
           <p style={{ fontSize: 16, fontWeight: 700 }}>
-            {fmt(totalAccumulated)} <span style={{ fontSize: 11, opacity: 0.6 }}>QTL</span>
+            {fmt(totalAccumulated)} <span style={{ fontSize: 11, opacity: 0.6 }}>QLT</span>
           </p>
         </div>
 
         <div style={{ paddingLeft: 12, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <p style={{ fontSize: 10, opacity: 0.6, marginBottom: 3, letterSpacing: 0.4 }}>Total Withdrawn</p>
           <p style={{ fontSize: 16, fontWeight: 700 }}>
-            {fmt(totalWithdrawn)} <span style={{ fontSize: 11, opacity: 0.6 }}>QTL</span>
+            {fmt(totalWithdrawn)} <span style={{ fontSize: 11, opacity: 0.6 }}>QLT</span>
           </p>
         </div>
 

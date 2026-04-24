@@ -1,6 +1,6 @@
-# Qeixova — Earn by Doing
+﻿# Qeixova — Earn by Doing
 
-Qeixova is a Nigerian micro-task platform where users earn **QTL (Qeixova Token Loyalty)** points by completing simple online tasks — social media engagement, surveys, app testing, and content interactions. Points convert to Naira at a rate of **100 QTL = ₦1** and can be withdrawn to any Nigerian bank account.
+Qeixova is a Nigerian micro-task platform where users earn **QLT (Qeixova Loyalty Token)** points by completing simple online tasks — social media engagement, surveys, app testing, and content interactions. Points convert to Naira at a rate of **100 QLT = ₦1** and can be withdrawn to any Nigerian bank account.
 
 ---
 
@@ -78,7 +78,7 @@ tazksapp/
 ## Database Schema
 
 ```sql
-users               — accounts, balance (QTL), streak, level, referral_code, banned
+users               — accounts, balance (QLT), streak, level, referral_code, banned
 tasks               — title, category, reward, steps[], proof_type, task_link, total_budget, budget_used
 completions         — user_id, task_id, proof_value  (UNIQUE per user+task)
 transactions        — user_id, type (credit/debit), amount, label, status
@@ -91,7 +91,7 @@ password_resets     — user_id, token, expires_at
 
 ## Points System
 
-| Action | QTL Earned |
+| Action | QLT Earned |
 |--------|-----------|
 | Social Media task | 10,000 – 15,000 |
 | Content task | 18,000 – 20,000 |
@@ -99,8 +99,8 @@ password_resets     — user_id, token, expires_at
 | App Testing | 80,000 – 120,000 |
 | Referral bonus (referrer) | 5,000 |
 | Welcome bonus (new user) | 2,000 |
-| Minimum withdrawal | 100,000 QTL = ₦1,000 |
-| Conversion rate | 100 QTL = ₦1 |
+| Minimum withdrawal | 100,000 QLT = ₦1,000 |
+| Conversion rate | 100 QLT = ₦1 |
 
 ---
 
@@ -109,10 +109,10 @@ password_resets     — user_id, token, expires_at
 - **Register** — requires a referral code from an existing member
 - **Login / Logout** — JWT session, 7-day cookie
 - **Forgot / Reset Password** — token-based reset flow
-- **Dashboard** — live balance card (available QTL, cash value, today's earnings, tasks today, total accumulated, total withdrawn, total tasks)
+- **Dashboard** — live balance card (available QLT, cash value, today's earnings, tasks today, total accumulated, total withdrawn, total tasks)
 - **Tasks** — browse by category, filter tabs, progress bar, budget indicator per task
 - **Task Modal** — full instructions, numbered steps with clickable links, "Go to Task →" button, multi-screenshot upload, URL/text proof, auto-verification
-- **Wallet** — QTL balance, live ₦ conversion preview, withdraw to saved bank account, full transaction history
+- **Wallet** — QLT balance, live ₦ conversion preview, withdraw to saved bank account, full transaction history
 - **Profile** — edit name/phone, change password, bank accounts (add/remove/set default), notification preferences, referral code copy, support contact, terms & privacy
 - **Streak tracking** — daily login streak shown on dashboard and profile
 - **Level progression** — Level 1–5 based on total tasks completed (5/15/30/50)
@@ -126,10 +126,10 @@ password_resets     — user_id, token, expires_at
 
 | Section | Features |
 |---------|---------|
-| Dashboard | Platform stats: users, QTL earned/withdrawn, pending withdrawals, completions, active tasks |
+| Dashboard | Platform stats: users, QLT earned/withdrawn, pending withdrawals, completions, active tasks |
 | Users | Search, paginated table, ban/unban |
 | Tasks | Add/edit/deactivate tasks, set budget, task link, proof type, max screenshots |
-| Withdrawals | Filter by status, approve (mark completed) / reject (refund QTL), full bank details shown |
+| Withdrawals | Filter by status, approve (mark completed) / reject (refund QLT), full bank details shown |
 | Completions | View all proof submissions, filter by proof type, clickable URL proofs |
 | Data Management | Granular clear options with typed confirmation (completions, transactions, users, tasks, all) |
 
@@ -137,7 +137,7 @@ password_resets     — user_id, token, expires_at
 
 ## Task Budget System
 
-Admin can set a `total_budget` (QTL) per task. Once the total QTL paid out to users reaches that budget, the task auto-deactivates and disappears from the user task list. A progress bar on each task card shows how full the budget is.
+Admin can set a `total_budget` (QLT) per task. Once the total QLT paid out to users reaches that budget, the task auto-deactivates and disappears from the user task list. A progress bar on each task card shows how full the budget is.
 
 ---
 

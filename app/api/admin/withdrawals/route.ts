@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { checkAdminAuth } from "@/lib/adminAuth";
 import { sql } from "@/lib/db";
 
@@ -40,7 +40,7 @@ export async function PATCH(req: NextRequest) {
   if (action === "approve") {
     await sql`UPDATE transactions SET status = 'completed' WHERE id = ${id} AND type = 'debit'`;
   } else if (action === "reject") {
-    // Refund QTL to user
+    // Refund QLT to user
     const rows = await sql`SELECT user_id, amount FROM transactions WHERE id = ${id} AND type = 'debit'`;
     if (rows.length > 0) {
       const { user_id, amount } = rows[0];

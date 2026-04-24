@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState, useCallback } from "react";
 
 interface Task {
@@ -194,10 +194,10 @@ export default function TasksPage() {
               <th style={TH}>ID</th>
               <th style={TH}>Title</th>
               <th style={TH}>Category</th>
-              <th style={TH}>Reward (QTL)</th>
+              <th style={TH}>Reward (QLT)</th>
               <th style={TH}>Duration</th>
               <th style={TH}>Proof Type</th>
-              <th style={TH}>Budget (QTL)</th>
+              <th style={TH}>Budget (QLT)</th>
               <th style={TH}>Budget Used</th>
               <th style={TH}>Status</th>
               <th style={TH}>Actions</th>
@@ -342,7 +342,7 @@ export default function TasksPage() {
                 <input style={inputStyle} value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} placeholder="Social Media, Survey…" />
               </div>
               <div>
-                <label style={labelStyle}>Reward (QTL) *</label>
+                <label style={labelStyle}>Reward (QLT) *</label>
                 <input style={inputStyle} type="number" value={form.reward} onChange={(e) => setForm({ ...form, reward: e.target.value })} />
               </div>
               <div>
@@ -363,9 +363,9 @@ export default function TasksPage() {
                 <input style={inputStyle} type="number" min="1" value={form.max_screenshots} onChange={(e) => setForm({ ...form, max_screenshots: e.target.value })} />
               </div>
               <div>
-                <label style={labelStyle}>Total Budget (QTL)</label>
+                <label style={labelStyle}>Total Budget (QLT)</label>
                 <input style={inputStyle} type="number" min="0" value={form.total_budget} onChange={(e) => setForm({ ...form, total_budget: e.target.value })} placeholder="0 = unlimited" />
-                <p style={{ fontSize: 11, color: "#aaa", marginTop: 4 }}>Set to 0 for unlimited completions. Once total QTL paid out reaches this amount, the task closes automatically.</p>
+                <p style={{ fontSize: 11, color: "#aaa", marginTop: 4 }}>Set to 0 for unlimited completions. Once total QLT paid out reaches this amount, the task closes automatically.</p>
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 <label style={labelStyle}>Proof Label</label>

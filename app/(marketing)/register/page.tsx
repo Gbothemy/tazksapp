@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -252,7 +252,7 @@ export default function RegisterPage() {
                 {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.referralCode}</p>}
                 {form.referralCode.length >= 8 && !errors.referralCode && (
                   <p style={{ fontSize: 11, color: "#4b7f52", marginTop: 4, fontWeight: 600 }}>
-                    🎉 Code entered — you&apos;ll get a 2,000 QTL welcome bonus!
+                    🎉 Code entered — you&apos;ll get a 2,000 QLT welcome bonus!
                   </p>
                 )}
                 <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 4 }}>
