@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -74,9 +74,9 @@ export default function RegisterPage() {
   const inputStyle = (field: string): React.CSSProperties => ({
     width: "100%", padding: "13px 14px 13px 42px",
     borderRadius: 12,
-    border: `1.5px solid ${errors[field] ? "#e53e3e" : "#e0e8e1"}`,
-    fontSize: 14, outline: "none", color: "#1a2e1c",
-    background: "#f9fbf9", transition: "border-color 0.2s",
+    border: `1.5px solid ${errors[field] ? "#e53e3e" : "#e0e0e0"}`,
+    fontSize: 14, outline: "none", color: "#1A1A1A",
+    background: "#fafafa", transition: "border-color 0.2s",
   });
 
   const progress = ((step + 1) / steps.length) * 100;
@@ -84,7 +84,7 @@ export default function RegisterPage() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(160deg, #3a6340 0%, #4b7f52 40%, #f2f2f2 40%)",
+      background: "linear-gradient(160deg, #06B517 0%, #1AEF22 40%, #F5F5F5 40%)",
       display: "flex", alignItems: "center", justifyContent: "center",
       padding: "24px 16px",
     }}>
@@ -107,10 +107,10 @@ export default function RegisterPage() {
           <Link href="/landing" style={{ textDecoration: "none", display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
             <div style={{
               width: 52, height: 52, borderRadius: 14,
-              background: "linear-gradient(135deg, #d4af37, #b8961e)",
+              background: "linear-gradient(135deg, #F5A623, #d89420)",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 24, boxShadow: "0 8px 24px rgba(212,175,55,0.4)",
-            }}>⚡</div>
+            }}>?</div>
             <span style={{ fontWeight: 900, fontSize: 20, color: "#fff", letterSpacing: -0.5 }}>Qeixova</span>
           </Link>
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginTop: 4 }}>
@@ -129,17 +129,17 @@ export default function RegisterPage() {
           <div style={{ marginBottom: 28 }}>
             {errors.submit && (
               <div style={{ background: "#fff5f5", border: "1px solid #fed7d7", borderRadius: 10, padding: "11px 14px", marginBottom: 16, fontSize: 13, color: "#e53e3e" }}>
-                ⚠️ {errors.submit}
+                ?? {errors.submit}
               </div>
             )}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
               <div>
-                <h1 style={{ fontWeight: 800, fontSize: 20, color: "#1a2e1c" }}>
+                <h1 style={{ fontWeight: 800, fontSize: 20, color: "#1A1A1A" }}>
                   {step === 0 && "Create account"}
                   {step === 1 && "Your details"}
                   {step === 2 && "Set password"}
                 </h1>
-                <p style={{ fontSize: 12, color: "#a0b0a2", marginTop: 2 }}>
+                <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 2 }}>
                   Step {step + 1} of {steps.length}
                 </p>
               </div>
@@ -148,114 +148,114 @@ export default function RegisterPage() {
                 {steps.map((s, i) => (
                   <div key={s} style={{
                     width: i === step ? 28 : 8, height: 8, borderRadius: 4,
-                    background: i <= step ? "#4b7f52" : "#e0e8e1",
+                    background: i <= step ? "#1AEF22" : "#e0e0e0",
                     transition: "all 0.3s",
                   }} />
                 ))}
               </div>
             </div>
             {/* Progress bar */}
-            <div style={{ height: 4, background: "#f2f2f2", borderRadius: 4, overflow: "hidden" }}>
+            <div style={{ height: 4, background: "#F5F5F5", borderRadius: 4, overflow: "hidden" }}>
               <div style={{
                 height: "100%", width: `${progress}%`,
-                background: "linear-gradient(90deg, #4b7f52, #d4af37)",
+                background: "linear-gradient(90deg, #1AEF22, #F5A623)",
                 borderRadius: 4, transition: "width 0.4s ease",
               }} />
             </div>
           </div>
 
-          {/* ── STEP 0: Account ── */}
+          {/* -- STEP 0: Account -- */}
           {step === 0 && (
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-              <p style={{ fontSize: 13, color: "#a0b0a2" }}>
+              <p style={{ fontSize: 13, color: "#a0a0a0" }}>
                 Already have an account?{" "}
-                <Link href="/login" style={{ color: "#4b7f52", fontWeight: 700, textDecoration: "none" }}>
+                <Link href="/login" style={{ color: "#1AEF22", fontWeight: 700, textDecoration: "none" }}>
                   Sign in
                 </Link>
               </p>
 
               {/* Email */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>EMAIL ADDRESS</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>EMAIL ADDRESS</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>📧</span>
+                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>??</span>
                   <input
                     type="email" placeholder="you@example.com"
                     value={form.email} onChange={(e) => set("email", e.target.value)}
                     style={inputStyle("email")}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = errors.email ? "#e53e3e" : "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = errors.email ? "#e53e3e" : "#e0e0e0")}
                   />
                 </div>
-                {errors.email && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.email}</p>}
+                {errors.email && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.email}</p>}
               </div>
 
               {/* Phone */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>PHONE NUMBER</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>PHONE NUMBER</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>📱</span>
+                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>??</span>
                   <input
                     type="tel" placeholder="080XXXXXXXX"
                     value={form.phone} onChange={(e) => set("phone", e.target.value)}
                     style={inputStyle("phone")}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = errors.phone ? "#e53e3e" : "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = errors.phone ? "#e53e3e" : "#e0e0e0")}
                   />
                 </div>
-                {errors.phone && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.phone}</p>}
+                {errors.phone && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.phone}</p>}
               </div>
             </div>
           )}
 
-          {/* ── STEP 1: Personal ── */}
+          {/* -- STEP 1: Personal -- */}
           {step === 1 && (
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               {/* Full name */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>FULL NAME</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>FULL NAME</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>👤</span>
+                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>??</span>
                   <input
                     type="text" placeholder="John Doe"
                     value={form.fullName} onChange={(e) => set("fullName", e.target.value)}
                     style={inputStyle("fullName")}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = errors.fullName ? "#e53e3e" : "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = errors.fullName ? "#e53e3e" : "#e0e0e0")}
                   />
                 </div>
-                {errors.fullName && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.fullName}</p>}
+                {errors.fullName && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.fullName}</p>}
               </div>
 
               {/* Referral code */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>
                   REFERRAL CODE <span style={{ color: "#e53e3e" }}>*</span>
                 </label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>🎁</span>
+                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>??</span>
                   <input
                     type="text" placeholder="e.g. TAZK-J4D9"
                     value={form.referralCode} onChange={(e) => set("referralCode", e.target.value.toUpperCase())}
                     style={{
                       ...inputStyle("referralCode"),
-                      border: `1.5px solid ${errors.referralCode ? "#e53e3e" : "#e0e8e1"}`,
+                      border: `1.5px solid ${errors.referralCode ? "#e53e3e" : "#e0e0e0"}`,
                       letterSpacing: 1,
                     }}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = errors.referralCode ? "#e53e3e" : "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = errors.referralCode ? "#e53e3e" : "#e0e0e0")}
                   />
                   {form.referralCode.length >= 8 && !errors.referralCode && (
-                    <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>✅</span>
+                    <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>?</span>
                   )}
                 </div>
-                {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.referralCode}</p>}
+                {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.referralCode}</p>}
                 {form.referralCode.length >= 8 && !errors.referralCode && (
-                  <p style={{ fontSize: 11, color: "#4b7f52", marginTop: 4, fontWeight: 600 }}>
-                    🎉 Code entered — you&apos;ll get a 2,000 QLT welcome bonus!
+                  <p style={{ fontSize: 11, color: "#1AEF22", marginTop: 4, fontWeight: 600 }}>
+                    ?? Code entered � you&apos;ll get a 2,000 QLT welcome bonus!
                   </p>
                 )}
-                <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 4 }}>
+                <p style={{ fontSize: 11, color: "#a0a0a0", marginTop: 4 }}>
                   You must have a referral code to register. Ask a friend who uses TazKsApp.
                 </p>
               </div>
@@ -267,50 +267,50 @@ export default function RegisterPage() {
                 borderRadius: 14, padding: "14px 16px",
                 display: "flex", alignItems: "center", gap: 12,
               }}>
-                <span style={{ fontSize: 28 }}>💰</span>
+                <span style={{ fontSize: 28 }}>??</span>
                 <div>
-                  <p style={{ fontWeight: 700, fontSize: 13, color: "#1a2e1c" }}>Earn up to ₦15,000/week</p>
-                  <p style={{ fontSize: 12, color: "#4b7f52" }}>Complete tasks daily to maximize earnings</p>
+                  <p style={{ fontWeight: 700, fontSize: 13, color: "#1A1A1A" }}>Earn up to ?15,000/week</p>
+                  <p style={{ fontSize: 12, color: "#1AEF22" }}>Complete tasks daily to maximize earnings</p>
                 </div>
               </div>
             </div>
           )}
 
-          {/* ── STEP 2: Security ── */}
+          {/* -- STEP 2: Security -- */}
           {step === 2 && (
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               {/* Password */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>PASSWORD</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>PASSWORD</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>🔒</span>
+                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>??</span>
                   <input
                     type={showPass ? "text" : "password"}
                     placeholder="Min. 6 characters"
                     value={form.password} onChange={(e) => set("password", e.target.value)}
                     style={{ ...inputStyle("password"), paddingRight: 44 }}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = errors.password ? "#e53e3e" : "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = errors.password ? "#e53e3e" : "#e0e0e0")}
                   />
                   <button type="button" onClick={() => setShowPass(!showPass)} style={{
                     position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)",
                     background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 0,
                   }}>
-                    {showPass ? "🙈" : "👁️"}
+                    {showPass ? "??" : "???"}
                   </button>
                 </div>
-                {errors.password && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.password}</p>}
+                {errors.password && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.password}</p>}
                 {/* Strength bar */}
                 {form.password && (
                   <div style={{ marginTop: 8 }}>
-                    <div style={{ height: 4, background: "#f2f2f2", borderRadius: 4, overflow: "hidden" }}>
+                    <div style={{ height: 4, background: "#F5F5F5", borderRadius: 4, overflow: "hidden" }}>
                       <div style={{
                         height: "100%", borderRadius: 4, transition: "width 0.3s",
                         width: form.password.length < 6 ? "30%" : form.password.length < 10 ? "65%" : "100%",
-                        background: form.password.length < 6 ? "#e53e3e" : form.password.length < 10 ? "#d4af37" : "#4b7f52",
+                        background: form.password.length < 6 ? "#e53e3e" : form.password.length < 10 ? "#F5A623" : "#1AEF22",
                       }} />
                     </div>
-                    <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 3 }}>
+                    <p style={{ fontSize: 11, color: "#a0a0a0", marginTop: 3 }}>
                       {form.password.length < 6 ? "Weak" : form.password.length < 10 ? "Good" : "Strong"} password
                     </p>
                   </div>
@@ -319,21 +319,21 @@ export default function RegisterPage() {
 
               {/* Confirm password */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>CONFIRM PASSWORD</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>CONFIRM PASSWORD</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>🔐</span>
+                  <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>??</span>
                   <input
                     type="password" placeholder="Re-enter password"
                     value={form.confirmPassword} onChange={(e) => set("confirmPassword", e.target.value)}
                     style={inputStyle("confirmPassword")}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = errors.confirmPassword ? "#e53e3e" : "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = errors.confirmPassword ? "#e53e3e" : "#e0e0e0")}
                   />
                   {form.confirmPassword && form.password === form.confirmPassword && (
-                    <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>✅</span>
+                    <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>?</span>
                   )}
                 </div>
-                {errors.confirmPassword && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠ {errors.confirmPassword}</p>}
+                {errors.confirmPassword && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.confirmPassword}</p>}
               </div>
 
               {/* Terms */}
@@ -342,21 +342,21 @@ export default function RegisterPage() {
                   onClick={() => set("agreed", !form.agreed)}
                   style={{
                     width: 20, height: 20, borderRadius: 6, flexShrink: 0, marginTop: 1,
-                    border: `2px solid ${errors.agreed ? "#e53e3e" : form.agreed ? "#4b7f52" : "#e0e8e1"}`,
-                    background: form.agreed ? "#4b7f52" : "#fff",
+                    border: `2px solid ${errors.agreed ? "#e53e3e" : form.agreed ? "#1AEF22" : "#e0e0e0"}`,
+                    background: form.agreed ? "#1AEF22" : "#fff",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     transition: "all 0.2s", cursor: "pointer",
                   }}
                 >
-                  {form.agreed && <span style={{ color: "#fff", fontSize: 12, fontWeight: 900 }}>✓</span>}
+                  {form.agreed && <span style={{ color: "#fff", fontSize: 12, fontWeight: 900 }}>?</span>}
                 </div>
-                <span style={{ fontSize: 13, color: "#6b7c6d", lineHeight: 1.5 }}>
+                <span style={{ fontSize: 13, color: "#6b6b6b", lineHeight: 1.5 }}>
                   I agree to TazKsApp&apos;s{" "}
-                  <span style={{ color: "#4b7f52", fontWeight: 600 }}>Terms of Service</span> and{" "}
-                  <span style={{ color: "#4b7f52", fontWeight: 600 }}>Privacy Policy</span>
+                  <span style={{ color: "#1AEF22", fontWeight: 600 }}>Terms of Service</span> and{" "}
+                  <span style={{ color: "#1AEF22", fontWeight: 600 }}>Privacy Policy</span>
                 </span>
               </label>
-              {errors.agreed && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: -10 }}>⚠ {errors.agreed}</p>}
+              {errors.agreed && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: -10 }}>? {errors.agreed}</p>}
             </div>
           )}
 
@@ -368,12 +368,12 @@ export default function RegisterPage() {
                 onClick={() => setStep(step - 1)}
                 style={{
                   flex: 1, padding: "14px",
-                  background: "#f2f2f2", color: "#6b7c6d",
+                  background: "#F5F5F5", color: "#6b6b6b",
                   border: "none", borderRadius: 14,
                   fontWeight: 700, fontSize: 14, cursor: "pointer",
                 }}
               >
-                ← Back
+                ? Back
               </button>
             )}
             <button
@@ -382,7 +382,7 @@ export default function RegisterPage() {
               disabled={loading}
               style={{
                 flex: 2, padding: "14px",
-                background: loading ? "#a0b0a2" : "linear-gradient(135deg, #4b7f52, #3a6340)",
+                background: loading ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
                 color: "#fff", border: "none", borderRadius: 14,
                 fontWeight: 800, fontSize: 15,
                 cursor: loading ? "not-allowed" : "pointer",
@@ -392,11 +392,11 @@ export default function RegisterPage() {
               }}
             >
               {loading ? (
-                <>⏳ Creating account...</>
+                <>? Creating account...</>
               ) : step < 2 ? (
-                <>Continue →</>
+                <>Continue ?</>
               ) : (
-                <>🎉 Create Account</>
+                <>?? Create Account</>
               )}
             </button>
           </div>

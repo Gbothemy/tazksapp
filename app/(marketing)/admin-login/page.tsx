@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#f2f2f2",
+        background: "#F5F5F5",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -54,7 +54,7 @@ export default function AdminLoginPage() {
       >
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>🛡️</div>
-          <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: "#1a2e1c" }}>
+          <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: "#1A1A1A" }}>
             Admin Portal
           </h1>
           <p style={{ margin: "8px 0 0", color: "#888", fontSize: 14 }}>
@@ -129,7 +129,7 @@ export default function AdminLoginPage() {
             style={{
               width: "100%",
               padding: "13px",
-              background: loading ? "#aaa" : "#4b7f52",
+              background: loading ? "#aaa" : "#1AEF22",
               color: "#fff",
               border: "none",
               borderRadius: 8,
