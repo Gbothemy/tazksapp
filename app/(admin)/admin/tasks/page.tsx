@@ -1,4 +1,4 @@
-ï»¿"use client";
+"use client";
 import { useEffect, useState, useCallback } from "react";
 
 interface Task {
@@ -19,7 +19,7 @@ const EMPTY_FORM = {
   category: "",
   reward: "",
   duration: "5 min",
-  icon: "ðŸ“‹",
+  icon: "??",
   color: "#e8f5e9",
   instructions: "",
   steps: "",
@@ -87,7 +87,7 @@ export default function TasksPage() {
       category: t.category,
       reward: String(t.reward),
       duration: t.duration,
-      icon: "ðŸ“‹",
+      icon: "??",
       color: "#e8f5e9",
       instructions: "",
       steps: "",
@@ -167,14 +167,14 @@ export default function TasksPage() {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
         <div>
-          <h1 style={{ margin: "0 0 4px", fontSize: 26, fontWeight: 700, color: "#1a2e1c" }}>Tasks</h1>
+          <h1 style={{ margin: "0 0 4px", fontSize: 26, fontWeight: 700, color: "#1A1A1A" }}>Tasks</h1>
           <p style={{ margin: 0, color: "#888", fontSize: 14 }}>{tasks.length} tasks total</p>
         </div>
         <button
           onClick={openAdd}
           style={{
             padding: "10px 20px",
-            background: "#4b7f52",
+            background: "#1AEF22",
             color: "#fff",
             border: "none",
             borderRadius: 8,
@@ -206,7 +206,7 @@ export default function TasksPage() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={9} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loadingâ€¦</td>
+                <td colSpan={9} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loading…</td>
               </tr>
             ) : tasks.length === 0 ? (
               <tr>
@@ -226,7 +226,7 @@ export default function TasksPage() {
                       <div>
                         <div style={{ fontSize: 12, fontWeight: 600 }}>{Number(t.total_budget).toLocaleString()}</div>
                         <div style={{ height: 4, background: "#f0f0f0", borderRadius: 2, marginTop: 4, width: 80 }}>
-                          <div style={{ height: "100%", borderRadius: 2, background: t.budget_used >= t.total_budget ? "#cc0000" : "#4b7f52", width: `${Math.min(100, (t.budget_used / t.total_budget) * 100)}%` }} />
+                          <div style={{ height: "100%", borderRadius: 2, background: t.budget_used >= t.total_budget ? "#cc0000" : "#1AEF22", width: `${Math.min(100, (t.budget_used / t.total_budget) * 100)}%` }} />
                         </div>
                       </div>
                     ) : <span style={{ color: "#aaa", fontSize: 12 }}>Unlimited</span>}
@@ -234,7 +234,7 @@ export default function TasksPage() {
                   <td style={TD}>
                     {t.total_budget > 0 ? (
                       <span style={{ fontSize: 12 }}>{Number(t.budget_used).toLocaleString()} / {Number(t.total_budget).toLocaleString()}</span>
-                    ) : <span style={{ color: "#aaa", fontSize: 12 }}>â€”</span>}
+                    ) : <span style={{ color: "#aaa", fontSize: 12 }}>—</span>}
                   </td>
                   <td style={TD}>
                     <span
@@ -258,9 +258,9 @@ export default function TasksPage() {
                         style={{
                           padding: "5px 12px",
                           borderRadius: 6,
-                          border: "1px solid #4b7f52",
+                          border: "1px solid #1AEF22",
                           background: "transparent",
-                          color: "#4b7f52",
+                          color: "#1AEF22",
                           cursor: "pointer",
                           fontSize: 12,
                           fontWeight: 600,
@@ -275,7 +275,7 @@ export default function TasksPage() {
                           padding: "5px 12px",
                           borderRadius: 6,
                           border: "none",
-                          background: t.is_active ? "#e67e22" : "#4b7f52",
+                          background: t.is_active ? "#e67e22" : "#1AEF22",
                           color: "#fff",
                           cursor: "pointer",
                           fontSize: 12,
@@ -319,17 +319,17 @@ export default function TasksPage() {
               overflowY: "auto",
             }}
           >
-            <h2 style={{ margin: "0 0 24px", fontSize: 20, fontWeight: 700, color: "#1a2e1c" }}>
+            <h2 style={{ margin: "0 0 24px", fontSize: 20, fontWeight: 700, color: "#1A1A1A" }}>
               {editTask ? "Edit Task" : "Add New Task"}
             </h2>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <div style={{ gridColumn: "1 / -1" }}>
-                <label style={labelStyle}>Task Link (URL) <span style={{ color: "#aaa", fontWeight: 400 }}>â€” where users go to perform the task</span></label>
-                <input style={{ ...inputStyle, borderColor: form.task_link ? "#4b7f52" : undefined }} type="url" value={form.task_link} onChange={(e) => setForm({ ...form, task_link: e.target.value })} placeholder="https://facebook.com/... or https://x.com/..." />
+                <label style={labelStyle}>Task Link (URL) <span style={{ color: "#aaa", fontWeight: 400 }}>— where users go to perform the task</span></label>
+                <input style={{ ...inputStyle, borderColor: form.task_link ? "#1AEF22" : undefined }} type="url" value={form.task_link} onChange={(e) => setForm({ ...form, task_link: e.target.value })} placeholder="https://facebook.com/... or https://x.com/..." />
                 {form.task_link && (
-                  <a href={form.task_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: "#4b7f52", marginTop: 4, display: "inline-block" }}>
-                    â†— Preview link
+                  <a href={form.task_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: "#1AEF22", marginTop: 4, display: "inline-block" }}>
+                    ? Preview link
                   </a>
                 )}
               </div>
@@ -339,7 +339,7 @@ export default function TasksPage() {
               </div>
               <div>
                 <label style={labelStyle}>Category *</label>
-                <input style={inputStyle} value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} placeholder="Social Media, Surveyâ€¦" />
+                <input style={inputStyle} value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} placeholder="Social Media, Survey…" />
               </div>
               <div>
                 <label style={labelStyle}>Reward (QLT) *</label>
@@ -411,7 +411,7 @@ export default function TasksPage() {
                   padding: "10px 24px",
                   borderRadius: 8,
                   border: "none",
-                  background: "#4b7f52",
+                  background: "#1AEF22",
                   color: "#fff",
                   cursor: "pointer",
                   fontSize: 14,
@@ -419,7 +419,7 @@ export default function TasksPage() {
                   opacity: saving ? 0.7 : 1,
                 }}
               >
-                {saving ? "Savingâ€¦" : editTask ? "Save Changes" : "Create Task"}
+                {saving ? "Saving…" : editTask ? "Save Changes" : "Create Task"}
               </button>
             </div>
           </div>
@@ -428,3 +428,4 @@ export default function TasksPage() {
     </div>
   );
 }
+

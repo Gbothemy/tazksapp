@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useState } from "react";
 import BottomNav from "@/components/BottomNav";
 import BankAccountsModal from "@/components/BankAccountsModal";
@@ -31,7 +31,7 @@ function timeAgo(d: string) {
   return months === 1 ? "1 month ago" : `${months} months ago`;
 }
 
-// ── Overlay modal wrapper ──────────────────────────────────────────────────
+// -- Overlay modal wrapper --------------------------------------------------
 function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "flex-end", justifyContent: "center" }}
@@ -39,8 +39,8 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
       <div style={{ background: "#fff", borderRadius: "24px 24px 0 0", width: "100%", maxWidth: 520, padding: "24px 20px 40px", maxHeight: "85vh", overflowY: "auto" }}
         onClick={(e) => e.stopPropagation()}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <p style={{ fontWeight: 800, fontSize: 18, color: "#1a2e1c" }}>{title}</p>
-          <button onClick={onClose} style={{ background: "#f2f2f2", border: "none", borderRadius: 10, width: 34, height: 34, fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>×</button>
+          <p style={{ fontWeight: 800, fontSize: 18, color: "#1A1A1A" }}>{title}</p>
+          <button onClick={onClose} style={{ background: "#F5F5F5", border: "none", borderRadius: 10, width: 34, height: 34, fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>�</button>
         </div>
         {children}
       </div>
@@ -48,39 +48,39 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
   );
 }
 
-// ── Input helper ──────────────────────────────────────────────────────────
+// -- Input helper ----------------------------------------------------------
 function Field({ label, type = "text", value, onChange, placeholder }: {
   label: string; type?: string; value: string;
   onChange: (v: string) => void; placeholder?: string;
 }) {
   return (
     <div style={{ marginBottom: 14 }}>
-      <label style={{ fontSize: 11, color: "#6b7c6d", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase" }}>{label}</label>
+      <label style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase" }}>{label}</label>
       <input type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
-        style={{ width: "100%", marginTop: 6, padding: "13px 14px", borderRadius: 12, border: "1.5px solid #e0e8e1", fontSize: 15, outline: "none", color: "#1a2e1c", background: "#f9fbf9" }}
-        onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-        onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+        style={{ width: "100%", marginTop: 6, padding: "13px 14px", borderRadius: 12, border: "1.5px solid #e0e0e0", fontSize: 15, outline: "none", color: "#1A1A1A", background: "#fafafa" }}
+        onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+        onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
       />
     </div>
   );
 }
 
-// ── Alert banner ──────────────────────────────────────────────────────────
+// -- Alert banner ----------------------------------------------------------
 function Alert({ msg }: { msg: { type: "success" | "error"; text: string } }) {
   return (
     <div style={{
-      background: msg.type === "success" ? "#edf7ee" : "#fff5f5",
+      background: msg.type === "success" ? "#e8ffe9" : "#fff5f5",
       border: `1px solid ${msg.type === "success" ? "#c3e6cb" : "#fed7d7"}`,
       borderRadius: 12, padding: "12px 14px", marginBottom: 16,
       display: "flex", alignItems: "center", gap: 10,
     }}>
-      <span style={{ fontSize: 16 }}>{msg.type === "success" ? "✅" : "⚠️"}</span>
-      <p style={{ color: msg.type === "success" ? "#1a2e1c" : "#e53e3e", fontSize: 13, fontWeight: 600 }}>{msg.text}</p>
+      <span style={{ fontSize: 16 }}>{msg.type === "success" ? "?" : "??"}</span>
+      <p style={{ color: msg.type === "success" ? "#1A1A1A" : "#e53e3e", fontSize: 13, fontWeight: 600 }}>{msg.text}</p>
     </div>
   );
 }
 
-// ── Edit Profile Modal ────────────────────────────────────────────────────
+// -- Edit Profile Modal ----------------------------------------------------
 function EditProfileModal({ profile, onClose, onSaved }: {
   profile: Profile; onClose: () => void; onSaved: (p: Partial<Profile>) => void;
 }) {
@@ -113,13 +113,13 @@ function EditProfileModal({ profile, onClose, onSaved }: {
       <Field label="Full Name" value={name} onChange={setName} placeholder="Your full name" />
       <Field label="Phone Number" value={phone} onChange={setPhone} placeholder="+234 800 000 0000" />
       <div style={{ marginBottom: 14 }}>
-        <label style={{ fontSize: 11, color: "#6b7c6d", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase" }}>Email Address</label>
+        <label style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase" }}>Email Address</label>
         <input value={profile.email} disabled
-          style={{ width: "100%", marginTop: 6, padding: "13px 14px", borderRadius: 12, border: "1.5px solid #e0e8e1", fontSize: 15, color: "#a0b0a2", background: "#f2f2f2", cursor: "not-allowed" }} />
-        <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 4 }}>Email cannot be changed</p>
+          style={{ width: "100%", marginTop: 6, padding: "13px 14px", borderRadius: 12, border: "1.5px solid #e0e0e0", fontSize: 15, color: "#a0a0a0", background: "#F5F5F5", cursor: "not-allowed" }} />
+        <p style={{ fontSize: 11, color: "#a0a0a0", marginTop: 4 }}>Email cannot be changed</p>
       </div>
       <button onClick={save} disabled={saving} style={{
-        width: "100%", background: saving ? "#a0b0a2" : "linear-gradient(135deg, #4b7f52, #3a6340)",
+        width: "100%", background: saving ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: saving ? "not-allowed" : "pointer",
         boxShadow: saving ? "none" : "0 6px 20px rgba(75,127,82,0.3)", marginTop: 4,
@@ -130,7 +130,7 @@ function EditProfileModal({ profile, onClose, onSaved }: {
   );
 }
 
-// ── Change Password Modal ─────────────────────────────────────────────────
+// -- Change Password Modal -------------------------------------------------
 function ChangePasswordModal({ onClose }: { onClose: () => void }) {
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
@@ -164,7 +164,7 @@ function ChangePasswordModal({ onClose }: { onClose: () => void }) {
       <Field label="New Password" type="password" value={next} onChange={setNext} placeholder="At least 6 characters" />
       <Field label="Confirm New Password" type="password" value={confirm} onChange={setConfirm} placeholder="Repeat new password" />
       <button onClick={save} disabled={saving} style={{
-        width: "100%", background: saving ? "#a0b0a2" : "linear-gradient(135deg, #4b7f52, #3a6340)",
+        width: "100%", background: saving ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: saving ? "not-allowed" : "pointer",
         boxShadow: saving ? "none" : "0 6px 20px rgba(75,127,82,0.3)", marginTop: 4,
@@ -175,7 +175,7 @@ function ChangePasswordModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// ── Notifications Modal ───────────────────────────────────────────────────
+// -- Notifications Modal ---------------------------------------------------
 function NotificationsModal({ onClose }: { onClose: () => void }) {
   const [prefs, setPrefs] = useState({ task_alerts: true, reward_updates: true, referral_alerts: true, weekly_summary: false });
   const [saving, setSaving] = useState(false);
@@ -214,12 +214,12 @@ function NotificationsModal({ onClose }: { onClose: () => void }) {
         {items.map((item) => (
           <div key={item.key} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 0", borderBottom: "1px solid #f5f7f5" }}>
             <div>
-              <p style={{ fontSize: 14, fontWeight: 600, color: "#1a2e1c" }}>{item.label}</p>
-              <p style={{ fontSize: 12, color: "#a0b0a2", marginTop: 2 }}>{item.sub}</p>
+              <p style={{ fontSize: 14, fontWeight: 600, color: "#1A1A1A" }}>{item.label}</p>
+              <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 2 }}>{item.sub}</p>
             </div>
             <div onClick={() => toggle(item.key)} style={{
               width: 46, height: 26, borderRadius: 13, cursor: "pointer", transition: "background 0.2s",
-              background: prefs[item.key] ? "#4b7f52" : "#d0d0d0", position: "relative",
+              background: prefs[item.key] ? "#1AEF22" : "#d0d0d0", position: "relative",
             }}>
               <div style={{
                 position: "absolute", top: 3, left: prefs[item.key] ? 23 : 3,
@@ -231,18 +231,18 @@ function NotificationsModal({ onClose }: { onClose: () => void }) {
         ))}
       </div>
       <button onClick={save} disabled={saving} style={{
-        width: "100%", background: saved ? "#4b7f52" : saving ? "#a0b0a2" : "linear-gradient(135deg, #4b7f52, #3a6340)",
+        width: "100%", background: saved ? "#1AEF22" : saving ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: saving ? "not-allowed" : "pointer",
         boxShadow: "0 6px 20px rgba(75,127,82,0.3)", marginTop: 20,
       }}>
-        {saved ? "✓ Saved!" : saving ? "Saving..." : "Save Preferences"}
+        {saved ? "? Saved!" : saving ? "Saving..." : "Save Preferences"}
       </button>
     </Modal>
   );
 }
 
-// ── Support Modal ─────────────────────────────────────────────────────────
+// -- Support Modal ---------------------------------------------------------
 function SupportModal({ onClose }: { onClose: () => void }) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -259,10 +259,10 @@ function SupportModal({ onClose }: { onClose: () => void }) {
   if (sent) return (
     <Modal title="Support" onClose={onClose}>
       <div style={{ textAlign: "center", padding: "20px 0" }}>
-        <div style={{ fontSize: 52, marginBottom: 16 }}>✅</div>
-        <p style={{ fontWeight: 800, fontSize: 18, color: "#1a2e1c", marginBottom: 8 }}>Message Sent!</p>
-        <p style={{ color: "#6b7c6d", fontSize: 14 }}>Our support team will get back to you within 24 hours.</p>
-        <button onClick={onClose} style={{ marginTop: 24, background: "linear-gradient(135deg, #4b7f52, #3a6340)", color: "#fff", border: "none", borderRadius: 14, padding: "14px 32px", fontWeight: 800, fontSize: 15, cursor: "pointer" }}>Done</button>
+        <div style={{ fontSize: 52, marginBottom: 16 }}>?</div>
+        <p style={{ fontWeight: 800, fontSize: 18, color: "#1A1A1A", marginBottom: 8 }}>Message Sent!</p>
+        <p style={{ color: "#6b6b6b", fontSize: 14 }}>Our support team will get back to you within 24 hours.</p>
+        <button onClick={onClose} style={{ marginTop: 24, background: "linear-gradient(135deg, #1AEF22, #06B517)", color: "#fff", border: "none", borderRadius: 14, padding: "14px 32px", fontWeight: 800, fontSize: 15, cursor: "pointer" }}>Done</button>
       </div>
     </Modal>
   );
@@ -271,29 +271,29 @@ function SupportModal({ onClose }: { onClose: () => void }) {
     <Modal title="Contact Support" onClose={onClose}>
       <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
         {[
-          { icon: "📧", label: "Email", sub: "qeixova@gmail.com", href: "mailto:qeixova@gmail.com" },
-          { icon: "📘", label: "Facebook", sub: "Message us", href: "https://www.facebook.com/profile.php?id=61568026449468" },
-          { icon: "🐦", label: "Twitter/X", sub: "@QeixovaTech", href: "https://x.com/QeixovaTech" },
+          { icon: "??", label: "Email", sub: "qeixova@gmail.com", href: "mailto:qeixova@gmail.com" },
+          { icon: "??", label: "Facebook", sub: "Message us", href: "https://www.facebook.com/profile.php?id=61568026449468" },
+          { icon: "??", label: "Twitter/X", sub: "@QeixovaTech", href: "https://x.com/QeixovaTech" },
         ].map((c) => (
           <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
-            style={{ flex: 1, background: "#f9fbf9", border: "1px solid #e0e8e1", borderRadius: 14, padding: "12px 8px", textAlign: "center", cursor: "pointer", textDecoration: "none" }}>
+            style={{ flex: 1, background: "#fafafa", border: "1px solid #e0e0e0", borderRadius: 14, padding: "12px 8px", textAlign: "center", cursor: "pointer", textDecoration: "none" }}>
             <p style={{ fontSize: 22 }}>{c.icon}</p>
-            <p style={{ fontSize: 12, fontWeight: 700, color: "#1a2e1c", marginTop: 4 }}>{c.label}</p>
-            <p style={{ fontSize: 10, color: "#a0b0a2" }}>{c.sub}</p>
+            <p style={{ fontSize: 12, fontWeight: 700, color: "#1A1A1A", marginTop: 4 }}>{c.label}</p>
+            <p style={{ fontSize: 10, color: "#a0a0a0" }}>{c.sub}</p>
           </a>
         ))}
       </div>
       <Field label="Subject" value={subject} onChange={setSubject} placeholder="What do you need help with?" />
       <div style={{ marginBottom: 14 }}>
-        <label style={{ fontSize: 11, color: "#6b7c6d", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase" }}>Message</label>
+        <label style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase" }}>Message</label>
         <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe your issue in detail..."
-          rows={4} style={{ width: "100%", marginTop: 6, padding: "13px 14px", borderRadius: 12, border: "1.5px solid #e0e8e1", fontSize: 14, outline: "none", color: "#1a2e1c", background: "#f9fbf9", resize: "none" }}
-          onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-          onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+          rows={4} style={{ width: "100%", marginTop: 6, padding: "13px 14px", borderRadius: 12, border: "1.5px solid #e0e0e0", fontSize: 14, outline: "none", color: "#1A1A1A", background: "#fafafa", resize: "none" }}
+          onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+          onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
         />
       </div>
       <button onClick={send} style={{
-        width: "100%", background: "linear-gradient(135deg, #4b7f52, #3a6340)",
+        width: "100%", background: "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: "pointer",
         boxShadow: "0 6px 20px rgba(75,127,82,0.3)",
@@ -302,7 +302,7 @@ function SupportModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// ── Terms Modal ───────────────────────────────────────────────────────────
+// -- Terms Modal -----------------------------------------------------------
 function TermsModal({ onClose }: { onClose: () => void }) {
   const [view, setView] = useState<"menu" | "terms" | "privacy" | "refund">("menu");
 
@@ -315,13 +315,13 @@ function TermsModal({ onClose }: { onClose: () => void }) {
 You must be at least 18 years old and a resident of Nigeria to use Qeixova.
 
 2. EARNING & REWARDS
-QLT (Qeixova Loyalty Token) points are earned by completing tasks. 100 QLT = ₦1. Points have no cash value until converted via a withdrawal request.
+QLT (Qeixova Loyalty Token) points are earned by completing tasks. 100 QLT = ?1. Points have no cash value until converted via a withdrawal request.
 
 3. TASK COMPLETION
 You must complete tasks honestly and submit genuine proof. Fraudulent submissions will result in account suspension and forfeiture of all points.
 
 4. WITHDRAWALS
-Minimum withdrawal is 100,000 QLT (₦1,000). Withdrawals are processed within 24 hours to your registered bank account.
+Minimum withdrawal is 100,000 QLT (?1,000). Withdrawals are processed within 24 hours to your registered bank account.
 
 5. REFERRALS
 You earn 50,000 QLT for each person who registers using your referral code. Referral abuse will result in account termination.
@@ -373,10 +373,10 @@ If you believe points were incorrectly deducted, contact support within 7 days o
     const c = content[view];
     return (
       <Modal title={c.title} onClose={onClose}>
-        <button onClick={() => setView("menu")} style={{ background: "#f2f2f2", border: "none", borderRadius: 10, padding: "8px 14px", fontSize: 13, cursor: "pointer", marginBottom: 16, color: "#6b7c6d", fontWeight: 600 }}>
-          ← Back
+        <button onClick={() => setView("menu")} style={{ background: "#F5F5F5", border: "none", borderRadius: 10, padding: "8px 14px", fontSize: 13, cursor: "pointer", marginBottom: 16, color: "#6b6b6b", fontWeight: 600 }}>
+          ? Back
         </button>
-        <div style={{ fontSize: 13, color: "#3a4a3c", lineHeight: 1.8, whiteSpace: "pre-line" }}>
+        <div style={{ fontSize: 13, color: "#3a3a3a", lineHeight: 1.8, whiteSpace: "pre-line" }}>
           {c.body}
         </div>
       </Modal>
@@ -387,29 +387,29 @@ If you believe points were incorrectly deducted, contact support within 7 days o
     <Modal title="Terms & Privacy" onClose={onClose}>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {[
-          { key: "terms",   icon: "📄", title: "Terms of Service",  sub: "Rules and guidelines for using Qeixova" },
-          { key: "privacy", icon: "🔐", title: "Privacy Policy",    sub: "How we collect and use your data" },
-          { key: "refund",  icon: "⚖️", title: "Refund Policy",     sub: "Our policy on disputes and withdrawals" },
+          { key: "terms",   icon: "??", title: "Terms of Service",  sub: "Rules and guidelines for using Qeixova" },
+          { key: "privacy", icon: "??", title: "Privacy Policy",    sub: "How we collect and use your data" },
+          { key: "refund",  icon: "??", title: "Refund Policy",     sub: "Our policy on disputes and withdrawals" },
         ].map((item) => (
           <div key={item.key} onClick={() => setView(item.key as "terms" | "privacy" | "refund")}
-            style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 16px", background: "#f9fbf9", borderRadius: 14, border: "1px solid #e0e8e1", cursor: "pointer" }}>
-            <div style={{ width: 40, height: 40, borderRadius: 12, background: "#edf7ee", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{item.icon}</div>
+            style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 16px", background: "#fafafa", borderRadius: 14, border: "1px solid #e0e0e0", cursor: "pointer" }}>
+            <div style={{ width: 40, height: 40, borderRadius: 12, background: "#e8ffe9", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{item.icon}</div>
             <div style={{ flex: 1 }}>
-              <p style={{ fontSize: 14, fontWeight: 600, color: "#1a2e1c" }}>{item.title}</p>
-              <p style={{ fontSize: 12, color: "#a0b0a2", marginTop: 2 }}>{item.sub}</p>
+              <p style={{ fontSize: 14, fontWeight: 600, color: "#1A1A1A" }}>{item.title}</p>
+              <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 2 }}>{item.sub}</p>
             </div>
-            <span style={{ color: "#a0b0a2", fontSize: 18 }}>›</span>
+            <span style={{ color: "#a0a0a0", fontSize: 18 }}>�</span>
           </div>
         ))}
       </div>
-      <p style={{ textAlign: "center", color: "#a0b0a2", fontSize: 12, marginTop: 20 }}>
-        Last updated: April 2025 · Qeixova v1.0
+      <p style={{ textAlign: "center", color: "#a0a0a0", fontSize: 12, marginTop: 20 }}>
+        Last updated: April 2025 � Qeixova v1.0
       </p>
     </Modal>
   );
 }
 
-// ── Main Profile Page ─────────────────────────────────────────────────────
+// -- Main Profile Page -----------------------------------------------------
 export default function ProfilePage() {
   const { logout } = useAuth();
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -436,28 +436,28 @@ export default function ProfilePage() {
   };
 
   const stats = profile ? [
-    { label: "Tasks Today",      value: String(profile.tasks_today),       icon: "📅" },
-    { label: "Total Tasks",      value: String(profile.tasks_completed),   icon: "✅" },
-    { label: "Total Earned",     value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QLT` : `${profile.total_earned} QLT`, icon: "⭐" },
-    { label: "Total Withdrawn",  value: profile.total_withdrawn >= 1000 ? `${(profile.total_withdrawn / 1000).toFixed(0)}k QLT` : `${profile.total_withdrawn} QLT`, icon: "💸" },
-    { label: "Balance",          value: `${profile.balance.toLocaleString()} QLT`, icon: "💳" },
-    { label: "Referrals",        value: String(profile.referral_count),    icon: "👥" },
+    { label: "Tasks Today",      value: String(profile.tasks_today),       icon: "??" },
+    { label: "Total Tasks",      value: String(profile.tasks_completed),   icon: "?" },
+    { label: "Total Earned",     value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QLT` : `${profile.total_earned} QLT`, icon: "?" },
+    { label: "Total Withdrawn",  value: profile.total_withdrawn >= 1000 ? `${(profile.total_withdrawn / 1000).toFixed(0)}k QLT` : `${profile.total_withdrawn} QLT`, icon: "??" },
+    { label: "Balance",          value: `${profile.balance.toLocaleString()} QLT`, icon: "??" },
+    { label: "Referrals",        value: String(profile.referral_count),    icon: "??" },
   ] : [];
 
   const menuItems = [
-    { icon: "🏦", label: "Bank Accounts",   sub: "Add & manage withdrawal accounts", color: "#edf7ee", action: () => setShowBankModal(true) },
-    { icon: "✏️", label: "Edit Profile",    sub: "Update your name & phone",         color: "#fdf8e1", action: () => setModal("edit") },
-    { icon: "🔒", label: "Change Password", sub: "Update your account password",     color: "#edf7ee", action: () => setModal("password") },
-    { icon: "🔔", label: "Notifications",   sub: "Task alerts & updates",            color: "#fdf8e1", action: () => setModal("notifications") },
-    { icon: "📞", label: "Support",         sub: "Get help anytime",                 color: "#edf7ee", action: () => setModal("support") },
-    { icon: "📄", label: "Terms & Privacy", sub: "Legal information",                color: "#fdf8e1", action: () => setModal("terms") },
+    { icon: "??", label: "Bank Accounts",   sub: "Add & manage withdrawal accounts", color: "#e8ffe9", action: () => setShowBankModal(true) },
+    { icon: "??", label: "Edit Profile",    sub: "Update your name & phone",         color: "#fdf8e1", action: () => setModal("edit") },
+    { icon: "??", label: "Change Password", sub: "Update your account password",     color: "#e8ffe9", action: () => setModal("password") },
+    { icon: "??", label: "Notifications",   sub: "Task alerts & updates",            color: "#fdf8e1", action: () => setModal("notifications") },
+    { icon: "??", label: "Support",         sub: "Get help anytime",                 color: "#e8ffe9", action: () => setModal("support") },
+    { icon: "??", label: "Terms & Privacy", sub: "Legal information",                color: "#fdf8e1", action: () => setModal("terms") },
   ];
 
   return (
-    <div className="page-body" style={{ background: "#f2f2f2", minHeight: "100vh" }}>
+    <div className="page-body" style={{ background: "#F5F5F5", minHeight: "100vh" }}>
       {/* Header */}
       <div className="page-header" style={{
-        background: "linear-gradient(160deg, #4b7f52 0%, #3a6340 100%)",
+        background: "linear-gradient(160deg, #1AEF22 0%, #06B517 100%)",
         padding: "52px 20px 40px", textAlign: "center",
         position: "relative", overflow: "hidden",
       }}>
@@ -467,14 +467,14 @@ export default function ProfilePage() {
         <div style={{ position: "relative", display: "inline-block", marginBottom: 14 }}>
           <div style={{
             width: 80, height: 80, borderRadius: "50%",
-            background: "linear-gradient(135deg, #d4af37, #b8961e)",
+            background: "linear-gradient(135deg, #F5A623, #d89420)",
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: 34, boxShadow: "0 6px 20px rgba(212,175,55,0.4)",
             border: "3px solid rgba(255,255,255,0.3)",
           }}>
-            {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : "👤"}
+            {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : "??"}
           </div>
-          <div style={{ position: "absolute", bottom: 0, right: 0, width: 14, height: 14, borderRadius: "50%", background: "#4ade80", border: "2px solid #3a6340" }} />
+          <div style={{ position: "absolute", bottom: 0, right: 0, width: 14, height: 14, borderRadius: "50%", background: "#4ade80", border: "2px solid #06B517" }} />
         </div>
 
         <p style={{ color: "#fff", fontSize: 22, fontWeight: 800, letterSpacing: -0.5 }}>
@@ -494,9 +494,9 @@ export default function ProfilePage() {
             background: "rgba(212,175,55,0.2)", border: "1px solid rgba(212,175,55,0.4)",
             borderRadius: 20, padding: "6px 16px",
           }}>
-            <span style={{ fontSize: 14 }}>⭐</span>
-            <span style={{ color: "#e8c84a", fontSize: 12, fontWeight: 700 }}>
-              Level {profile?.level ?? 1} — {levelLabel(profile?.level ?? 1)}
+            <span style={{ fontSize: 14 }}>?</span>
+            <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 700 }}>
+              Level {profile?.level ?? 1} � {levelLabel(profile?.level ?? 1)}
             </span>
           </div>
           {profile && profile.streak > 0 && (
@@ -505,7 +505,7 @@ export default function ProfilePage() {
               background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)",
               borderRadius: 20, padding: "5px 14px",
             }}>
-              <span style={{ fontSize: 14 }}>🔥</span>
+              <span style={{ fontSize: 14 }}>??</span>
               <span style={{ color: "#fff", fontSize: 12, fontWeight: 600 }}>{profile.streak}-day streak</span>
             </div>
           )}
@@ -516,18 +516,18 @@ export default function ProfilePage() {
       <div style={{ padding: "0 16px", marginTop: -24 }}>
         <div style={{
           background: "#fff", borderRadius: 20, padding: "20px",
-          boxShadow: "0 8px 30px rgba(75,127,82,0.12)", border: "1px solid #edf2ee",
+          boxShadow: "0 8px 30px rgba(75,127,82,0.12)", border: "1px solid #e8e8e8",
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0,
         }}>
           {stats.map((s, i) => (
             <div key={i} style={{
               textAlign: "center", padding: "12px 8px",
-              borderRight: i % 2 === 0 ? "1px solid #edf2ee" : "none",
-              borderBottom: i < stats.length - 2 ? "1px solid #edf2ee" : "none",
+              borderRight: i % 2 === 0 ? "1px solid #e8e8e8" : "none",
+              borderBottom: i < stats.length - 2 ? "1px solid #e8e8e8" : "none",
             }}>
               <p style={{ fontSize: 18, marginBottom: 4 }}>{s.icon}</p>
-              <p style={{ fontWeight: 800, fontSize: 15, color: "#4b7f52" }}>{s.value}</p>
-              <p style={{ fontSize: 10, color: "#a0b0a2", marginTop: 2 }}>{s.label}</p>
+              <p style={{ fontWeight: 800, fontSize: 15, color: "#1AEF22" }}>{s.value}</p>
+              <p style={{ fontSize: 10, color: "#a0a0a0", marginTop: 2 }}>{s.label}</p>
             </div>
           ))}
         </div>
@@ -537,7 +537,7 @@ export default function ProfilePage() {
       {profile && (
         <div style={{ padding: "20px 16px 0" }}>
           <div style={{
-            background: "linear-gradient(135deg, #d4af37 0%, #b8961e 100%)",
+            background: "linear-gradient(135deg, #F5A623 0%, #d89420 100%)",
             borderRadius: 18, padding: "18px 20px",
             display: "flex", justifyContent: "space-between", alignItems: "center",
             boxShadow: "0 6px 20px rgba(212,175,55,0.3)",
@@ -554,12 +554,12 @@ export default function ProfilePage() {
               </p>
             </div>
             <button onClick={copyCode} style={{
-              background: "#fff", color: "#b8961e", border: "none",
+              background: "#fff", color: "#d89420", border: "none",
               borderRadius: 12, padding: "10px 18px",
               fontWeight: 800, fontSize: 13, cursor: "pointer",
               boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
             }}>
-              {copied ? "Copied! ✓" : "Copy 🔗"}
+              {copied ? "Copied! ?" : "Copy ??"}
             </button>
           </div>
         </div>
@@ -567,7 +567,7 @@ export default function ProfilePage() {
 
       {/* Menu */}
       <div style={{ padding: "20px 16px 0" }}>
-        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 2px 12px rgba(75,127,82,0.07)", border: "1px solid #edf2ee" }}>
+        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 2px 12px rgba(75,127,82,0.07)", border: "1px solid #e8e8e8" }}>
           {menuItems.map((item, i) => (
             <div key={i} onClick={item.action} style={{
               display: "flex", alignItems: "center", gap: 14, padding: "15px 18px",
@@ -577,10 +577,10 @@ export default function ProfilePage() {
                 {item.icon}
               </div>
               <div style={{ flex: 1 }}>
-                <p style={{ fontSize: 14, fontWeight: 600, color: "#1a2e1c" }}>{item.label}</p>
-                <p style={{ fontSize: 12, color: "#a0b0a2", marginTop: 1 }}>{item.sub}</p>
+                <p style={{ fontSize: 14, fontWeight: 600, color: "#1A1A1A" }}>{item.label}</p>
+                <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 1 }}>{item.sub}</p>
               </div>
-              <div style={{ width: 28, height: 28, borderRadius: 8, background: "#f2f2f2", display: "flex", alignItems: "center", justifyContent: "center", color: "#a0b0a2", fontSize: 14, fontWeight: 700 }}>›</div>
+              <div style={{ width: 28, height: 28, borderRadius: 8, background: "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center", color: "#a0a0a0", fontSize: 14, fontWeight: 700 }}>�</div>
             </div>
           ))}
         </div>
@@ -594,7 +594,7 @@ export default function ProfilePage() {
           fontWeight: 700, fontSize: 15, cursor: "pointer",
           boxShadow: "0 2px 8px rgba(229,62,62,0.08)",
         }}>
-          🚪 Log Out
+          ?? Log Out
         </button>
       </div>
 
@@ -610,3 +610,4 @@ export default function ProfilePage() {
     </div>
   );
 }
+

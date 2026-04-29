@@ -1,4 +1,4 @@
-﻿import { getAdminSession } from "@/lib/adminAuth";
+import { getAdminSession } from "@/lib/adminAuth";
 import { redirect } from "next/navigation";
 import { sql } from "@/lib/db";
 import DataManagement from "../DataManagement";
@@ -37,7 +37,7 @@ function StatCard({ label, value, icon, color }: { label: string; value: string 
         <span style={{ fontSize: 24 }}>{icon}</span>
         <span style={{ fontSize: 13, color: "#888", fontWeight: 500 }}>{label}</span>
       </div>
-      <div style={{ fontSize: 28, fontWeight: 700, color: "#1a2e1c" }}>{value}</div>
+      <div style={{ fontSize: 28, fontWeight: 700, color: "#1A1A1A" }}>{value}</div>
     </div>
   );
 }
@@ -54,7 +54,7 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1a2e1c" }}>
+      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1A1A1A" }}>
         Dashboard
       </h1>
       <p style={{ margin: "0 0 32px", color: "#888", fontSize: 14 }}>
@@ -68,15 +68,16 @@ export default async function AdminDashboard() {
           gap: 20,
         }}
       >
-        <StatCard label="Total Users" value={stats.totalUsers.toLocaleString()} icon="👥" color="#4b7f52" />
-        <StatCard label="Total QLT Earned" value={fmtQLT(stats.totalEarned)} icon="💰" color="#d4af37" />
-        <StatCard label="Total QLT Withdrawn" value={fmtQLT(stats.totalWithdrawn)} icon="🏦" color="#4b7f52" />
-        <StatCard label="Pending Withdrawals" value={stats.pendingWithdrawals.toLocaleString()} icon="⏳" color="#e67e22" />
-        <StatCard label="Total Completions" value={stats.totalCompletions.toLocaleString()} icon="✅" color="#4b7f52" />
-        <StatCard label="Active Tasks" value={stats.activeTasks.toLocaleString()} icon="📋" color="#d4af37" />
+        <StatCard label="Total Users" value={stats.totalUsers.toLocaleString()} icon="??" color="#1AEF22" />
+        <StatCard label="Total QLT Earned" value={fmtQLT(stats.totalEarned)} icon="??" color="#F5A623" />
+        <StatCard label="Total QLT Withdrawn" value={fmtQLT(stats.totalWithdrawn)} icon="??" color="#1AEF22" />
+        <StatCard label="Pending Withdrawals" value={stats.pendingWithdrawals.toLocaleString()} icon="?" color="#e67e22" />
+        <StatCard label="Total Completions" value={stats.totalCompletions.toLocaleString()} icon="?" color="#1AEF22" />
+        <StatCard label="Active Tasks" value={stats.activeTasks.toLocaleString()} icon="??" color="#F5A623" />
       </div>
 
       <DataManagement />
     </div>
   );
 }
+

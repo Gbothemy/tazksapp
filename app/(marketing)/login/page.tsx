@@ -105,7 +105,7 @@ export default function LoginPage() {
 
             {/* Email */}
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>
+              <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>
                 EMAIL ADDRESS
               </label>
               <div style={{ position: "relative", marginTop: 8 }}>
@@ -133,7 +133,7 @@ export default function LoginPage() {
             {/* Password */}
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>
                   PASSWORD
                 </label>
                 <Link href="/forgot-password" style={{ fontSize: 12, color: "#1AEF22", fontWeight: 600, textDecoration: "none" }}>
@@ -197,9 +197,9 @@ export default function LoginPage() {
 
           {/* Divider */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "24px 0" }}>
-            <div style={{ flex: 1, height: 1, background: "#edf2ee" }} />
-            <span style={{ fontSize: 12, color: "#a0b0a2", fontWeight: 500 }}>or continue with</span>
-            <div style={{ flex: 1, height: 1, background: "#edf2ee" }} />
+            <div style={{ flex: 1, height: 1, background: "#e8e8e8" }} />
+            <span style={{ fontSize: 12, color: "#a0a0a0", fontWeight: 500 }}>or continue with</span>
+            <div style={{ flex: 1, height: 1, background: "#e8e8e8" }} />
           </div>
 
           {/* Social buttons */}
@@ -207,9 +207,9 @@ export default function LoginPage() {
             {[{ icon: "🇬", label: "Google" }, { icon: "📘", label: "Facebook" }].map((s) => (
               <button key={s.label} style={{
                 flex: 1, padding: "11px",
-                background: "#f9fbf9", border: "1.5px solid #e0e8e1",
+                background: "#fafafa", border: "1.5px solid #e0e0e0",
                 borderRadius: 12, cursor: "pointer", fontWeight: 600,
-                fontSize: 13, color: "#1a2e1c",
+                fontSize: 13, color: "#1A1A1A",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
               }}>
                 <span style={{ fontSize: 16 }}>{s.icon}</span> {s.label}
@@ -228,3 +228,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

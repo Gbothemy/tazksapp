@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useState, useCallback } from "react";
 
 interface Withdrawal {
@@ -21,7 +21,7 @@ const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
 };
 
 function QLTToNaira(QLT: number) {
-  return "₦" + (QLT / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 });
+  return "?" + (QLT / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 });
 }
 
 export default function WithdrawalsPage() {
@@ -60,12 +60,12 @@ export default function WithdrawalsPage() {
 
   return (
     <div>
-      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1a2e1c" }}>Withdrawals</h1>
+      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1A1A1A" }}>Withdrawals</h1>
       <p style={{ margin: "0 0 24px", color: "#888", fontSize: 14 }}>Manage withdrawal requests</p>
 
       <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
         {(["all", "pending", "completed", "failed"] as StatusFilter[]).map((f) => (
-          <button key={f} onClick={() => setFilter(f)} style={{ padding: "8px 18px", borderRadius: 20, border: "1.5px solid", borderColor: filter === f ? "#4b7f52" : "#e0e0e0", background: filter === f ? "#4b7f52" : "#fff", color: filter === f ? "#fff" : "#666", cursor: "pointer", fontSize: 13, fontWeight: 500, textTransform: "capitalize" }}>
+          <button key={f} onClick={() => setFilter(f)} style={{ padding: "8px 18px", borderRadius: 20, border: "1.5px solid", borderColor: filter === f ? "#1AEF22" : "#e0e0e0", background: filter === f ? "#1AEF22" : "#fff", color: filter === f ? "#fff" : "#666", cursor: "pointer", fontSize: 13, fontWeight: 500, textTransform: "capitalize" }}>
             {f}
           </button>
         ))}
@@ -87,7 +87,7 @@ export default function WithdrawalsPage() {
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loading…</td></tr>
+              <tr><td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loading�</td></tr>
             ) : withdrawals.length === 0 ? (
               <tr><td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>No withdrawals found</td></tr>
             ) : withdrawals.map((w) => {
@@ -106,7 +106,7 @@ export default function WithdrawalsPage() {
                       if (parts.length >= 3) {
                         return (
                           <div>
-                            <div style={{ fontWeight: 600, fontSize: 13, color: "#1a2e1c" }}>{parts[0]}</div>
+                            <div style={{ fontWeight: 600, fontSize: 13, color: "#1A1A1A" }}>{parts[0]}</div>
                             <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>{parts[1]}</div>
                             <div style={{ fontSize: 12, color: "#888", marginTop: 1 }}>{parts[2]}</div>
                           </div>
@@ -125,7 +125,7 @@ export default function WithdrawalsPage() {
                     {w.status === "pending" ? (
                       <div style={{ display: "flex", gap: 8 }}>
                         <button onClick={() => handleAction(w.id, "approve")} disabled={actionLoading === w.id}
-                          style={{ padding: "5px 12px", borderRadius: 6, border: "none", background: "#4b7f52", color: "#fff", cursor: "pointer", fontSize: 12, fontWeight: 600, opacity: actionLoading === w.id ? 0.6 : 1 }}>
+                          style={{ padding: "5px 12px", borderRadius: 6, border: "none", background: "#1AEF22", color: "#fff", cursor: "pointer", fontSize: 12, fontWeight: 600, opacity: actionLoading === w.id ? 0.6 : 1 }}>
                           Approve
                         </button>
                         <button onClick={() => handleAction(w.id, "reject")} disabled={actionLoading === w.id}
@@ -134,7 +134,7 @@ export default function WithdrawalsPage() {
                         </button>
                       </div>
                     ) : (
-                      <span style={{ color: "#aaa", fontSize: 12 }}>—</span>
+                      <span style={{ color: "#aaa", fontSize: 12 }}>�</span>
                     )}
                   </td>
                 </tr>
@@ -146,3 +146,4 @@ export default function WithdrawalsPage() {
     </div>
   );
 }
+

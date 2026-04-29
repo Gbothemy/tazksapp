@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useState, useCallback } from "react";
 
 interface User {
@@ -72,7 +72,7 @@ export default function UsersPage() {
 
   return (
     <div>
-      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1a2e1c" }}>Users</h1>
+      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1A1A1A" }}>Users</h1>
       <p style={{ margin: "0 0 24px", color: "#888", fontSize: 14 }}>
         {total.toLocaleString()} total users
       </p>
@@ -80,7 +80,7 @@ export default function UsersPage() {
       <div style={{ marginBottom: 20 }}>
         <input
           type="text"
-          placeholder="Search by name or email…"
+          placeholder="Search by name or email�"
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
           style={{
@@ -112,7 +112,7 @@ export default function UsersPage() {
             {loading ? (
               <tr>
                 <td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>
-                  Loading…
+                  Loading�
                 </td>
               </tr>
             ) : users.length === 0 ? (
@@ -158,7 +158,7 @@ export default function UsersPage() {
                         cursor: "pointer",
                         fontSize: 12,
                         fontWeight: 600,
-                        background: u.banned ? "#4b7f52" : "#cc0000",
+                        background: u.banned ? "#1AEF22" : "#cc0000",
                         color: "#fff",
                         opacity: actionLoading === u.id ? 0.6 : 1,
                       }}
@@ -180,7 +180,7 @@ export default function UsersPage() {
             disabled={page === 1}
             style={{ padding: "8px 16px", borderRadius: 6, border: "1px solid #ddd", cursor: "pointer", background: "#fff" }}
           >
-            ← Prev
+            ? Prev
           </button>
           <span style={{ fontSize: 13, color: "#666" }}>
             Page {page} of {totalPages}
@@ -190,10 +190,11 @@ export default function UsersPage() {
             disabled={page === totalPages}
             style={{ padding: "8px 16px", borderRadius: 6, border: "1px solid #ddd", cursor: "pointer", background: "#fff" }}
           >
-            Next →
+            Next ?
           </button>
         </div>
       )}
     </div>
   );
 }
+

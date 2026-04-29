@@ -61,14 +61,14 @@ export default function CompletionsPage() {
 
   return (
     <div>
-      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1a2e1c" }}>Completions</h1>
+      <h1 style={{ margin: "0 0 8px", fontSize: 26, fontWeight: 700, color: "#1A1A1A" }}>Completions</h1>
       <p style={{ margin: "0 0 24px", color: "#888", fontSize: 14 }}>{total.toLocaleString()} total submissions</p>
 
       {/* Filters */}
       <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
         {["", "screenshot", "url", "text"].map((f) => (
           <button key={f} onClick={() => { setProofFilter(f); setPage(1); }}
-            style={{ padding: "8px 18px", borderRadius: 20, border: "1.5px solid", borderColor: proofFilter === f ? "#4b7f52" : "#e0e0e0", background: proofFilter === f ? "#4b7f52" : "#fff", color: proofFilter === f ? "#fff" : "#666", cursor: "pointer", fontSize: 13, fontWeight: 500 }}>
+            style={{ padding: "8px 18px", borderRadius: 20, border: "1.5px solid", borderColor: proofFilter === f ? "#1AEF22" : "#e0e0e0", background: proofFilter === f ? "#1AEF22" : "#fff", color: proofFilter === f ? "#fff" : "#666", cursor: "pointer", fontSize: 13, fontWeight: 500 }}>
             {f === "" ? "All" : f.charAt(0).toUpperCase() + f.slice(1)}
           </button>
         ))}
@@ -134,3 +134,4 @@ export default function CompletionsPage() {
     </div>
   );
 }
+
