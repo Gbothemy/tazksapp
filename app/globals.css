@@ -10,8 +10,8 @@ html {
 }
 
 body {
-  background: #F5F5F5;
-  color: #1A1A1A;
+  background: #000000;
+  color: #F5F5F5;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -24,7 +24,7 @@ input, select, button, textarea {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #F5A623 #F5F5F5;
+  scrollbar-color: #F5A623 #111111;
 }
 *::-webkit-scrollbar {
   width: 4px;
@@ -38,10 +38,12 @@ input, select, button, textarea {
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* ── Responsive layout shell ── */
@@ -69,7 +71,7 @@ input[type="number"] {
 /* ── Desktop (≥1024px) ── */
 @media (min-width: 1024px) {
   body {
-    background: #F5F5F5;
+    background: #000000;
   }
 
   .sidebar {
@@ -77,14 +79,14 @@ input[type="number"] {
     flex-direction: column;
     width: 260px;
     min-height: 100vh;
-    background: #ffffff;
-    border-right: 1px solid #e0e0e0;
+    background: #111111;
+    border-right: 1px solid #222222;
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
     flex-shrink: 0;
-    box-shadow: 2px 0 12px rgba(26,239,34,0.06);
+    box-shadow: 2px 0 12px rgba(0,0,0,0.4);
   }
 
   .main-content {

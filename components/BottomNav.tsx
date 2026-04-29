@@ -14,15 +14,13 @@ export default function BottomNav() {
   return (
     <nav className="bottom-nav" style={{
       position: "fixed",
-      bottom: 0,
-      left: 0,
-      right: 0,
+      bottom: 0, left: 0, right: 0,
       width: "100%",
-      background: "#ffffff",
-      borderTop: "1px solid #e0e0e0",
+      background: "#111111",
+      borderTop: "1px solid #222222",
       display: "flex",
       zIndex: 50,
-      boxShadow: "0 -4px 20px rgba(26,239,34,0.08)",
+      boxShadow: "0 -4px 20px rgba(0,0,0,0.5)",
     }}>
       {nav.map((item) => {
         const active = path === item.href;
@@ -34,7 +32,7 @@ export default function BottomNav() {
             alignItems: "center",
             padding: "10px 0 12px",
             textDecoration: "none",
-            color: active ? "#1AEF22" : "#a0a0a0",
+            color: active ? "#1AEF22" : "#555555",
             fontSize: 10,
             fontWeight: active ? 700 : 500,
             gap: 3,

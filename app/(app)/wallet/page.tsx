@@ -14,13 +14,9 @@ function timeAgo(d: string) {
   return new Date(d).toLocaleDateString("en-NG", { day: "numeric", month: "short" });
 }
 
-const TX_ICONS: Record<string, string> = {
-  "Task:": "✅", "Withdrawal": "💸", "Referral": "👥", "default": "💰",
-};
+const TX_ICONS: Record<string, string> = { "Task:": "✅", "Withdrawal": "💸", "Referral": "👥", "default": "💰" };
 function txIcon(label: string) {
-  for (const key of Object.keys(TX_ICONS)) {
-    if (label.startsWith(key)) return TX_ICONS[key];
-  }
+  for (const key of Object.keys(TX_ICONS)) { if (label.startsWith(key)) return TX_ICONS[key]; }
   return TX_ICONS.default;
 }
 
@@ -36,72 +32,50 @@ export default function WalletPage() {
 
   const fetchWallet = async () => {
     try {
-      const r = await fetch("/api/wallet");
-      if (!r.ok) return;
+      const r = await fetch("/api/wallet"); if (!r.ok) return;
       const d = await r.json();
       if (d.balance !== undefined) setBalance(d.balance);
       if (d.transactions) setTransactions(d.transactions);
-    } catch { /* silently ignore */ }
+    } catch { /* ignore */ }
   };
 
   useEffect(() => {
     fetchWallet();
-    fetch("/api/bank-accounts")
-      .then((r) => r.ok ? r.json() : null)
-      .then((d) => { if (d?.accounts) setBankAccounts(d.accounts); })
-      .catch(() => {});
-
-    const onBalanceUpdate = () => fetchWallet();
-    window.addEventListener("balanceUpdated", onBalanceUpdate);
-    return () => window.removeEventListener("balanceUpdated", onBalanceUpdate);
+    fetch("/api/bank-accounts").then(r => r.ok ? r.json() : null).then(d => { if (d?.accounts) setBankAccounts(d.accounts); }).catch(() => {});
+    window.addEventListener("balanceUpdated", fetchWallet);
+    return () => window.removeEventListener("balanceUpdated", fetchWallet);
   }, []);
 
   const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setMsg(null);
-    const res = await fetch("/api/wallet/withdraw", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: Number(amount), bank }),
-    });
+    e.preventDefault(); setSubmitting(true); setMsg(null);
+    const res = await fetch("/api/wallet/withdraw", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ amount: Number(amount), bank }) });
     const data = await res.json();
     if (res.ok) {
       setMsg({ type: "success", text: "Withdrawal request submitted! Processing within 24 hours." });
-      setBalance(data.newBalance);
-      setAmount(""); setBank("");
-      fetchWallet();
-    } else {
-      setMsg({ type: "error", text: data.error || "Something went wrong" });
-    }
+      setBalance(data.newBalance); setAmount(""); setBank(""); fetchWallet();
+    } else { setMsg({ type: "error", text: data.error || "Something went wrong" }); }
     setSubmitting(false);
   };
 
   if (loading) return <LoadingScreen />;
 
   return (
-    <div className="page-body" style={{ background: "#F5F5F5", minHeight: "100vh" }}>
-      <div className="page-header" style={{
-        background: "linear-gradient(160deg, #1AEF22 0%, #06B517 100%)",
-        padding: "52px 20px 32px", position: "relative", overflow: "hidden",
-      }}>
-        <div style={{ position: "absolute", top: -50, right: -50, width: 180, height: 180, borderRadius: "50%", background: "rgba(245,166,35,0.1)" }} />
-        <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginBottom: 4 }}>Points Balance</p>
+    <div className="page-body" style={{ background: "#000000", minHeight: "100vh" }}>
+      {/* Header */}
+      <div className="page-header" style={{ background: "linear-gradient(160deg, #1AEF22 0%, #06B517 100%)", padding: "52px 20px 32px", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: -50, right: -50, width: 180, height: 180, borderRadius: "50%", background: "rgba(0,0,0,0.08)" }} />
+        <p style={{ color: "rgba(0,0,0,0.6)", fontSize: 13, marginBottom: 4 }}>Points Balance</p>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-          <span style={{ color: "#F5A623", fontSize: 20 }}>⭐</span>
-          <p style={{ color: "#fff", fontSize: 38, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>
-            {balance.toLocaleString()}
-          </p>
-          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>QLT</span>
+          <span style={{ color: "#000", fontSize: 20 }}>⭐</span>
+          <p style={{ color: "#000", fontSize: 38, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>{balance.toLocaleString()}</p>
+          <span style={{ color: "rgba(0,0,0,0.5)", fontSize: 14 }}>QLT</span>
         </div>
-        <p style={{ color: "#F5A623", fontSize: 14, fontWeight: 600, marginTop: 6 }}>
-          ≈ ₦{(balance / 100).toLocaleString()} cash value
-        </p>
+        <p style={{ color: "#000", fontSize: 14, fontWeight: 600, marginTop: 6, opacity: 0.7 }}>≈ ₦{(balance / 100).toLocaleString()} cash value</p>
         <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
-          {[{ label: "Min. Withdrawal", value: "100,000 QLT" }, { label: "Rate", value: "100 QLT = ₦1" }, { label: "Fee", value: "Free" }].map((item) => (
-            <div key={item.label} style={{ flex: 1, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, padding: "10px 8px", textAlign: "center" }}>
-              <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 10, marginBottom: 3 }}>{item.label}</p>
-              <p style={{ color: "#F5A623", fontWeight: 700, fontSize: 13 }}>{item.value}</p>
+          {[{ label: "Min. Withdrawal", value: "100,000 QLT" }, { label: "Rate", value: "100 QLT = ₦1" }, { label: "Fee", value: "Free" }].map(item => (
+            <div key={item.label} style={{ flex: 1, background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.15)", borderRadius: 12, padding: "10px 8px", textAlign: "center" }}>
+              <p style={{ color: "rgba(0,0,0,0.55)", fontSize: 10, marginBottom: 3 }}>{item.label}</p>
+              <p style={{ color: "#000", fontWeight: 700, fontSize: 13 }}>{item.value}</p>
             </div>
           ))}
         </div>
@@ -110,50 +84,45 @@ export default function WalletPage() {
       <div className="wallet-layout" style={{ display: "block" }}>
         {/* Withdraw form */}
         <div style={{ padding: "20px 16px 0" }}>
-          <div style={{ background: "#fff", borderRadius: 20, padding: "22px 20px", boxShadow: "0 4px 20px rgba(26,239,34,0.10)", border: "1px solid #e8e8e8" }}>
+          <div style={{ background: "#111111", borderRadius: 20, padding: "22px 20px", border: "1px solid #222222" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg, #1AEF22, #5e9e67)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>💸</div>
-              <p style={{ fontWeight: 800, fontSize: 16, color: "#1A1A1A" }}>Withdraw Funds</p>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg, #1AEF22, #06B517)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>💸</div>
+              <p style={{ fontWeight: 800, fontSize: 16, color: "#F5F5F5" }}>Withdraw Funds</p>
             </div>
 
             {msg && (
-              <div style={{
-                background: msg.type === "success" ? "#e8ffe9" : "#fff5f5",
-                border: `1px solid ${msg.type === "success" ? "#c3e6cb" : "#fed7d7"}`,
-                borderRadius: 12, padding: "12px 16px", marginBottom: 16,
-                display: "flex", alignItems: "center", gap: 10,
-              }}>
+              <div style={{ background: msg.type === "success" ? "rgba(26,239,34,0.1)" : "rgba(229,62,62,0.1)", border: `1px solid ${msg.type === "success" ? "rgba(26,239,34,0.3)" : "rgba(229,62,62,0.3)"}`, borderRadius: 12, padding: "12px 16px", marginBottom: 16, display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{ fontSize: 18 }}>{msg.type === "success" ? "✅" : "⚠️"}</span>
-                <p style={{ color: msg.type === "success" ? "#1A1A1A" : "#e53e3e", fontSize: 13, fontWeight: 600 }}>{msg.text}</p>
+                <p style={{ color: msg.type === "success" ? "#1AEF22" : "#e53e3e", fontSize: 13, fontWeight: 600 }}>{msg.text}</p>
               </div>
             )}
 
             <form onSubmit={handleWithdraw} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div>
-                <label style={{ fontSize: 12, color: "#6b6b6b", fontWeight: 700, letterSpacing: 0.5 }}>QLT POINTS TO CONVERT</label>
+                <label style={{ fontSize: 12, color: "#555555", fontWeight: 700, letterSpacing: 0.5 }}>QLT POINTS TO CONVERT</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
-                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Min. 100,000 QLT"
-                    style={{ width: "100%", padding: "14px 16px", borderRadius: 12, border: "1.5px solid #e0e0e0", fontSize: 16, outline: "none", color: "#1A1A1A", background: "#fafafa" }}
-                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
-                    onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
+                  <input type="number" value={amount} onChange={e => setAmount(e.target.value)} placeholder="Min. 100,000 QLT"
+                    style={{ width: "100%", padding: "14px 16px", borderRadius: 12, border: "1.5px solid #333333", fontSize: 16, outline: "none", color: "#F5F5F5", background: "#1a1a1a" }}
+                    onFocus={e => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={e => (e.target.style.borderColor = "#333333")}
                   />
                 </div>
                 {Number(amount) > 0 && (
-                  <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 6, background: "#e8ffe9", borderRadius: 8, padding: "7px 12px" }}>
+                  <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 6, background: "rgba(26,239,34,0.1)", borderRadius: 8, padding: "7px 12px" }}>
                     <span style={{ fontSize: 14 }}>⭐</span>
                     <span style={{ fontSize: 13, color: "#1AEF22", fontWeight: 600 }}>{Number(amount).toLocaleString()} QLT</span>
-                    <span style={{ color: "#a0a0a0" }}>→</span>
+                    <span style={{ color: "#444444" }}>→</span>
                     <span style={{ fontSize: 13, color: "#1AEF22", fontWeight: 700 }}>₦{(Number(amount) / 100).toLocaleString()}</span>
                   </div>
                 )}
               </div>
               <div>
-                <label style={{ fontSize: 12, color: "#6b6b6b", fontWeight: 700, letterSpacing: 0.5 }}>BANK ACCOUNT</label>
-                <select value={bank} onChange={(e) => setBank(e.target.value)}
-                  style={{ width: "100%", marginTop: 8, padding: "14px 16px", borderRadius: 12, border: "1.5px solid #e0e0e0", fontSize: 14, outline: "none", color: "#1A1A1A", background: "#fafafa", cursor: "pointer" }}>
+                <label style={{ fontSize: 12, color: "#555555", fontWeight: 700, letterSpacing: 0.5 }}>BANK ACCOUNT</label>
+                <select value={bank} onChange={e => setBank(e.target.value)}
+                  style={{ width: "100%", marginTop: 8, padding: "14px 16px", borderRadius: 12, border: "1.5px solid #333333", fontSize: 14, outline: "none", color: "#F5F5F5", background: "#1a1a1a", cursor: "pointer" }}>
                   <option value="">Select bank account</option>
                   {bankAccounts.length > 0 ? (
-                    bankAccounts.map((acc) => (
+                    bankAccounts.map(acc => (
                       <option key={acc.id} value={`${acc.bank_name} — ${acc.account_number}`}>
                         {acc.bank_name} — {acc.account_number.replace(/(\d{3})(\d{4})(\d{3})/, "$1 $2 $3")} ({acc.account_name})
                       </option>
@@ -164,8 +133,8 @@ export default function WalletPage() {
                 </select>
               </div>
               <button type="submit" disabled={submitting} style={{
-                background: submitting ? "#a0a0a0" : "linear-gradient(135deg, #F5A623, #d89420)",
-                color: "#fff", border: "none", borderRadius: 14, padding: "16px",
+                background: submitting ? "#333333" : "linear-gradient(135deg, #F5A623, #d89420)",
+                color: "#000", border: "none", borderRadius: 14, padding: "16px",
                 fontWeight: 800, fontSize: 15, cursor: submitting ? "not-allowed" : "pointer",
                 boxShadow: submitting ? "none" : "0 6px 20px rgba(245,166,35,0.35)", marginTop: 4,
               }}>
@@ -177,31 +146,31 @@ export default function WalletPage() {
 
         {/* Transactions */}
         <div style={{ padding: "24px 16px 0" }}>
-          <p style={{ fontWeight: 800, fontSize: 17, color: "#1A1A1A", marginBottom: 14 }}>Transaction History</p>
+          <p style={{ fontWeight: 800, fontSize: 17, color: "#F5F5F5", marginBottom: 14 }}>Transaction History</p>
           {transactions.length === 0 ? (
-            <div style={{ background: "#fff", borderRadius: 16, padding: "32px", textAlign: "center", border: "1px solid #e8e8e8" }}>
+            <div style={{ background: "#111111", borderRadius: 16, padding: "32px", textAlign: "center", border: "1px solid #222222" }}>
               <p style={{ fontSize: 32 }}>📊</p>
-              <p style={{ color: "#a0a0a0", marginTop: 8, fontSize: 14 }}>No transactions yet</p>
+              <p style={{ color: "#555555", marginTop: 8, fontSize: 14 }}>No transactions yet</p>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {transactions.map((tx, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", boxShadow: "0 2px 8px rgba(26,239,34,0.06)", border: "1px solid #e8e8e8" }}>
+                <div key={i} style={{ background: "#111111", borderRadius: 16, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid #222222" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ width: 42, height: 42, borderRadius: 13, background: tx.type === "credit" ? "#e8ffe9" : "#fff5f5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
+                    <div style={{ width: 42, height: 42, borderRadius: 13, background: tx.type === "credit" ? "rgba(26,239,34,0.12)" : "rgba(229,62,62,0.12)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
                       {txIcon(tx.label)}
                     </div>
                     <div>
-                      <p style={{ fontSize: 13, fontWeight: 600, color: "#1A1A1A" }}>{tx.label}</p>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: "#F5F5F5" }}>{tx.label}</p>
                       <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 2 }}>
-                        <p style={{ fontSize: 11, color: "#a0a0a0" }}>{timeAgo(tx.created_at)}</p>
+                        <p style={{ fontSize: 11, color: "#555555" }}>{timeAgo(tx.created_at)}</p>
                         {tx.status === "pending" && (
-                          <span style={{ fontSize: 10, background: "#fdf8e1", color: "#d89420", borderRadius: 4, padding: "1px 6px", fontWeight: 600 }}>Pending</span>
+                          <span style={{ fontSize: 10, background: "rgba(245,166,35,0.12)", color: "#F5A623", borderRadius: 4, padding: "1px 6px", fontWeight: 600 }}>Pending</span>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div style={{ background: tx.type === "credit" ? "#e8ffe9" : "#fff5f5", borderRadius: 10, padding: "5px 12px" }}>
+                  <div style={{ background: tx.type === "credit" ? "rgba(26,239,34,0.12)" : "rgba(229,62,62,0.12)", borderRadius: 10, padding: "5px 12px" }}>
                     <p style={{ fontWeight: 800, fontSize: 13, color: tx.type === "credit" ? "#1AEF22" : "#e53e3e" }}>
                       {tx.type === "credit" ? "+" : "-"}{tx.amount.toLocaleString()} QLT
                     </p>
@@ -212,7 +181,6 @@ export default function WalletPage() {
           )}
         </div>
       </div>
-
       <BottomNav />
     </div>
   );
@@ -220,7 +188,7 @@ export default function WalletPage() {
 
 function LoadingScreen() {
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#F5F5F5" }}>
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#000000" }}>
       <div style={{ textAlign: "center" }}>
         <div style={{ fontSize: 40, marginBottom: 12 }}>💰</div>
         <p style={{ color: "#1AEF22", fontWeight: 700 }}>Loading wallet...</p>

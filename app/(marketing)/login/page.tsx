@@ -35,7 +35,7 @@ export default function LoginPage() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(160deg, #1AEF22 0%, #06B517 45%, #F5F5F5 45%)",
+      background: "linear-gradient(160deg, #1AEF22 0%, #06B517 45%, #000000 45%)",
       display: "flex", alignItems: "center", justifyContent: "center",
       padding: "24px 16px",
     }}>
@@ -76,15 +76,16 @@ export default function LoginPage() {
 
         {/* Card */}
         <div style={{
-          background: "#fff",
+          background: "#111111",
           borderRadius: 24,
           padding: "36px 32px",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+          border: "1px solid #222222",
         }}>
-          <h1 style={{ fontWeight: 800, fontSize: 22, color: "#1A1A1A", marginBottom: 6 }}>
+          <h1 style={{ fontWeight: 800, fontSize: 22, color: "#F5F5F5", marginBottom: 6 }}>
             Sign in
           </h1>
-          <p style={{ fontSize: 13, color: "#a0a0a0", marginBottom: 28 }}>
+          <p style={{ fontSize: 13, color: "#555555", marginBottom: 28 }}>
             Don&apos;t have an account?{" "}
             <Link href="/register" style={{ color: "#1AEF22", fontWeight: 700, textDecoration: "none" }}>
               Create one free
@@ -93,7 +94,7 @@ export default function LoginPage() {
 
           {error && (
             <div style={{
-              background: "#fff5f5", border: "1px solid #fed7d7",
+              background: "rgba(229,62,62,0.1)", border: "1px solid rgba(229,62,62,0.3)",
               borderRadius: 10, padding: "11px 14px", marginBottom: 20,
               fontSize: 13, color: "#e53e3e", fontWeight: 500,
             }}>
@@ -105,7 +106,7 @@ export default function LoginPage() {
 
             {/* Email */}
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>
+              <label style={{ fontSize: 12, fontWeight: 700, color: "#555555", letterSpacing: 0.5 }}>
                 EMAIL ADDRESS
               </label>
               <div style={{ position: "relative", marginTop: 8 }}>
@@ -120,12 +121,12 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   style={{
                     width: "100%", padding: "13px 14px 13px 42px",
-                    borderRadius: 12, border: "1.5px solid #e0e0e0",
-                    fontSize: 14, outline: "none", color: "#1A1A1A",
-                    background: "#fafafa", transition: "border-color 0.2s",
+                    borderRadius: 12, border: "1.5px solid #333333",
+                    fontSize: 14, outline: "none", color: "#F5F5F5",
+                    background: "#1a1a1a", transition: "border-color 0.2s",
                   }}
                   onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
-                  onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
+                  onBlur={(e) => (e.target.style.borderColor = "#333333")}
                 />
               </div>
             </div>
@@ -133,7 +134,7 @@ export default function LoginPage() {
             {/* Password */}
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#555555", letterSpacing: 0.5 }}>
                   PASSWORD
                 </label>
                 <Link href="/forgot-password" style={{ fontSize: 12, color: "#1AEF22", fontWeight: 600, textDecoration: "none" }}>
@@ -152,12 +153,12 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   style={{
                     width: "100%", padding: "13px 44px 13px 42px",
-                    borderRadius: 12, border: "1.5px solid #e0e0e0",
-                    fontSize: 14, outline: "none", color: "#1A1A1A",
-                    background: "#fafafa", transition: "border-color 0.2s",
+                    borderRadius: 12, border: "1.5px solid #333333",
+                    fontSize: 14, outline: "none", color: "#F5F5F5",
+                    background: "#1a1a1a", transition: "border-color 0.2s",
                   }}
                   onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
-                  onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
+                  onBlur={(e) => (e.target.style.borderColor = "#333333")}
                 />
                 <button
                   type="button"
@@ -197,9 +198,9 @@ export default function LoginPage() {
 
           {/* Divider */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "24px 0" }}>
-            <div style={{ flex: 1, height: 1, background: "#e8e8e8" }} />
-            <span style={{ fontSize: 12, color: "#a0a0a0", fontWeight: 500 }}>or continue with</span>
-            <div style={{ flex: 1, height: 1, background: "#e8e8e8" }} />
+            <div style={{ flex: 1, height: 1, background: "#222222" }} />
+            <span style={{ fontSize: 12, color: "#555555", fontWeight: 500 }}>or continue with</span>
+            <div style={{ flex: 1, height: 1, background: "#222222" }} />
           </div>
 
           {/* Social buttons */}
@@ -207,9 +208,9 @@ export default function LoginPage() {
             {[{ icon: "🇬", label: "Google" }, { icon: "📘", label: "Facebook" }].map((s) => (
               <button key={s.label} style={{
                 flex: 1, padding: "11px",
-                background: "#fafafa", border: "1.5px solid #e0e0e0",
+                background: "#1a1a1a", border: "1.5px solid #333333",
                 borderRadius: 12, cursor: "pointer", fontWeight: 600,
-                fontSize: 13, color: "#1A1A1A",
+                fontSize: 13, color: "#F5F5F5",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
               }}>
                 <span style={{ fontSize: 16 }}>{s.icon}</span> {s.label}
