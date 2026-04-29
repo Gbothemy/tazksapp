@@ -38,13 +38,16 @@ export default function Sidebar() {
         borderBottom: "1px solid #e8e8e8",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{
-            width: 40, height: 40, borderRadius: 12,
-            background: "linear-gradient(135deg, #1AEF22, #06B517)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 20,
-            boxShadow: "0 4px 12px rgba(26,239,34,0.3)",
-          }}>⚡</div>
+          <img 
+            src="/qeixova-logo.png" 
+            alt="Qeixova Logo" 
+            style={{
+              width: 40, 
+              height: 40, 
+              borderRadius: 12,
+              objectFit: "contain",
+            }}
+          />
           <div>
             <p style={{ fontWeight: 800, fontSize: 16, color: "#1A1A1A", letterSpacing: -0.5 }}>Qeixova</p>
             <p style={{ fontSize: 11, color: "#a0a0a0" }}>Earn by doing</p>
