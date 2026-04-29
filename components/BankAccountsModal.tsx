@@ -113,7 +113,7 @@ export default function BankAccountsModal({ onClose }: Props) {
 
         {/* Handle */}
         <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 0" }}>
-          <div style={{ width: 40, height: 4, borderRadius: 2, background: "#e0e8e1" }} />
+          <div style={{ width: 40, height: 4, borderRadius: 2, background: "#e0e0e0" }} />
         </div>
 
         {/* Header */}
@@ -145,11 +145,11 @@ export default function BankAccountsModal({ onClose }: Props) {
             {loading ? (
               <div style={{ textAlign: "center", padding: "32px 0" }}>
                 <p style={{ fontSize: 28, marginBottom: 8 }}>🏦</p>
-                <p style={{ color: "#a0b0a2", fontSize: 13 }}>Loading accounts...</p>
+                <p style={{ color: "#a0a0a0", fontSize: 13 }}>Loading accounts...</p>
               </div>
             ) : accounts.length === 0 ? (
               <div style={{
-                background: "#f9fbf9", border: "2px dashed #e0e8e1",
+                background: "#fafafa", border: "2px dashed #e0e0e0",
                 borderRadius: 16, padding: "36px 24px", textAlign: "center", marginBottom: 20,
               }}>
                 <p style={{ fontSize: 36, marginBottom: 10 }}>🏦</p>
@@ -160,8 +160,8 @@ export default function BankAccountsModal({ onClose }: Props) {
               <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
                 {accounts.map((acc) => (
                   <div key={acc.id} style={{
-                    background: acc.is_default ? "linear-gradient(135deg, #edf7ee, #e0f0e2)" : "#f9fbf9",
-                    border: `1.5px solid ${acc.is_default ? "#c8e6cc" : "#e0e8e1"}`,
+                    background: acc.is_default ? "linear-gradient(135deg, #e8ffe9, #d4ffd6)" : "#fafafa",
+                    border: `1.5px solid ${acc.is_default ? "#b3f5b6" : "#e0e0e0"}`,
                     borderRadius: 16, padding: "16px 18px",
                   }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -256,7 +256,7 @@ export default function BankAccountsModal({ onClose }: Props) {
 
               {/* Bank name */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>BANK NAME</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>BANK NAME</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
                   <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>🏦</span>
                   <select
@@ -264,9 +264,9 @@ export default function BankAccountsModal({ onClose }: Props) {
                     onChange={(e) => set("bankName", e.target.value)}
                     style={{
                       width: "100%", padding: "13px 14px 13px 42px",
-                      borderRadius: 12, border: "1.5px solid #e0e8e1",
-                      fontSize: 14, outline: "none", color: form.bankName ? "#1a2e1c" : "#a0b0a2",
-                      background: "#f9fbf9", cursor: "pointer",
+                      borderRadius: 12, border: "1.5px solid #e0e0e0",
+                      fontSize: 14, outline: "none", color: form.bankName ? "#1A1A1A" : "#a0a0a0",
+                      background: "#fafafa", cursor: "pointer",
                       appearance: "none",
                     }}
                     onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
@@ -282,7 +282,7 @@ export default function BankAccountsModal({ onClose }: Props) {
 
               {/* Account number */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>ACCOUNT NUMBER</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>ACCOUNT NUMBER</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
                   <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>🔢</span>
                   <input
@@ -305,14 +305,14 @@ export default function BankAccountsModal({ onClose }: Props) {
                     <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>✅</span>
                   )}
                 </div>
-                <p style={{ fontSize: 11, color: "#a0b0a2", marginTop: 4 }}>
+                <p style={{ fontSize: 11, color: "#a0a0a0", marginTop: 4 }}>
                   {form.accountNumber.length}/10 digits
                 </p>
               </div>
 
               {/* Account name */}
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>ACCOUNT NAME</label>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#6b6b6b", letterSpacing: 0.5 }}>ACCOUNT NAME</label>
                 <div style={{ position: "relative", marginTop: 8 }}>
                   <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none" }}>👤</span>
                   <input
