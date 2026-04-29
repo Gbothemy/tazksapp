@@ -40,7 +40,7 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
         onClick={(e) => e.stopPropagation()}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <p style={{ fontWeight: 800, fontSize: 18, color: "#1A1A1A" }}>{title}</p>
-          <button onClick={onClose} style={{ background: "#F5F5F5", border: "none", borderRadius: 10, width: 34, height: 34, fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>×</button>
+          <button onClick={onClose} style={{ background: "#F5F5F5", border: "none", borderRadius: 10, width: 34, height: 34, fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>ï¿½</button>
         </div>
         {children}
       </div>
@@ -122,7 +122,7 @@ function EditProfileModal({ profile, onClose, onSaved }: {
         width: "100%", background: saving ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: saving ? "not-allowed" : "pointer",
-        boxShadow: saving ? "none" : "0 6px 20px rgba(75,127,82,0.3)", marginTop: 4,
+        boxShadow: saving ? "none" : "0 6px 20px rgba(26,239,34,0.3)", marginTop: 4,
       }}>
         {saving ? "Saving..." : "Save Changes"}
       </button>
@@ -167,7 +167,7 @@ function ChangePasswordModal({ onClose }: { onClose: () => void }) {
         width: "100%", background: saving ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: saving ? "not-allowed" : "pointer",
-        boxShadow: saving ? "none" : "0 6px 20px rgba(75,127,82,0.3)", marginTop: 4,
+        boxShadow: saving ? "none" : "0 6px 20px rgba(26,239,34,0.3)", marginTop: 4,
       }}>
         {saving ? "Updating..." : "Update Password"}
       </button>
@@ -234,7 +234,7 @@ function NotificationsModal({ onClose }: { onClose: () => void }) {
         width: "100%", background: saved ? "#1AEF22" : saving ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: saving ? "not-allowed" : "pointer",
-        boxShadow: "0 6px 20px rgba(75,127,82,0.3)", marginTop: 20,
+        boxShadow: "0 6px 20px rgba(26,239,34,0.3)", marginTop: 20,
       }}>
         {saved ? "? Saved!" : saving ? "Saving..." : "Save Preferences"}
       </button>
@@ -296,7 +296,7 @@ function SupportModal({ onClose }: { onClose: () => void }) {
         width: "100%", background: "linear-gradient(135deg, #1AEF22, #06B517)",
         color: "#fff", border: "none", borderRadius: 14, padding: "15px",
         fontWeight: 800, fontSize: 15, cursor: "pointer",
-        boxShadow: "0 6px 20px rgba(75,127,82,0.3)",
+        boxShadow: "0 6px 20px rgba(26,239,34,0.3)",
       }}>Send Message</button>
     </Modal>
   );
@@ -398,12 +398,12 @@ If you believe points were incorrectly deducted, contact support within 7 days o
               <p style={{ fontSize: 14, fontWeight: 600, color: "#1A1A1A" }}>{item.title}</p>
               <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 2 }}>{item.sub}</p>
             </div>
-            <span style={{ color: "#a0a0a0", fontSize: 18 }}>›</span>
+            <span style={{ color: "#a0a0a0", fontSize: 18 }}>ï¿½</span>
           </div>
         ))}
       </div>
       <p style={{ textAlign: "center", color: "#a0a0a0", fontSize: 12, marginTop: 20 }}>
-        Last updated: April 2025 · Qeixova v1.0
+        Last updated: April 2025 ï¿½ Qeixova v1.0
       </p>
     </Modal>
   );
@@ -461,7 +461,7 @@ export default function ProfilePage() {
         padding: "52px 20px 40px", textAlign: "center",
         position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", top: -60, right: -60, width: 200, height: 200, borderRadius: "50%", background: "rgba(212,175,55,0.1)" }} />
+        <div style={{ position: "absolute", top: -60, right: -60, width: 200, height: 200, borderRadius: "50%", background: "rgba(245,166,35,0.1)" }} />
 
         {/* Avatar with edit button */}
         <div style={{ position: "relative", display: "inline-block", marginBottom: 14 }}>
@@ -469,7 +469,7 @@ export default function ProfilePage() {
             width: 80, height: 80, borderRadius: "50%",
             background: "linear-gradient(135deg, #F5A623, #d89420)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 34, boxShadow: "0 6px 20px rgba(212,175,55,0.4)",
+            fontSize: 34, boxShadow: "0 6px 20px rgba(245,166,35,0.4)",
             border: "3px solid rgba(255,255,255,0.3)",
           }}>
             {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : "??"}
@@ -491,12 +491,12 @@ export default function ProfilePage() {
         <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 6,
-            background: "rgba(212,175,55,0.2)", border: "1px solid rgba(212,175,55,0.4)",
+            background: "rgba(245,166,35,0.2)", border: "1px solid rgba(245,166,35,0.4)",
             borderRadius: 20, padding: "6px 16px",
           }}>
             <span style={{ fontSize: 14 }}>?</span>
             <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 700 }}>
-              Level {profile?.level ?? 1} — {levelLabel(profile?.level ?? 1)}
+              Level {profile?.level ?? 1} ï¿½ {levelLabel(profile?.level ?? 1)}
             </span>
           </div>
           {profile && profile.streak > 0 && (
@@ -516,7 +516,7 @@ export default function ProfilePage() {
       <div style={{ padding: "0 16px", marginTop: -24 }}>
         <div style={{
           background: "#fff", borderRadius: 20, padding: "20px",
-          boxShadow: "0 8px 30px rgba(75,127,82,0.12)", border: "1px solid #e8e8e8",
+          boxShadow: "0 8px 30px rgba(26,239,34,0.12)", border: "1px solid #e8e8e8",
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0,
         }}>
           {stats.map((s, i) => (
@@ -540,7 +540,7 @@ export default function ProfilePage() {
             background: "linear-gradient(135deg, #F5A623 0%, #d89420 100%)",
             borderRadius: 18, padding: "18px 20px",
             display: "flex", justifyContent: "space-between", alignItems: "center",
-            boxShadow: "0 6px 20px rgba(212,175,55,0.3)",
+            boxShadow: "0 6px 20px rgba(245,166,35,0.3)",
             position: "relative", overflow: "hidden",
           }}>
             <div style={{ position: "absolute", top: -30, right: -30, width: 100, height: 100, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
@@ -567,7 +567,7 @@ export default function ProfilePage() {
 
       {/* Menu */}
       <div style={{ padding: "20px 16px 0" }}>
-        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 2px 12px rgba(75,127,82,0.07)", border: "1px solid #e8e8e8" }}>
+        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 2px 12px rgba(26,239,34,0.07)", border: "1px solid #e8e8e8" }}>
           {menuItems.map((item, i) => (
             <div key={i} onClick={item.action} style={{
               display: "flex", alignItems: "center", gap: 14, padding: "15px 18px",
@@ -580,7 +580,7 @@ export default function ProfilePage() {
                 <p style={{ fontSize: 14, fontWeight: 600, color: "#1A1A1A" }}>{item.label}</p>
                 <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 1 }}>{item.sub}</p>
               </div>
-              <div style={{ width: 28, height: 28, borderRadius: 8, background: "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center", color: "#a0a0a0", fontSize: 14, fontWeight: 700 }}>›</div>
+              <div style={{ width: 28, height: 28, borderRadius: 8, background: "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center", color: "#a0a0a0", fontSize: 14, fontWeight: 700 }}>ï¿½</div>
             </div>
           ))}
         </div>

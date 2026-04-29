@@ -18,10 +18,10 @@ interface WalletData {
 }
 
 const categories = [
-  { icon: "??", label: "Social Media", color: "#e8f5e9", earn: "10k–15k QLT" },
-  { icon: "??", label: "Surveys",      color: "#fdf8e1", earn: "35k–50k QLT" },
-  { icon: "??", label: "App Testing",  color: "#e8f5e9", earn: "80k–120k QLT" },
-  { icon: "??", label: "Content",      color: "#fdf8e1", earn: "18k–20k QLT" },
+  { icon: "??", label: "Social Media", color: "#e8f5e9", earn: "10kï¿½15k QLT" },
+  { icon: "??", label: "Surveys",      color: "#fdf8e1", earn: "35kï¿½50k QLT" },
+  { icon: "??", label: "App Testing",  color: "#e8f5e9", earn: "80kï¿½120k QLT" },
+  { icon: "??", label: "Content",      color: "#fdf8e1", earn: "18kï¿½20k QLT" },
 ];
 
 function timeAgo(dateStr: string) {
@@ -71,7 +71,7 @@ export default function Home() {
         background: "linear-gradient(160deg, #1AEF22 0%, #06B517 100%)",
         padding: "52px 20px 90px", position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: "rgba(212,175,55,0.1)" }} />
+        <div style={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: "rgba(245,166,35,0.1)" }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", position: "relative" }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
@@ -91,12 +91,12 @@ export default function Home() {
         {user && user.streak > 0 && (
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 6,
-            background: "rgba(212,175,55,0.2)", border: "1px solid rgba(212,175,55,0.35)",
+            background: "rgba(245,166,35,0.2)", border: "1px solid rgba(245,166,35,0.35)",
             borderRadius: 20, padding: "5px 14px", marginTop: 14,
           }}>
             <span style={{ fontSize: 14 }}>??</span>
             <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 700 }}>
-              {user.streak}-day streak — Keep it up!
+              {user.streak}-day streak ï¿½ Keep it up!
             </span>
           </div>
         )}
@@ -120,12 +120,12 @@ export default function Home() {
           <Link href="/wallet" style={{
             flex: 1, background: "#ffffff", border: "1.5px solid #e0e0e0", color: "#1AEF22",
             borderRadius: 14, padding: "14px 0", textAlign: "center", fontWeight: 700, fontSize: 14,
-            textDecoration: "none", boxShadow: "0 2px 10px rgba(75,127,82,0.08)",
+            textDecoration: "none", boxShadow: "0 2px 10px rgba(26,239,34,0.08)",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           }}>?? Withdraw</Link>
           <Link href="/tasks" style={{            flex: 1, background: "linear-gradient(135deg, #F5A623, #d89420)", color: "#fff",
             borderRadius: 14, padding: "14px 0", textAlign: "center", fontWeight: 700, fontSize: 14,
-            textDecoration: "none", boxShadow: "0 4px 16px rgba(212,175,55,0.35)",
+            textDecoration: "none", boxShadow: "0 4px 16px rgba(245,166,35,0.35)",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           }}>? Earn Now</Link>
         </div>
@@ -140,7 +140,7 @@ export default function Home() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }} className="category-grid">
           {categories.map((cat) => (
             <Link key={cat.label} href="/tasks" style={{ textDecoration: "none" }}>
-              <div style={{ background: "#ffffff", borderRadius: 18, padding: "18px 16px", boxShadow: "0 2px 12px rgba(75,127,82,0.07)", border: "1px solid #e8e8e8" }}>
+              <div style={{ background: "#ffffff", borderRadius: 18, padding: "18px 16px", boxShadow: "0 2px 12px rgba(26,239,34,0.07)", border: "1px solid #e8e8e8" }}>
                 <div style={{ width: 48, height: 48, borderRadius: 14, background: cat.color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, marginBottom: 12 }}>
                   {cat.icon}
                 </div>
@@ -161,7 +161,7 @@ export default function Home() {
               <div key={i} style={{
                 background: "#ffffff", borderRadius: 16, padding: "14px 16px",
                 display: "flex", justifyContent: "space-between", alignItems: "center",
-                boxShadow: "0 2px 8px rgba(75,127,82,0.06)", border: "1px solid #e8e8e8",
+                boxShadow: "0 2px 8px rgba(26,239,34,0.06)", border: "1px solid #e8e8e8",
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{ width: 40, height: 40, borderRadius: 12, background: tx.type === "credit" ? "#e8ffe9" : "#fff5f5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
@@ -183,7 +183,7 @@ export default function Home() {
         ) : (
           <div style={{ background: "#fff", borderRadius: 16, padding: "32px", textAlign: "center", border: "1px solid #e8e8e8" }}>
             <p style={{ fontSize: 32, marginBottom: 8 }}>??</p>
-            <p style={{ color: "#a0a0a0", fontSize: 14 }}>No activity yet — complete your first task!</p>
+            <p style={{ color: "#a0a0a0", fontSize: 14 }}>No activity yet ï¿½ complete your first task!</p>
           </div>
         )}
       </div>

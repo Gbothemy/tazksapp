@@ -75,12 +75,12 @@ export default function TasksPage() {
         background: "linear-gradient(160deg, #1AEF22 0%, #06B517 100%)",
         padding: "52px 20px 28px", position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", top: -50, right: -50, width: 180, height: 180, borderRadius: "50%", background: "rgba(212,175,55,0.1)" }} />
+        <div style={{ position: "absolute", top: -50, right: -50, width: 180, height: 180, borderRadius: "50%", background: "rgba(245,166,35,0.1)" }} />
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginBottom: 4 }}>Available to earn</p>
         <p style={{ color: "#fff", fontSize: 26, fontWeight: 800, letterSpacing: -0.5 }}>Browse Tasks</p>
         <div style={{
           display: "inline-flex", alignItems: "center", gap: 6,
-          background: "rgba(212,175,55,0.2)", border: "1px solid rgba(212,175,55,0.35)",
+          background: "rgba(245,166,35,0.2)", border: "1px solid rgba(245,166,35,0.35)",
           borderRadius: 20, padding: "6px 16px", marginTop: 12,
         }}>
           <span style={{ fontSize: 14 }}>??</span>
@@ -99,7 +99,7 @@ export default function TasksPage() {
             background: active === f ? "linear-gradient(135deg, #1AEF22, #5e9e67)" : "#F5F5F5",
             color: active === f ? "#fff" : "#6b6b6b",
             fontWeight: active === f ? 700 : 500, fontSize: 13, cursor: "pointer",
-            boxShadow: active === f ? "0 4px 12px rgba(75,127,82,0.25)" : "none",
+            boxShadow: active === f ? "0 4px 12px rgba(26,239,34,0.25)" : "none",
           }}>
             {f}
           </button>
@@ -109,7 +109,7 @@ export default function TasksPage() {
       {/* Progress bar */}
       {completedCount > 0 && (
         <div style={{ padding: "14px 16px 0" }}>
-          <div style={{ background: "#fff", borderRadius: 14, padding: "14px 16px", boxShadow: "0 2px 8px rgba(75,127,82,0.06)", border: "1px solid #e8e8e8" }}>
+          <div style={{ background: "#fff", borderRadius: 14, padding: "14px 16px", boxShadow: "0 2px 8px rgba(26,239,34,0.06)", border: "1px solid #e8e8e8" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
               <p style={{ fontSize: 13, fontWeight: 600, color: "#1A1A1A" }}>{completedCount} of {tasks.length} tasks completed</p>
               <p style={{ fontSize: 13, fontWeight: 700, color: "#1AEF22" }}>{Math.round((completedCount / tasks.length) * 100)}%</p>

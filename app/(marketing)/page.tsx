@@ -66,7 +66,7 @@ export default function LandingPage() {
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <Link href="/login" style={{ fontSize: 14, fontWeight: 600, color: "#1AEF22", textDecoration: "none", padding: "8px 16px" }}>Log in</Link>
-          <Link href="/register" style={{ fontSize: 14, fontWeight: 700, color: "#fff", textDecoration: "none", padding: "9px 20px", background: "linear-gradient(135deg, #1AEF22, #06B517)", borderRadius: 10, boxShadow: "0 4px 14px rgba(75,127,82,0.3)" }}>Get Started</Link>
+          <Link href="/register" style={{ fontSize: 14, fontWeight: 700, color: "#fff", textDecoration: "none", padding: "9px 20px", background: "linear-gradient(135deg, #1AEF22, #06B517)", borderRadius: 10, boxShadow: "0 4px 14px rgba(26,239,34,0.3)" }}>Get Started</Link>
         </div>
       </nav>
 
@@ -156,7 +156,7 @@ export default function LandingPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
             {features.map((f) => (
-              <div key={f.title} style={{ background: "#fff", borderRadius: 20, padding: "28px 24px", boxShadow: "0 4px 20px rgba(75,127,82,0.07)", border: "1px solid #e8e8e8" }}>
+              <div key={f.title} style={{ background: "#fff", borderRadius: 20, padding: "28px 24px", boxShadow: "0 4px 20px rgba(26,239,34,0.07)", border: "1px solid #e8e8e8" }}>
                 <div style={{ width: 56, height: 56, borderRadius: 16, background: f.color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, marginBottom: 18 }}>{f.icon}</div>
                 <h3 style={{ fontWeight: 800, fontSize: 16, color: "#1A1A1A", marginBottom: 8 }}>{f.title}</h3>
                 <p style={{ fontSize: 13, color: "#6b6b6b", lineHeight: 1.6, marginBottom: 16 }}>{f.desc}</p>
@@ -180,7 +180,7 @@ export default function LandingPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 32 }}>
             {steps.map((step) => (
               <div key={step.num} style={{ textAlign: "center" }}>
-                <div style={{ width: 68, height: 68, borderRadius: "50%", background: "linear-gradient(135deg, #1AEF22, #06B517)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", boxShadow: "0 6px 20px rgba(75,127,82,0.25)", flexDirection: "column", gap: 2 }}>
+                <div style={{ width: 68, height: 68, borderRadius: "50%", background: "linear-gradient(135deg, #1AEF22, #06B517)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", boxShadow: "0 6px 20px rgba(26,239,34,0.25)", flexDirection: "column", gap: 2 }}>
                   <span style={{ fontSize: 22 }}>{step.icon}</span>
                 </div>
                 <p style={{ fontSize: 11, fontWeight: 700, color: "#F5A623", letterSpacing: 1, marginBottom: 6 }}>STEP {step.num}</p>
@@ -201,7 +201,7 @@ export default function LandingPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
             {testimonials.map((t) => (
-              <div key={t.name} style={{ background: "#fff", borderRadius: 20, padding: "28px 24px", boxShadow: "0 4px 20px rgba(75,127,82,0.07)", border: "1px solid #e8e8e8" }}>
+              <div key={t.name} style={{ background: "#fff", borderRadius: 20, padding: "28px 24px", boxShadow: "0 4px 20px rgba(26,239,34,0.07)", border: "1px solid #e8e8e8" }}>
                 <div style={{ display: "flex", gap: 4, marginBottom: 16 }}>
                   {[...Array(5)].map((_, i) => <span key={i} style={{ color: "#F5A623", fontSize: 16 }}>?</span>)}
                 </div>

@@ -92,7 +92,7 @@ export default function RegisterPage() {
       <div style={{
         position: "fixed", top: -100, left: -100,
         width: 360, height: 360, borderRadius: "50%",
-        background: "rgba(212,175,55,0.08)", pointerEvents: "none",
+        background: "rgba(245,166,35,0.08)", pointerEvents: "none",
       }} />
       <div style={{
         position: "fixed", bottom: -60, right: -60,
@@ -109,7 +109,7 @@ export default function RegisterPage() {
               width: 52, height: 52, borderRadius: 14,
               background: "linear-gradient(135deg, #F5A623, #d89420)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 24, boxShadow: "0 8px 24px rgba(212,175,55,0.4)",
+              fontSize: 24, boxShadow: "0 8px 24px rgba(245,166,35,0.4)",
             }}>?</div>
             <span style={{ fontWeight: 900, fontSize: 20, color: "#fff", letterSpacing: -0.5 }}>Qeixova</span>
           </Link>
@@ -252,7 +252,7 @@ export default function RegisterPage() {
                 {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.referralCode}</p>}
                 {form.referralCode.length >= 8 && !errors.referralCode && (
                   <p style={{ fontSize: 11, color: "#1AEF22", marginTop: 4, fontWeight: 600 }}>
-                    ?? Code entered — you&apos;ll get a 2,000 QLT welcome bonus!
+                    ?? Code entered ï¿½ you&apos;ll get a 2,000 QLT welcome bonus!
                   </p>
                 )}
                 <p style={{ fontSize: 11, color: "#a0a0a0", marginTop: 4 }}>
@@ -386,7 +386,7 @@ export default function RegisterPage() {
                 color: "#fff", border: "none", borderRadius: 14,
                 fontWeight: 800, fontSize: 15,
                 cursor: loading ? "not-allowed" : "pointer",
-                boxShadow: loading ? "none" : "0 6px 20px rgba(75,127,82,0.35)",
+                boxShadow: loading ? "none" : "0 6px 20px rgba(26,239,34,0.35)",
                 transition: "all 0.2s",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
               }}

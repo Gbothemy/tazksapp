@@ -51,7 +51,7 @@ export default function AdminSidebar() {
               display: "flex", alignItems: "center", gap: 12,
               padding: "12px 24px",
               color: active ? "#F5A623" : "rgba(255,255,255,0.65)",
-              background: active ? "rgba(212,175,55,0.1)" : "transparent",
+              background: active ? "rgba(245,166,35,0.1)" : "transparent",
               borderLeft: active ? "3px solid #F5A623" : "3px solid transparent",
               textDecoration: "none", fontSize: 14,
               fontWeight: active ? 600 : 400,

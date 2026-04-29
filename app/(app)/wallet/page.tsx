@@ -41,7 +41,7 @@ export default function WalletPage() {
       const d = await r.json();
       if (d.balance !== undefined) setBalance(d.balance);
       if (d.transactions) setTransactions(d.transactions);
-    } catch { /* network error — silently ignore */ }
+    } catch { /* network error ï¿½ silently ignore */ }
   };
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function WalletPage() {
         background: "linear-gradient(160deg, #1AEF22 0%, #06B517 100%)",
         padding: "52px 20px 32px", position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", top: -50, right: -50, width: 180, height: 180, borderRadius: "50%", background: "rgba(212,175,55,0.1)" }} />
+        <div style={{ position: "absolute", top: -50, right: -50, width: 180, height: 180, borderRadius: "50%", background: "rgba(245,166,35,0.1)" }} />
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginBottom: 4 }}>Points Balance</p>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
           <span style={{ color: "#F5A623", fontSize: 20 }}>?</span>
@@ -95,7 +95,7 @@ export default function WalletPage() {
           <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>QLT</span>
         </div>
         <p style={{ color: "#F5A623", fontSize: 14, fontWeight: 600, marginTop: 6 }}>
-          ˜ ?{(balance / 100).toLocaleString()} cash value
+          ï¿½ ?{(balance / 100).toLocaleString()} cash value
         </p>
         <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
           {[{ label: "Min. Withdrawal", value: "100,000 QLT" }, { label: "Rate", value: "100 QLT = ?1" }, { label: "Fee", value: "Free" }].map((item) => (
@@ -110,7 +110,7 @@ export default function WalletPage() {
       <div className="wallet-layout" style={{ display: "block" }}>
         {/* Withdraw form */}
         <div style={{ padding: "20px 16px 0" }}>
-          <div style={{ background: "#fff", borderRadius: 20, padding: "22px 20px", boxShadow: "0 4px 20px rgba(75,127,82,0.10)", border: "1px solid #e8e8e8" }}>
+          <div style={{ background: "#fff", borderRadius: 20, padding: "22px 20px", boxShadow: "0 4px 20px rgba(26,239,34,0.10)", border: "1px solid #e8e8e8" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg, #1AEF22, #5e9e67)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>??</div>
               <p style={{ fontWeight: 800, fontSize: 16, color: "#1A1A1A" }}>Withdraw Funds</p>
@@ -154,12 +154,12 @@ export default function WalletPage() {
                   <option value="">Select bank account</option>
                   {bankAccounts.length > 0 ? (
                     bankAccounts.map((acc) => (
-                      <option key={acc.id} value={`${acc.bank_name} — ${acc.account_number}`}>
-                        {acc.bank_name} — {acc.account_number.replace(/(\d{3})(\d{4})(\d{3})/, "$1 $2 $3")} ({acc.account_name})
+                      <option key={acc.id} value={`${acc.bank_name} ï¿½ ${acc.account_number}`}>
+                        {acc.bank_name} ï¿½ {acc.account_number.replace(/(\d{3})(\d{4})(\d{3})/, "$1 $2 $3")} ({acc.account_name})
                       </option>
                     ))
                   ) : (
-                    <option disabled>No accounts saved — add one in Profile</option>
+                    <option disabled>No accounts saved ï¿½ add one in Profile</option>
                   )}
                 </select>
               </div>
@@ -167,7 +167,7 @@ export default function WalletPage() {
                 background: submitting ? "#a0a0a0" : "linear-gradient(135deg, #F5A623, #d89420)",
                 color: "#fff", border: "none", borderRadius: 14, padding: "16px",
                 fontWeight: 800, fontSize: 15, cursor: submitting ? "not-allowed" : "pointer",
-                boxShadow: submitting ? "none" : "0 6px 20px rgba(212,175,55,0.35)", marginTop: 4,
+                boxShadow: submitting ? "none" : "0 6px 20px rgba(245,166,35,0.35)", marginTop: 4,
               }}>
                 {submitting ? "Processing..." : "Convert & Withdraw ?"}
               </button>
@@ -186,7 +186,7 @@ export default function WalletPage() {
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {transactions.map((tx, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", boxShadow: "0 2px 8px rgba(75,127,82,0.06)", border: "1px solid #e8e8e8" }}>
+                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", boxShadow: "0 2px 8px rgba(26,239,34,0.06)", border: "1px solid #e8e8e8" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                     <div style={{ width: 42, height: 42, borderRadius: 13, background: tx.type === "credit" ? "#e8ffe9" : "#fff5f5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
                       {txIcon(tx.label)}
