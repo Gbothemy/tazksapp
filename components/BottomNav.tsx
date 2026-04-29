@@ -19,10 +19,10 @@ export default function BottomNav() {
       right: 0,
       width: "100%",
       background: "#ffffff",
-      borderTop: "1px solid #e8ede9",
+      borderTop: "1px solid #e0e0e0",
       display: "flex",
       zIndex: 50,
-      boxShadow: "0 -4px 20px rgba(75,127,82,0.08)",
+      boxShadow: "0 -4px 20px rgba(26,239,34,0.08)",
     }}>
       {nav.map((item) => {
         const active = path === item.href;
@@ -34,7 +34,7 @@ export default function BottomNav() {
             alignItems: "center",
             padding: "10px 0 12px",
             textDecoration: "none",
-            color: active ? "#4b7f52" : "#a0b0a2",
+            color: active ? "#1AEF22" : "#a0a0a0",
             fontSize: 10,
             fontWeight: active ? 700 : 500,
             gap: 3,
@@ -47,7 +47,7 @@ export default function BottomNav() {
                 top: 0, left: "50%",
                 transform: "translateX(-50%)",
                 width: 32, height: 3,
-                background: "linear-gradient(90deg, #4b7f52, #d4af37)",
+                background: "linear-gradient(90deg, #1AEF22, #F5A623)",
                 borderRadius: "0 0 4px 4px",
               }} />
             )}

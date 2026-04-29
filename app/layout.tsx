@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="theme-color" content="#4b7f52" />
+        <meta name="theme-color" content="#1AEF22" />
       </head>
       <body>{children}</body>
     </html>

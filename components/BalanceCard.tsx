@@ -27,14 +27,14 @@ export default function BalanceCard({
 }: BalanceCardProps) {
   return (
     <div style={{
-      background: "linear-gradient(145deg, #4b7f52 0%, #3a6340 60%, #2d4f32 100%)",
+      background: "linear-gradient(145deg, #1AEF22 0%, #06B517 60%, #058f12 100%)",
       borderRadius: 24, padding: "24px 20px 20px", color: "#fff",
       margin: "0 16px", position: "relative", overflow: "hidden",
-      boxShadow: "0 12px 40px rgba(75,127,82,0.35)",
+      boxShadow: "0 12px 40px rgba(26,239,34,0.35)",
     }}>
       {/* Gold top bar */}
-      <div style={{ position: "absolute", top: 0, left: 24, right: 24, height: 3, background: "linear-gradient(90deg, #d4af37, #e8c84a, #d4af37)", borderRadius: "0 0 4px 4px" }} />
-      <div style={{ position: "absolute", top: -40, right: -40, width: 160, height: 160, borderRadius: "50%", background: "rgba(212,175,55,0.08)" }} />
+      <div style={{ position: "absolute", top: 0, left: 24, right: 24, height: 3, background: "linear-gradient(90deg, #F5A623, #ffc04d, #F5A623)", borderRadius: "0 0 4px 4px" }} />
+      <div style={{ position: "absolute", top: -40, right: -40, width: 160, height: 160, borderRadius: "50%", background: "rgba(245,166,35,0.08)" }} />
       <div style={{ position: "absolute", bottom: -30, left: -20, width: 120, height: 120, borderRadius: "50%", background: "rgba(255,255,255,0.04)" }} />
 
       {/* Balance row */}
@@ -44,18 +44,18 @@ export default function BalanceCard({
             Available Balance
           </p>
           <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-            <span style={{ fontSize: 14, color: "#e8c84a" }}>⭐</span>
+            <span style={{ fontSize: 14, color: "#F5A623" }}>⭐</span>
             <p style={{ fontSize: 32, fontWeight: 900, letterSpacing: -1.5, lineHeight: 1 }}>
               {balance.toLocaleString()}
             </p>
             <span style={{ fontSize: 12, opacity: 0.6 }}>QLT</span>
           </div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(212,175,55,0.15)", border: "1px solid rgba(212,175,55,0.25)", borderRadius: 8, padding: "4px 10px", marginTop: 6 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.25)", borderRadius: 8, padding: "4px 10px", marginTop: 6 }}>
             <span style={{ fontSize: 11, opacity: 0.7 }}>≈</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: "#e8c84a" }}>₦{toNaira(balance)}</span>
+            <span style={{ fontSize: 13, fontWeight: 700, color: "#F5A623" }}>₦{toNaira(balance)}</span>
           </div>
         </div>
-        <div style={{ width: 42, height: 42, borderRadius: 12, background: "rgba(212,175,55,0.2)", border: "1.5px solid rgba(212,175,55,0.4)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
+        <div style={{ width: 42, height: 42, borderRadius: 12, background: "rgba(245,166,35,0.2)", border: "1.5px solid rgba(245,166,35,0.4)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
           💳
         </div>
       </div>
@@ -68,7 +68,7 @@ export default function BalanceCard({
 
         <div style={{ borderRight: "1px solid rgba(255,255,255,0.12)", paddingRight: 12 }}>
           <p style={{ fontSize: 10, opacity: 0.6, marginBottom: 3, letterSpacing: 0.4 }}>Today&apos;s QLT</p>
-          <p style={{ fontSize: 16, fontWeight: 700, color: "#e8c84a" }}>
+          <p style={{ fontSize: 16, fontWeight: 700, color: "#F5A623" }}>
             +{todayEarned.toLocaleString()}
           </p>
         </div>
@@ -99,7 +99,7 @@ export default function BalanceCard({
       {/* Total tasks footer */}
       <div style={{ marginTop: 12, paddingTop: 10, borderTop: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <p style={{ fontSize: 11, opacity: 0.6 }}>Total tasks completed</p>
-        <p style={{ fontSize: 13, fontWeight: 700, color: "#e8c84a" }}>{tasksTotal.toLocaleString()} tasks</p>
+        <p style={{ fontSize: 13, fontWeight: 700, color: "#F5A623" }}>{tasksTotal.toLocaleString()} tasks</p>
       </div>
     </div>
   );
