@@ -126,10 +126,10 @@ export default function BankAccountsModal({ onClose }: Props) {
               </button>
             )}
             <div>
-              <h2 style={{ fontWeight: 800, fontSize: 18, color: "#1a2e1c" }}>
+              <h2 style={{ fontWeight: 800, fontSize: 18, color: "#1A1A1A" }}>
                 {view === "list" ? "Bank Accounts" : "Add Bank Account"}
               </h2>
-              <p style={{ fontSize: 12, color: "#a0b0a2", marginTop: 2 }}>
+              <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 2 }}>
                 {view === "list" ? "Manage your withdrawal accounts" : "Enter your account details"}
               </p>
             </div>
@@ -153,8 +153,8 @@ export default function BankAccountsModal({ onClose }: Props) {
                 borderRadius: 16, padding: "36px 24px", textAlign: "center", marginBottom: 20,
               }}>
                 <p style={{ fontSize: 36, marginBottom: 10 }}>🏦</p>
-                <p style={{ fontWeight: 700, fontSize: 15, color: "#1a2e1c", marginBottom: 6 }}>No accounts yet</p>
-                <p style={{ fontSize: 13, color: "#a0b0a2" }}>Add a bank account to enable withdrawals</p>
+                <p style={{ fontWeight: 700, fontSize: 15, color: "#1A1A1A", marginBottom: 6 }}>No accounts yet</p>
+                <p style={{ fontSize: 13, color: "#a0a0a0" }}>Add a bank account to enable withdrawals</p>
               </div>
             ) : (
               <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
@@ -294,12 +294,12 @@ export default function BankAccountsModal({ onClose }: Props) {
                     onChange={(e) => set("accountNumber", e.target.value.replace(/\D/g, ""))}
                     style={{
                       width: "100%", padding: "13px 14px 13px 42px",
-                      borderRadius: 12, border: "1.5px solid #e0e8e1",
-                      fontSize: 15, outline: "none", color: "#1a2e1c",
-                      background: "#f9fbf9", letterSpacing: 2,
+                      borderRadius: 12, border: "1.5px solid #e0e0e0",
+                      fontSize: 15, outline: "none", color: "#1A1A1A",
+                      background: "#fafafa", letterSpacing: 2,
                     }}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
                   />
                   {form.accountNumber.length === 10 && (
                     <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>✅</span>
@@ -322,12 +322,12 @@ export default function BankAccountsModal({ onClose }: Props) {
                     onChange={(e) => set("accountName", e.target.value)}
                     style={{
                       width: "100%", padding: "13px 14px 13px 42px",
-                      borderRadius: 12, border: "1.5px solid #e0e8e1",
-                      fontSize: 14, outline: "none", color: "#1a2e1c",
-                      background: "#f9fbf9",
+                      borderRadius: 12, border: "1.5px solid #e0e0e0",
+                      fontSize: 14, outline: "none", color: "#1A1A1A",
+                      background: "#fafafa",
                     }}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
                   />
                 </div>
               </div>
