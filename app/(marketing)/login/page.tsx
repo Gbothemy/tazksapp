@@ -35,7 +35,7 @@ export default function LoginPage() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(160deg, #4b7f52 0%, #3a6340 45%, #f2f2f2 45%)",
+      background: "linear-gradient(160deg, #1AEF22 0%, #06B517 45%, #F5F5F5 45%)",
       display: "flex", alignItems: "center", justifyContent: "center",
       padding: "24px 16px",
     }}>
@@ -43,7 +43,7 @@ export default function LoginPage() {
       <div style={{
         position: "fixed", top: -80, right: -80,
         width: 320, height: 320, borderRadius: "50%",
-        background: "rgba(212,175,55,0.1)", pointerEvents: "none",
+        background: "rgba(245,166,35,0.1)", pointerEvents: "none",
       }} />
       <div style={{
         position: "fixed", top: 60, left: -60,
@@ -56,12 +56,17 @@ export default function LoginPage() {
         {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <Link href="/landing" style={{ textDecoration: "none", display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-            <div style={{
-              width: 56, height: 56, borderRadius: 16,
-              background: "linear-gradient(135deg, #d4af37, #b8961e)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 26, boxShadow: "0 8px 24px rgba(212,175,55,0.4)",
-            }}>⚡</div>
+            <img 
+              src="/qeixova-icon.png" 
+              alt="Qeixova" 
+              style={{
+                width: 56, 
+                height: 56, 
+                borderRadius: 16,
+                objectFit: "contain",
+                boxShadow: "0 8px 24px rgba(26,239,34,0.4)",
+              }}
+            />
             <span style={{ fontWeight: 900, fontSize: 22, color: "#fff", letterSpacing: -0.5 }}>Qeixova</span>
           </Link>
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14, marginTop: 6 }}>
@@ -76,12 +81,12 @@ export default function LoginPage() {
           padding: "36px 32px",
           boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
         }}>
-          <h1 style={{ fontWeight: 800, fontSize: 22, color: "#1a2e1c", marginBottom: 6 }}>
+          <h1 style={{ fontWeight: 800, fontSize: 22, color: "#1A1A1A", marginBottom: 6 }}>
             Sign in
           </h1>
-          <p style={{ fontSize: 13, color: "#a0b0a2", marginBottom: 28 }}>
+          <p style={{ fontSize: 13, color: "#a0a0a0", marginBottom: 28 }}>
             Don&apos;t have an account?{" "}
-            <Link href="/register" style={{ color: "#4b7f52", fontWeight: 700, textDecoration: "none" }}>
+            <Link href="/register" style={{ color: "#1AEF22", fontWeight: 700, textDecoration: "none" }}>
               Create one free
             </Link>
           </p>
@@ -115,12 +120,12 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   style={{
                     width: "100%", padding: "13px 14px 13px 42px",
-                    borderRadius: 12, border: "1.5px solid #e0e8e1",
-                    fontSize: 14, outline: "none", color: "#1a2e1c",
-                    background: "#f9fbf9", transition: "border-color 0.2s",
+                    borderRadius: 12, border: "1.5px solid #e0e0e0",
+                    fontSize: 14, outline: "none", color: "#1A1A1A",
+                    background: "#fafafa", transition: "border-color 0.2s",
                   }}
-                  onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                  onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+                  onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                  onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
                 />
               </div>
             </div>
@@ -131,7 +136,7 @@ export default function LoginPage() {
                 <label style={{ fontSize: 12, fontWeight: 700, color: "#6b7c6d", letterSpacing: 0.5 }}>
                   PASSWORD
                 </label>
-                <Link href="/forgot-password" style={{ fontSize: 12, color: "#4b7f52", fontWeight: 600, textDecoration: "none" }}>
+                <Link href="/forgot-password" style={{ fontSize: 12, color: "#1AEF22", fontWeight: 600, textDecoration: "none" }}>
                   Forgot password?
                 </Link>
               </div>
@@ -147,12 +152,12 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   style={{
                     width: "100%", padding: "13px 44px 13px 42px",
-                    borderRadius: 12, border: "1.5px solid #e0e8e1",
-                    fontSize: 14, outline: "none", color: "#1a2e1c",
-                    background: "#f9fbf9", transition: "border-color 0.2s",
+                    borderRadius: 12, border: "1.5px solid #e0e0e0",
+                    fontSize: 14, outline: "none", color: "#1A1A1A",
+                    background: "#fafafa", transition: "border-color 0.2s",
                   }}
-                  onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                  onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+                  onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                  onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
                 />
                 <button
                   type="button"
@@ -172,11 +177,11 @@ export default function LoginPage() {
               type="submit"
               disabled={loading}
               style={{
-                background: loading ? "#a0b0a2" : "linear-gradient(135deg, #4b7f52, #3a6340)",
+                background: loading ? "#a0a0a0" : "linear-gradient(135deg, #1AEF22, #06B517)",
                 color: "#fff", border: "none",
                 borderRadius: 14, padding: "15px",
                 fontWeight: 800, fontSize: 15, cursor: loading ? "not-allowed" : "pointer",
-                boxShadow: loading ? "none" : "0 6px 20px rgba(75,127,82,0.35)",
+                boxShadow: loading ? "none" : "0 6px 20px rgba(26,239,34,0.35)",
                 transition: "all 0.2s", marginTop: 4,
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
               }}
