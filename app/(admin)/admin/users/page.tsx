@@ -80,7 +80,7 @@ export default function UsersPage() {
       <div style={{ marginBottom: 20 }}>
         <input
           type="text"
-          placeholder="Search by name or emailÖ"
+          placeholder="Search by name or email..."
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
           style={{
@@ -112,7 +112,7 @@ export default function UsersPage() {
             {loading ? (
               <tr>
                 <td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>
-                  LoadingÖ
+                  Loading...
                 </td>
               </tr>
             ) : users.length === 0 ? (
@@ -180,7 +180,7 @@ export default function UsersPage() {
             disabled={page === 1}
             style={{ padding: "8px 16px", borderRadius: 6, border: "1px solid #ddd", cursor: "pointer", background: "#fff" }}
           >
-            ? Prev
+            ‚Üê Prev
           </button>
           <span style={{ fontSize: 13, color: "#666" }}>
             Page {page} of {totalPages}
@@ -190,7 +190,7 @@ export default function UsersPage() {
             disabled={page === totalPages}
             style={{ padding: "8px 16px", borderRadius: 6, border: "1px solid #ddd", cursor: "pointer", background: "#fff" }}
           >
-            Next ?
+            Next ‚Üí
           </button>
         </div>
       )}

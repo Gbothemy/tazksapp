@@ -15,42 +15,42 @@ const OPTIONS: ClearOption[] = [
     label: "Clear Task Completions",
     description: "Removes all task completion records and resets task budgets. User balances are NOT affected.",
     danger: "medium",
-    icon: "?",
+    icon: "📋",
   },
   {
     scope: "transactions",
     label: "Clear Transactions & Balances",
     description: "Deletes all transaction history and resets every user's QLT balance to 0.",
     danger: "high",
-    icon: "??",
+    icon: "💰",
   },
   {
     scope: "tasks",
     label: "Deactivate All Tasks",
     description: "Soft-disables all tasks so users can't see them. Tasks can be re-activated individually.",
     danger: "medium",
-    icon: "??",
+    icon: "🔒",
   },
   {
     scope: "tasks_hard",
     label: "Delete All Tasks",
     description: "Permanently deletes all tasks and their completion records. This cannot be undone.",
     danger: "high",
-    icon: "???",
+    icon: "🗑️",
   },
   {
     scope: "users",
     label: "Delete All Users",
     description: "Permanently deletes all user accounts, their balances, completions, and transactions. Tasks are kept.",
     danger: "critical",
-    icon: "??",
+    icon: "👥",
   },
   {
     scope: "all",
     label: "Wipe All App Data",
     description: "Nuclear option. Deletes ALL users, tasks, completions, and transactions. The database will be empty.",
     danger: "critical",
-    icon: "??",
+    icon: "☢️",
   },
 ];
 
@@ -105,11 +105,11 @@ export default function DataManagement() {
           borderRadius: 10, padding: "12px 16px", marginBottom: 20,
           display: "flex", alignItems: "center", gap: 10,
         }}>
-          <span style={{ fontSize: 18 }}>{result.ok ? "?" : "??"}</span>
+          <span style={{ fontSize: 18 }}>{result.ok ? "✅" : "❌"}</span>
           <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: result.ok ? "#2e7d32" : "#cc0000" }}>
             {result.message}
           </p>
-          <button onClick={() => setResult(null)} style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#aaa" }}>�</button>
+          <button onClick={() => setResult(null)} style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#aaa" }}>×</button>
         </div>
       )}
 
@@ -184,7 +184,7 @@ export default function DataManagement() {
                         fontSize: 13, fontWeight: 700,
                       }}
                     >
-                      {loading ? "Processing�" : "Confirm & Execute"}
+                      {loading ? "Processing..." : "Confirm & Execute"}
                     </button>
                   </div>
                 </div>

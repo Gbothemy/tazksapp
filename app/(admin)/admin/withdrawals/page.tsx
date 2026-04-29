@@ -21,7 +21,7 @@ const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
 };
 
 function QLTToNaira(QLT: number) {
-  return "?" + (QLT / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 });
+  return "â‚¦" + (QLT / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 });
 }
 
 export default function WithdrawalsPage() {
@@ -87,7 +87,7 @@ export default function WithdrawalsPage() {
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loading…</td></tr>
+              <tr><td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loading...</td></tr>
             ) : withdrawals.length === 0 ? (
               <tr><td colSpan={8} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>No withdrawals found</td></tr>
             ) : withdrawals.map((w) => {
@@ -134,7 +134,7 @@ export default function WithdrawalsPage() {
                         </button>
                       </div>
                     ) : (
-                      <span style={{ color: "#aaa", fontSize: 12 }}>—</span>
+                      <span style={{ color: "#aaa", fontSize: 12 }}>â€”</span>
                     )}
                   </td>
                 </tr>

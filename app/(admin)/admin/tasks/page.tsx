@@ -19,7 +19,7 @@ const EMPTY_FORM = {
   category: "",
   reward: "",
   duration: "5 min",
-  icon: "??",
+  icon: "ðŸ“‹",
   color: "#e8f5e9",
   instructions: "",
   steps: "",
@@ -87,7 +87,7 @@ export default function TasksPage() {
       category: t.category,
       reward: String(t.reward),
       duration: t.duration,
-      icon: "??",
+      icon: "ðŸ“‹",
       color: "#e8f5e9",
       instructions: "",
       steps: "",
@@ -206,7 +206,7 @@ export default function TasksPage() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={9} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loading…</td>
+                <td colSpan={9} style={{ ...TD, textAlign: "center", color: "#aaa", padding: 40 }}>Loading...</td>
               </tr>
             ) : tasks.length === 0 ? (
               <tr>
@@ -234,7 +234,7 @@ export default function TasksPage() {
                   <td style={TD}>
                     {t.total_budget > 0 ? (
                       <span style={{ fontSize: 12 }}>{Number(t.budget_used).toLocaleString()} / {Number(t.total_budget).toLocaleString()}</span>
-                    ) : <span style={{ color: "#aaa", fontSize: 12 }}>—</span>}
+                    ) : <span style={{ color: "#aaa", fontSize: 12 }}>âˆž</span>}
                   </td>
                   <td style={TD}>
                     <span
@@ -325,11 +325,11 @@ export default function TasksPage() {
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <div style={{ gridColumn: "1 / -1" }}>
-                <label style={labelStyle}>Task Link (URL) <span style={{ color: "#aaa", fontWeight: 400 }}>— where users go to perform the task</span></label>
+                <label style={labelStyle}>Task Link (URL) <span style={{ color: "#aaa", fontWeight: 400 }}>ï¿½ where users go to perform the task</span></label>
                 <input style={{ ...inputStyle, borderColor: form.task_link ? "#1AEF22" : undefined }} type="url" value={form.task_link} onChange={(e) => setForm({ ...form, task_link: e.target.value })} placeholder="https://facebook.com/... or https://x.com/..." />
                 {form.task_link && (
                   <a href={form.task_link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: "#1AEF22", marginTop: 4, display: "inline-block" }}>
-                    ? Preview link
+                    ðŸ”— Preview link
                   </a>
                 )}
               </div>
@@ -339,7 +339,7 @@ export default function TasksPage() {
               </div>
               <div>
                 <label style={labelStyle}>Category *</label>
-                <input style={inputStyle} value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} placeholder="Social Media, Survey…" />
+                <input style={inputStyle} value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} placeholder="Social Media, Survey..." />
               </div>
               <div>
                 <label style={labelStyle}>Reward (QLT) *</label>
@@ -419,7 +419,7 @@ export default function TasksPage() {
                   opacity: saving ? 0.7 : 1,
                 }}
               >
-                {saving ? "Saving…" : editTask ? "Save Changes" : "Create Task"}
+                {saving ? "Saving..." : editTask ? "Save Changes" : "Create Task"}
               </button>
             </div>
           </div>
