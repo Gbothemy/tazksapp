@@ -121,7 +121,7 @@ export default function BankAccountsModal({ onClose }: Props) {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {view === "add" && (
               <button onClick={() => { setView("list"); setError(""); }}
-                style={{ background: "#f2f2f2", border: "none", borderRadius: 10, width: 34, height: 34, cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                style={{ background: "#F5F5F5", border: "none", borderRadius: 10, width: 34, height: 34, cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 ←
               </button>
             )}
@@ -134,7 +134,7 @@ export default function BankAccountsModal({ onClose }: Props) {
               </p>
             </div>
           </div>
-          <button onClick={onClose} style={{ background: "#f2f2f2", border: "none", borderRadius: 10, width: 34, height: 34, cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <button onClick={onClose} style={{ background: "#F5F5F5", border: "none", borderRadius: 10, width: 34, height: 34, cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
             ✕
           </button>
         </div>
