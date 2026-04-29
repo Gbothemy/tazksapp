@@ -168,25 +168,25 @@ export default function BankAccountsModal({ onClose }: Props) {
                       <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
                         <div style={{
                           width: 44, height: 44, borderRadius: 12,
-                          background: acc.is_default ? "linear-gradient(135deg, #4b7f52, #3a6340)" : "#e0e8e1",
+                          background: acc.is_default ? "linear-gradient(135deg, #1AEF22, #06B517)" : "#e0e0e0",
                           display: "flex", alignItems: "center", justifyContent: "center",
                           fontSize: 20, flexShrink: 0,
                         }}>
                           🏦
                         </div>
                         <div>
-                          <p style={{ fontWeight: 700, fontSize: 14, color: "#1a2e1c" }}>{acc.bank_name}</p>
-                          <p style={{ fontSize: 13, color: "#6b7c6d", marginTop: 2, letterSpacing: 1 }}>
+                          <p style={{ fontWeight: 700, fontSize: 14, color: "#1A1A1A" }}>{acc.bank_name}</p>
+                          <p style={{ fontSize: 13, color: "#6b6b6b", marginTop: 2, letterSpacing: 1 }}>
                             {acc.account_number.replace(/(\d{3})(\d{4})(\d{3})/, "$1 $2 $3")}
                           </p>
-                          <p style={{ fontSize: 12, color: "#a0b0a2", marginTop: 1 }}>{acc.account_name}</p>
+                          <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 1 }}>{acc.account_name}</p>
                         </div>
                       </div>
                       {acc.is_default && (
                         <span style={{
-                          fontSize: 10, fontWeight: 700, color: "#4b7f52",
+                          fontSize: 10, fontWeight: 700, color: "#1AEF22",
                           background: "#fff", borderRadius: 6, padding: "3px 8px",
-                          border: "1px solid #c8e6cc",
+                          border: "1px solid #b3f5b6",
                         }}>
                           DEFAULT
                         </span>
@@ -199,8 +199,8 @@ export default function BankAccountsModal({ onClose }: Props) {
                           onClick={() => handleSetDefault(acc.id)}
                           style={{
                             flex: 1, padding: "8px", borderRadius: 10,
-                            background: "#fff", border: "1.5px solid #e0e8e1",
-                            fontSize: 12, fontWeight: 600, color: "#4b7f52", cursor: "pointer",
+                            background: "#fff", border: "1.5px solid #e0e0e0",
+                            fontSize: 12, fontWeight: 600, color: "#1AEF22", cursor: "pointer",
                           }}
                         >
                           Set as Default
@@ -226,10 +226,10 @@ export default function BankAccountsModal({ onClose }: Props) {
               onClick={() => { setView("add"); setError(""); setSuccess(""); }}
               style={{
                 width: "100%",
-                background: "linear-gradient(135deg, #4b7f52, #3a6340)",
+                background: "linear-gradient(135deg, #1AEF22, #06B517)",
                 color: "#fff", border: "none", borderRadius: 14, padding: "15px",
                 fontWeight: 800, fontSize: 15, cursor: "pointer",
-                boxShadow: "0 6px 20px rgba(75,127,82,0.3)",
+                boxShadow: "0 6px 20px rgba(26,239,34,0.3)",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
               }}
             >
@@ -247,7 +247,7 @@ export default function BankAccountsModal({ onClose }: Props) {
               </div>
             )}
             {success && (
-              <div style={{ background: "#edf7ee", border: "1px solid #c3e6cb", borderRadius: 10, padding: "11px 14px", marginBottom: 16, fontSize: 13, color: "#4b7f52", fontWeight: 600 }}>
+              <div style={{ background: "#e8ffe9", border: "1px solid #b3f5b6", borderRadius: 10, padding: "11px 14px", marginBottom: 16, fontSize: 13, color: "#1AEF22", fontWeight: 600 }}>
                 ✅ {success}
               </div>
             )}
@@ -269,8 +269,8 @@ export default function BankAccountsModal({ onClose }: Props) {
                       background: "#f9fbf9", cursor: "pointer",
                       appearance: "none",
                     }}
-                    onFocus={(e) => (e.target.style.borderColor = "#4b7f52")}
-                    onBlur={(e) => (e.target.style.borderColor = "#e0e8e1")}
+                    onFocus={(e) => (e.target.style.borderColor = "#1AEF22")}
+                    onBlur={(e) => (e.target.style.borderColor = "#e0e0e0")}
                   >
                     <option value="">Select your bank</option>
                     {NIGERIAN_BANKS.map((b) => (
@@ -348,11 +348,11 @@ export default function BankAccountsModal({ onClose }: Props) {
                 type="submit"
                 disabled={submitting}
                 style={{
-                  background: submitting ? "#a0b0a2" : "linear-gradient(135deg, #d4af37, #b8961e)",
+                  background: submitting ? "#a0a0a0" : "linear-gradient(135deg, #F5A623, #d89420)",
                   color: "#fff", border: "none", borderRadius: 14, padding: "15px",
                   fontWeight: 800, fontSize: 15,
                   cursor: submitting ? "not-allowed" : "pointer",
-                  boxShadow: submitting ? "none" : "0 6px 20px rgba(212,175,55,0.35)",
+                  boxShadow: submitting ? "none" : "0 6px 20px rgba(245,166,35,0.35)",
                   marginTop: 4,
                 }}
               >

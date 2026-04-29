@@ -39,8 +39,8 @@ export default function Sidebar() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <img 
-            src="/qeixova-logo.png" 
-            alt="Qeixova Logo" 
+            src="/qeixova-icon.png" 
+            alt="Qeixova" 
             style={{
               width: 40, 
               height: 40, 
