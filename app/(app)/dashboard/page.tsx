@@ -18,10 +18,10 @@ interface WalletData {
 }
 
 const categories = [
-  { icon: "??", label: "Social Media", color: "#e8f5e9", earn: "10k�15k QLT" },
-  { icon: "??", label: "Surveys",      color: "#fdf8e1", earn: "35k�50k QLT" },
-  { icon: "??", label: "App Testing",  color: "#e8f5e9", earn: "80k�120k QLT" },
-  { icon: "??", label: "Content",      color: "#fdf8e1", earn: "18k�20k QLT" },
+  { icon: "📱", label: "Social Media", color: "#e8f5e9", earn: "10k–15k QLT" },
+  { icon: "📋", label: "Surveys",      color: "#fdf8e1", earn: "35k–50k QLT" },
+  { icon: "📲", label: "App Testing",  color: "#e8f5e9", earn: "80k–120k QLT" },
+  { icon: "🎬", label: "Content",      color: "#fdf8e1", earn: "18k–20k QLT" },
 ];
 
 function timeAgo(dateStr: string) {
@@ -76,7 +76,7 @@ export default function Home() {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#F5A623", boxShadow: "0 0 8px #F5A623" }} />
-              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 13 }}>{greeting()} ??</p>
+              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 13 }}>{greeting()} 👋</p>
             </div>
             <p style={{ color: "#fff", fontSize: 22, fontWeight: 800, letterSpacing: -0.5 }}>
               {user?.fullName?.split(" ")[0] ?? "Welcome back"}!
@@ -86,7 +86,7 @@ export default function Home() {
             width: 42, height: 42, borderRadius: 13,
             background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.15)",
             display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18,
-          }}>??</div>
+          }}>🔔</div>
         </div>
         {user && user.streak > 0 && (
           <div style={{
@@ -94,9 +94,9 @@ export default function Home() {
             background: "rgba(245,166,35,0.2)", border: "1px solid rgba(245,166,35,0.35)",
             borderRadius: 20, padding: "5px 14px", marginTop: 14,
           }}>
-            <span style={{ fontSize: 14 }}>??</span>
+            <span style={{ fontSize: 14 }}>🔥</span>
             <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 700 }}>
-              {user.streak}-day streak � Keep it up!
+              {user.streak}-day streak — Keep it up!
             </span>
           </div>
         )}
@@ -122,12 +122,13 @@ export default function Home() {
             borderRadius: 14, padding: "14px 0", textAlign: "center", fontWeight: 700, fontSize: 14,
             textDecoration: "none", boxShadow: "0 2px 10px rgba(26,239,34,0.08)",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-          }}>?? Withdraw</Link>
-          <Link href="/tasks" style={{            flex: 1, background: "linear-gradient(135deg, #F5A623, #d89420)", color: "#fff",
+          }}>💸 Withdraw</Link>
+          <Link href="/tasks" style={{
+            flex: 1, background: "linear-gradient(135deg, #F5A623, #d89420)", color: "#fff",
             borderRadius: 14, padding: "14px 0", textAlign: "center", fontWeight: 700, fontSize: 14,
             textDecoration: "none", boxShadow: "0 4px 16px rgba(245,166,35,0.35)",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-          }}>? Earn Now</Link>
+          }}>⚡ Earn Now</Link>
         </div>
       </div>
 
@@ -135,7 +136,7 @@ export default function Home() {
       <div style={{ padding: "28px 16px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <p style={{ fontWeight: 800, fontSize: 17, color: "#1A1A1A" }}>Task Categories</p>
-          <Link href="/tasks" style={{ fontSize: 13, color: "#1AEF22", fontWeight: 600, textDecoration: "none" }}>See all ?</Link>
+          <Link href="/tasks" style={{ fontSize: 13, color: "#1AEF22", fontWeight: 600, textDecoration: "none" }}>See all →</Link>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }} className="category-grid">
           {categories.map((cat) => (
@@ -165,7 +166,7 @@ export default function Home() {
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{ width: 40, height: 40, borderRadius: 12, background: tx.type === "credit" ? "#e8ffe9" : "#fff5f5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
-                    {tx.type === "credit" ? "??" : "??"}
+                    {tx.type === "credit" ? "✅" : "💸"}
                   </div>
                   <div>
                     <p style={{ fontSize: 13, fontWeight: 600, color: "#1A1A1A" }}>{tx.label}</p>
@@ -182,8 +183,8 @@ export default function Home() {
           </div>
         ) : (
           <div style={{ background: "#fff", borderRadius: 16, padding: "32px", textAlign: "center", border: "1px solid #e8e8e8" }}>
-            <p style={{ fontSize: 32, marginBottom: 8 }}>??</p>
-            <p style={{ color: "#a0a0a0", fontSize: 14 }}>No activity yet � complete your first task!</p>
+            <p style={{ fontSize: 32, marginBottom: 8 }}>📊</p>
+            <p style={{ color: "#a0a0a0", fontSize: 14 }}>No activity yet — complete your first task!</p>
           </div>
         )}
       </div>
@@ -197,10 +198,9 @@ function LoadingScreen() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#F5F5F5" }}>
       <div style={{ textAlign: "center" }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>?</div>
+        <div style={{ fontSize: 40, marginBottom: 12 }}>⚡</div>
         <p style={{ color: "#1AEF22", fontWeight: 700 }}>Loading...</p>
       </div>
     </div>
   );
 }
-

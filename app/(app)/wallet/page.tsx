@@ -15,7 +15,7 @@ function timeAgo(d: string) {
 }
 
 const TX_ICONS: Record<string, string> = {
-  "Task:": "?", "Withdrawal": "??", "Referral": "??", "default": "??",
+  "Task:": "✅", "Withdrawal": "💸", "Referral": "👥", "default": "💰",
 };
 function txIcon(label: string) {
   for (const key of Object.keys(TX_ICONS)) {
@@ -41,7 +41,7 @@ export default function WalletPage() {
       const d = await r.json();
       if (d.balance !== undefined) setBalance(d.balance);
       if (d.transactions) setTransactions(d.transactions);
-    } catch { /* network error � silently ignore */ }
+    } catch { /* silently ignore */ }
   };
 
   useEffect(() => {
@@ -88,17 +88,17 @@ export default function WalletPage() {
         <div style={{ position: "absolute", top: -50, right: -50, width: 180, height: 180, borderRadius: "50%", background: "rgba(245,166,35,0.1)" }} />
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginBottom: 4 }}>Points Balance</p>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-          <span style={{ color: "#F5A623", fontSize: 20 }}>?</span>
+          <span style={{ color: "#F5A623", fontSize: 20 }}>⭐</span>
           <p style={{ color: "#fff", fontSize: 38, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>
             {balance.toLocaleString()}
           </p>
           <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14 }}>QLT</span>
         </div>
         <p style={{ color: "#F5A623", fontSize: 14, fontWeight: 600, marginTop: 6 }}>
-          � ?{(balance / 100).toLocaleString()} cash value
+          ≈ ₦{(balance / 100).toLocaleString()} cash value
         </p>
         <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
-          {[{ label: "Min. Withdrawal", value: "100,000 QLT" }, { label: "Rate", value: "100 QLT = ?1" }, { label: "Fee", value: "Free" }].map((item) => (
+          {[{ label: "Min. Withdrawal", value: "100,000 QLT" }, { label: "Rate", value: "100 QLT = ₦1" }, { label: "Fee", value: "Free" }].map((item) => (
             <div key={item.label} style={{ flex: 1, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, padding: "10px 8px", textAlign: "center" }}>
               <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 10, marginBottom: 3 }}>{item.label}</p>
               <p style={{ color: "#F5A623", fontWeight: 700, fontSize: 13 }}>{item.value}</p>
@@ -112,7 +112,7 @@ export default function WalletPage() {
         <div style={{ padding: "20px 16px 0" }}>
           <div style={{ background: "#fff", borderRadius: 20, padding: "22px 20px", boxShadow: "0 4px 20px rgba(26,239,34,0.10)", border: "1px solid #e8e8e8" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg, #1AEF22, #5e9e67)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>??</div>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg, #1AEF22, #5e9e67)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>💸</div>
               <p style={{ fontWeight: 800, fontSize: 16, color: "#1A1A1A" }}>Withdraw Funds</p>
             </div>
 
@@ -123,7 +123,7 @@ export default function WalletPage() {
                 borderRadius: 12, padding: "12px 16px", marginBottom: 16,
                 display: "flex", alignItems: "center", gap: 10,
               }}>
-                <span style={{ fontSize: 18 }}>{msg.type === "success" ? "?" : "??"}</span>
+                <span style={{ fontSize: 18 }}>{msg.type === "success" ? "✅" : "⚠️"}</span>
                 <p style={{ color: msg.type === "success" ? "#1A1A1A" : "#e53e3e", fontSize: 13, fontWeight: 600 }}>{msg.text}</p>
               </div>
             )}
@@ -140,10 +140,10 @@ export default function WalletPage() {
                 </div>
                 {Number(amount) > 0 && (
                   <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 6, background: "#e8ffe9", borderRadius: 8, padding: "7px 12px" }}>
-                    <span style={{ fontSize: 14 }}>?</span>
+                    <span style={{ fontSize: 14 }}>⭐</span>
                     <span style={{ fontSize: 13, color: "#1AEF22", fontWeight: 600 }}>{Number(amount).toLocaleString()} QLT</span>
-                    <span style={{ color: "#a0a0a0" }}>?</span>
-                    <span style={{ fontSize: 13, color: "#1AEF22", fontWeight: 700 }}>?{(Number(amount) / 100).toLocaleString()}</span>
+                    <span style={{ color: "#a0a0a0" }}>→</span>
+                    <span style={{ fontSize: 13, color: "#1AEF22", fontWeight: 700 }}>₦{(Number(amount) / 100).toLocaleString()}</span>
                   </div>
                 )}
               </div>
@@ -154,12 +154,12 @@ export default function WalletPage() {
                   <option value="">Select bank account</option>
                   {bankAccounts.length > 0 ? (
                     bankAccounts.map((acc) => (
-                      <option key={acc.id} value={`${acc.bank_name} � ${acc.account_number}`}>
-                        {acc.bank_name} � {acc.account_number.replace(/(\d{3})(\d{4})(\d{3})/, "$1 $2 $3")} ({acc.account_name})
+                      <option key={acc.id} value={`${acc.bank_name} — ${acc.account_number}`}>
+                        {acc.bank_name} — {acc.account_number.replace(/(\d{3})(\d{4})(\d{3})/, "$1 $2 $3")} ({acc.account_name})
                       </option>
                     ))
                   ) : (
-                    <option disabled>No accounts saved � add one in Profile</option>
+                    <option disabled>No accounts saved — add one in Profile</option>
                   )}
                 </select>
               </div>
@@ -169,7 +169,7 @@ export default function WalletPage() {
                 fontWeight: 800, fontSize: 15, cursor: submitting ? "not-allowed" : "pointer",
                 boxShadow: submitting ? "none" : "0 6px 20px rgba(245,166,35,0.35)", marginTop: 4,
               }}>
-                {submitting ? "Processing..." : "Convert & Withdraw ?"}
+                {submitting ? "Processing..." : "Convert & Withdraw →"}
               </button>
             </form>
           </div>
@@ -180,7 +180,7 @@ export default function WalletPage() {
           <p style={{ fontWeight: 800, fontSize: 17, color: "#1A1A1A", marginBottom: 14 }}>Transaction History</p>
           {transactions.length === 0 ? (
             <div style={{ background: "#fff", borderRadius: 16, padding: "32px", textAlign: "center", border: "1px solid #e8e8e8" }}>
-              <p style={{ fontSize: 32 }}>??</p>
+              <p style={{ fontSize: 32 }}>📊</p>
               <p style={{ color: "#a0a0a0", marginTop: 8, fontSize: 14 }}>No transactions yet</p>
             </div>
           ) : (
@@ -222,10 +222,9 @@ function LoadingScreen() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#F5F5F5" }}>
       <div style={{ textAlign: "center" }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>??</div>
+        <div style={{ fontSize: 40, marginBottom: 12 }}>💰</div>
         <p style={{ color: "#1AEF22", fontWeight: 700 }}>Loading wallet...</p>
       </div>
     </div>
   );
 }
-

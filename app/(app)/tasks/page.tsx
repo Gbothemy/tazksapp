@@ -40,7 +40,6 @@ export default function TasksPage() {
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
         setTasks((prev) => prev.map((t) => t.id === id ? { ...t, completed: true } : t));
-        // Notify dashboard/wallet to refresh balance
         window.dispatchEvent(new CustomEvent("balanceUpdated", { detail: { newBalance: data.newBalance } }));
         return { ok: true, reward: data.reward };
       }
@@ -54,7 +53,7 @@ export default function TasksPage() {
 
   if (fetchError) return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#F5F5F5", flexDirection: "column", gap: 16, padding: 24 }}>
-      <p style={{ fontSize: 40 }}>??</p>
+      <p style={{ fontSize: 40 }}>😕</p>
       <p style={{ fontWeight: 700, color: "#1A1A1A", fontSize: 16 }}>Couldn&apos;t load tasks</p>
       <p style={{ color: "#a0a0a0", fontSize: 13, textAlign: "center" }}>Check your connection and try again.</p>
       <button onClick={loadTasks} style={{ background: "linear-gradient(135deg, #1AEF22, #06B517)", color: "#fff", border: "none", borderRadius: 12, padding: "12px 28px", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
@@ -83,7 +82,7 @@ export default function TasksPage() {
           background: "rgba(245,166,35,0.2)", border: "1px solid rgba(245,166,35,0.35)",
           borderRadius: 20, padding: "6px 16px", marginTop: 12,
         }}>
-          <span style={{ fontSize: 14 }}>??</span>
+          <span style={{ fontSize: 14 }}>💰</span>
           <span style={{ color: "#F5A623", fontSize: 13, fontWeight: 700 }}>
             Earn up to {remainingReward.toLocaleString()} QLT today
           </span>
@@ -129,13 +128,13 @@ export default function TasksPage() {
       <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 12 }} className="task-grid">
         {tasks.length === 0 ? (
           <div style={{ textAlign: "center", padding: "48px 24px", background: "#fff", borderRadius: 16, border: "1px solid #e8e8e8" }}>
-            <p style={{ fontSize: 40, marginBottom: 12 }}>??</p>
+            <p style={{ fontSize: 40, marginBottom: 12 }}>📋</p>
             <p style={{ fontWeight: 700, fontSize: 16, color: "#1A1A1A", marginBottom: 8 }}>No tasks available</p>
             <p style={{ color: "#a0a0a0", fontSize: 13 }}>Tasks are being loaded. Please check back shortly.</p>
           </div>
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 0" }}>
-            <p style={{ fontSize: 32 }}>??</p>
+            <p style={{ fontSize: 32 }}>🎉</p>
             <p style={{ color: "#a0a0a0", marginTop: 8 }}>All tasks in this category done!</p>
           </div>
         ) : (
@@ -149,7 +148,6 @@ export default function TasksPage() {
         )}
       </div>
 
-      {/* Task detail modal */}
       {selectedTask && (
         <TaskModal
           task={selectedTask}
@@ -167,10 +165,9 @@ function LoadingScreen() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#F5F5F5" }}>
       <div style={{ textAlign: "center" }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>?</div>
+        <div style={{ fontSize: 40, marginBottom: 12 }}>✅</div>
         <p style={{ color: "#1AEF22", fontWeight: 700 }}>Loading tasks...</p>
       </div>
     </div>
   );
 }
-

@@ -436,21 +436,21 @@ export default function ProfilePage() {
   };
 
   const stats = profile ? [
-    { label: "Tasks Today",      value: String(profile.tasks_today),       icon: "??" },
-    { label: "Total Tasks",      value: String(profile.tasks_completed),   icon: "?" },
-    { label: "Total Earned",     value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QLT` : `${profile.total_earned} QLT`, icon: "?" },
-    { label: "Total Withdrawn",  value: profile.total_withdrawn >= 1000 ? `${(profile.total_withdrawn / 1000).toFixed(0)}k QLT` : `${profile.total_withdrawn} QLT`, icon: "??" },
-    { label: "Balance",          value: `${profile.balance.toLocaleString()} QLT`, icon: "??" },
-    { label: "Referrals",        value: String(profile.referral_count),    icon: "??" },
+    { label: "Tasks Today",      value: String(profile.tasks_today),       icon: "📅" },
+    { label: "Total Tasks",      value: String(profile.tasks_completed),   icon: "✅" },
+    { label: "Total Earned",     value: profile.total_earned >= 1000 ? `${(profile.total_earned / 1000).toFixed(0)}k QLT` : `${profile.total_earned} QLT`, icon: "⭐" },
+    { label: "Total Withdrawn",  value: profile.total_withdrawn >= 1000 ? `${(profile.total_withdrawn / 1000).toFixed(0)}k QLT` : `${profile.total_withdrawn} QLT`, icon: "💸" },
+    { label: "Balance",          value: `${profile.balance.toLocaleString()} QLT`, icon: "💰" },
+    { label: "Referrals",        value: String(profile.referral_count),    icon: "👥" },
   ] : [];
 
   const menuItems = [
-    { icon: "??", label: "Bank Accounts",   sub: "Add & manage withdrawal accounts", color: "#e8ffe9", action: () => setShowBankModal(true) },
-    { icon: "??", label: "Edit Profile",    sub: "Update your name & phone",         color: "#fdf8e1", action: () => setModal("edit") },
-    { icon: "??", label: "Change Password", sub: "Update your account password",     color: "#e8ffe9", action: () => setModal("password") },
-    { icon: "??", label: "Notifications",   sub: "Task alerts & updates",            color: "#fdf8e1", action: () => setModal("notifications") },
-    { icon: "??", label: "Support",         sub: "Get help anytime",                 color: "#e8ffe9", action: () => setModal("support") },
-    { icon: "??", label: "Terms & Privacy", sub: "Legal information",                color: "#fdf8e1", action: () => setModal("terms") },
+    { icon: "🏦", label: "Bank Accounts",   sub: "Add & manage withdrawal accounts", color: "#e8ffe9", action: () => setShowBankModal(true) },
+    { icon: "✏️", label: "Edit Profile",    sub: "Update your name & phone",         color: "#fdf8e1", action: () => setModal("edit") },
+    { icon: "🔒", label: "Change Password", sub: "Update your account password",     color: "#e8ffe9", action: () => setModal("password") },
+    { icon: "🔔", label: "Notifications",   sub: "Task alerts & updates",            color: "#fdf8e1", action: () => setModal("notifications") },
+    { icon: "💬", label: "Support",         sub: "Get help anytime",                 color: "#e8ffe9", action: () => setModal("support") },
+    { icon: "📄", label: "Terms & Privacy", sub: "Legal information",                color: "#fdf8e1", action: () => setModal("terms") },
   ];
 
   return (
@@ -472,7 +472,7 @@ export default function ProfilePage() {
             fontSize: 34, boxShadow: "0 6px 20px rgba(245,166,35,0.4)",
             border: "3px solid rgba(255,255,255,0.3)",
           }}>
-            {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : "??"}
+            {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : "👤"}
           </div>
           <div style={{ position: "absolute", bottom: 0, right: 0, width: 14, height: 14, borderRadius: "50%", background: "#4ade80", border: "2px solid #06B517" }} />
         </div>
@@ -494,9 +494,9 @@ export default function ProfilePage() {
             background: "rgba(245,166,35,0.2)", border: "1px solid rgba(245,166,35,0.4)",
             borderRadius: 20, padding: "6px 16px",
           }}>
-            <span style={{ fontSize: 14 }}>?</span>
+            <span style={{ fontSize: 14 }}>⭐</span>
             <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 700 }}>
-              Level {profile?.level ?? 1} � {levelLabel(profile?.level ?? 1)}
+              Level {profile?.level ?? 1} — {levelLabel(profile?.level ?? 1)}
             </span>
           </div>
           {profile && profile.streak > 0 && (
@@ -505,7 +505,7 @@ export default function ProfilePage() {
               background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)",
               borderRadius: 20, padding: "5px 14px",
             }}>
-              <span style={{ fontSize: 14 }}>??</span>
+              <span style={{ fontSize: 14 }}>🔥</span>
               <span style={{ color: "#fff", fontSize: 12, fontWeight: 600 }}>{profile.streak}-day streak</span>
             </div>
           )}
@@ -559,7 +559,7 @@ export default function ProfilePage() {
               fontWeight: 800, fontSize: 13, cursor: "pointer",
               boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
             }}>
-              {copied ? "Copied! ?" : "Copy ??"}
+              {copied ? "Copied! ✅" : "Copy 📋"}
             </button>
           </div>
         </div>
@@ -580,7 +580,7 @@ export default function ProfilePage() {
                 <p style={{ fontSize: 14, fontWeight: 600, color: "#1A1A1A" }}>{item.label}</p>
                 <p style={{ fontSize: 12, color: "#a0a0a0", marginTop: 1 }}>{item.sub}</p>
               </div>
-              <div style={{ width: 28, height: 28, borderRadius: 8, background: "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center", color: "#a0a0a0", fontSize: 14, fontWeight: 700 }}>�</div>
+              <div style={{ width: 28, height: 28, borderRadius: 8, background: "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center", color: "#a0a0a0", fontSize: 14, fontWeight: 700 }}>›</div>
             </div>
           ))}
         </div>
@@ -594,7 +594,7 @@ export default function ProfilePage() {
           fontWeight: 700, fontSize: 15, cursor: "pointer",
           boxShadow: "0 2px 8px rgba(229,62,62,0.08)",
         }}>
-          ?? Log Out
+          🚪 Log Out
         </button>
       </div>
 

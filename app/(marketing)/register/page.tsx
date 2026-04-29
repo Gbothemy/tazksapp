@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -110,7 +110,7 @@ export default function RegisterPage() {
               background: "linear-gradient(135deg, #F5A623, #d89420)",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 24, boxShadow: "0 8px 24px rgba(245,166,35,0.4)",
-            }}>?</div>
+            }>⚡</div>
             <span style={{ fontWeight: 900, fontSize: 20, color: "#fff", letterSpacing: -0.5 }}>Qeixova</span>
           </Link>
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginTop: 4 }}>
@@ -129,7 +129,7 @@ export default function RegisterPage() {
           <div style={{ marginBottom: 28 }}>
             {errors.submit && (
               <div style={{ background: "#fff5f5", border: "1px solid #fed7d7", borderRadius: 10, padding: "11px 14px", marginBottom: 16, fontSize: 13, color: "#e53e3e" }}>
-                ?? {errors.submit}
+                ⚠️ {errors.submit}
               </div>
             )}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
@@ -187,7 +187,7 @@ export default function RegisterPage() {
                     onBlur={(e) => (e.target.style.borderColor = errors.email ? "#e53e3e" : "#e0e0e0")}
                   />
                 </div>
-                {errors.email && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.email}</p>}
+                {errors.email && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠️ {errors.email}</p>}
               </div>
 
               {/* Phone */}
@@ -203,7 +203,7 @@ export default function RegisterPage() {
                     onBlur={(e) => (e.target.style.borderColor = errors.phone ? "#e53e3e" : "#e0e0e0")}
                   />
                 </div>
-                {errors.phone && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.phone}</p>}
+                {errors.phone && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠️ {errors.phone}</p>}
               </div>
             </div>
           )}
@@ -224,7 +224,7 @@ export default function RegisterPage() {
                     onBlur={(e) => (e.target.style.borderColor = errors.fullName ? "#e53e3e" : "#e0e0e0")}
                   />
                 </div>
-                {errors.fullName && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.fullName}</p>}
+                {errors.fullName && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠️ {errors.fullName}</p>}
               </div>
 
               {/* Referral code */}
@@ -249,10 +249,10 @@ export default function RegisterPage() {
                     <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>?</span>
                   )}
                 </div>
-                {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.referralCode}</p>}
+                {errors.referralCode && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠️ {errors.referralCode}</p>}
                 {form.referralCode.length >= 8 && !errors.referralCode && (
                   <p style={{ fontSize: 11, color: "#1AEF22", marginTop: 4, fontWeight: 600 }}>
-                    ?? Code entered � you&apos;ll get a 2,000 QLT welcome bonus!
+                    ✅ Code entered — you&apos;ll get a 2,000 QLT welcome bonus!
                   </p>
                 )}
                 <p style={{ fontSize: 11, color: "#a0a0a0", marginTop: 4 }}>
@@ -269,7 +269,7 @@ export default function RegisterPage() {
               }}>
                 <span style={{ fontSize: 28 }}>??</span>
                 <div>
-                  <p style={{ fontWeight: 700, fontSize: 13, color: "#1A1A1A" }}>Earn up to ?15,000/week</p>
+                  <p style={{ fontWeight: 700, fontSize: 13, color: "#1A1A1A" }}>Earn up to ₦15,000/week</p>
                   <p style={{ fontSize: 12, color: "#1AEF22" }}>Complete tasks daily to maximize earnings</p>
                 </div>
               </div>
@@ -296,10 +296,10 @@ export default function RegisterPage() {
                     position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)",
                     background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 0,
                   }}>
-                    {showPass ? "??" : "???"}
+                    {showPass ? "🙈" : "👁️"}
                   </button>
                 </div>
-                {errors.password && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.password}</p>}
+                {errors.password && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠️ {errors.password}</p>}
                 {/* Strength bar */}
                 {form.password && (
                   <div style={{ marginTop: 8 }}>
@@ -333,7 +333,7 @@ export default function RegisterPage() {
                     <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontSize: 16 }}>?</span>
                   )}
                 </div>
-                {errors.confirmPassword && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>? {errors.confirmPassword}</p>}
+                {errors.confirmPassword && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: 4 }}>⚠️ {errors.confirmPassword}</p>}
               </div>
 
               {/* Terms */}
@@ -348,7 +348,7 @@ export default function RegisterPage() {
                     transition: "all 0.2s", cursor: "pointer",
                   }}
                 >
-                  {form.agreed && <span style={{ color: "#fff", fontSize: 12, fontWeight: 900 }}>?</span>}
+                  {form.agreed && <span style={{ color: "#fff", fontSize: 12, fontWeight: 900 }}>✓</span>}
                 </div>
                 <span style={{ fontSize: 13, color: "#6b6b6b", lineHeight: 1.5 }}>
                   I agree to TazKsApp&apos;s{" "}
@@ -356,7 +356,7 @@ export default function RegisterPage() {
                   <span style={{ color: "#1AEF22", fontWeight: 600 }}>Privacy Policy</span>
                 </span>
               </label>
-              {errors.agreed && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: -10 }}>? {errors.agreed}</p>}
+              {errors.agreed && <p style={{ fontSize: 11, color: "#e53e3e", marginTop: -10 }}>⚠️ {errors.agreed}</p>}
             </div>
           )}
 
@@ -392,11 +392,11 @@ export default function RegisterPage() {
               }}
             >
               {loading ? (
-                <>? Creating account...</>
+                <>⏳ Creating account...</>
               ) : step < 2 ? (
-                <>Continue ?</>
+                <>Continue →</>
               ) : (
-                <>?? Create Account</>
+                <>🎉 Create Account</>
               )}
             </button>
           </div>
@@ -411,3 +411,4 @@ export default function RegisterPage() {
     </div>
   );
 }
+
