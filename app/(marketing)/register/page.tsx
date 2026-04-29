@@ -262,8 +262,8 @@ export default function RegisterPage() {
 
               {/* Earning potential card */}
               <div style={{
-                background: "linear-gradient(135deg, #edf7ee, #e0f0e2)",
-                border: "1px solid #c8e6cc",
+                background: "linear-gradient(135deg, #e8ffe9, #d4ffd6)",
+                border: "1px solid #b3f5b6",
                 borderRadius: 14, padding: "14px 16px",
                 display: "flex", alignItems: "center", gap: 12,
               }}>
