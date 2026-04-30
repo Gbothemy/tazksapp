@@ -1,5 +1,4 @@
 {
-  "typescript": {
-    "ignoreBuildErrors": true
-  }
+  "buildCommand": "next build",
+  "framework": "nextjs"
 }
